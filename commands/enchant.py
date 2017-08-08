@@ -15,7 +15,7 @@ class CmdEnchant(MuxCommand):
    
     key = "+enchant"
     locks = "cmd:all()"
-
+    auto_help=False
     def func(self):
         if not self.args:
             self.caller.msg("You must suply an object for the spell to work.")

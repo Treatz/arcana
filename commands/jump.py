@@ -13,7 +13,7 @@ class CmdJump(default_cmds.MuxCommand):
     """
     key = "+jump"
     locks = "cmd:all()"
-
+    auto_help=False
     maxdepth = 4
 
     def func(self):

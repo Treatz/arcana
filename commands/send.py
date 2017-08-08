@@ -13,7 +13,7 @@ class CmdSend(default_cmds.MuxCommand):
     """
     key = "+send"
     locks = "cmd:all()"
-
+    auto_help=False
     def func(self):
         """confirms the target and initiates the search"""
         if not self.caller.db.magic:

@@ -12,10 +12,9 @@ class CmdLastBreath(MuxCommand):
        Not usable on ghosts themselves.
     
     """   
-    help_category = "Spirit Magic"
    
     locks = "cmd:all()"
-
+    auto_help=False
     def func(self):
         if not self.caller.db.magic:
             self.caller.msg("You can't use magic!")

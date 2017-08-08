@@ -13,7 +13,7 @@ class CmdWhere(default_cmds.MuxCommand):
     """
     key = "+where"
     locks = "cmd:all()"
-
+    auto_help=False
     maxdepth = 4
 
     def func(self):

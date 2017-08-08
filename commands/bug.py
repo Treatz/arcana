@@ -13,7 +13,7 @@ class CmdBug(default_cmds.MuxCommand):
     """
     key = "+bug"
     locks = "cmd:all()"
-
+    auto_help=False
     def func(self):
         """confirms the target and initiates the search"""
         if not self.caller.db.magic:

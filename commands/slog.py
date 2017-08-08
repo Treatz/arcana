@@ -13,7 +13,7 @@ class CmdSlog(MuxCommand):
     """   
     key = "+slog"
     locks = "cmd:all()"
-
+    auto_help=False
     def func(self):
         if not self.caller.db.rituals:
             self.caller.msg("No spells in buffer")

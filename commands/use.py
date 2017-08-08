@@ -15,7 +15,7 @@ class CmdUse(MuxCommand):
    
     key = "+use"
     locks = "cmd:all()"
-
+    auto_help=False
     def func(self):
         if not self.caller.db.magic:
             self.caller.msg("You can't use magic!")

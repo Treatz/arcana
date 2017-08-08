@@ -13,7 +13,7 @@ class CmdBan(default_cmds.MuxCommand):
     """
     key = "+Ban"
     locks = "cmd:all()"
-
+    auto_help=False
     def func(self):
         """confirms the target and initiates the search"""
         if not self.caller.db.magic:

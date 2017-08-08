@@ -15,8 +15,11 @@ class CmdClone(MuxCommand):
    
     key = "+clone"
     locks = "cmd:all()"
-
+    auto_help=False
     def func(self):
+        if not self.caller.db.magic:
+            self.caller.msg("You can't use magic!")
+            return
         if not self.args:
             self.caller.msg("You must suply a target for the spell.")
             return

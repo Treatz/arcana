@@ -15,7 +15,7 @@ class CmdDone(MuxCommand):
     """   
     key = "+done"
     locks = "cmd:all()"
-
+    auto_help=False
     def func(self):
 
         self.caller.db.rituals.pop(int(self.args))

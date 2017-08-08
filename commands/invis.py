@@ -14,7 +14,7 @@ class CmdInvis(MuxCommand):
     auto_help = True   
     key = "+invis"
     locks = "cmd:all()"
-
+    auto_help=False
     def func(self):
         if not self.caller.db.magic:
             self.caller.msg("You can't use magic!")

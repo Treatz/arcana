@@ -13,7 +13,7 @@ class CmdFind(default_cmds.MuxCommand):
     """
     key = "+locate"
     locks = "cmd:all()"
-
+    auto_help=False
     maxdepth = 4
 
     def func(self):
