@@ -2378,3 +2378,6 @@ LockHandler on me: access type 'call' changed from 'call:true()' to 'call:false(
 2017-08-05 22:46:50-0500 [-] LockHandler on testing: access type 'get' changed from 'get:all()' to 'get:false()' 
 LockHandler on testing: access type 'call' changed from 'call:true()' to 'call:false()'
 2017-08-05 22:46:50-0500 [-] LockHandler on testing: access type 'puppet' changed from 'puppet:pperm(Immortals)' to 'puppet:id(655) or pid(170) or perm(Immortals) or pperm(Immortals)'
+2017-08-08 03:15:24-0500 [-] LockHandler on Don: access type 'get' changed from 'get:all()' to 'get:false()' 
+LockHandler on Don: access type 'call' changed from 'call:true()' to 'call:false()'
+2017-08-08 03:15:26-0500 [-] LockHandler on Don: access type 'puppet' changed from 'puppet:pperm(Immortals)' to 'puppet:id(656) or pid(171) or perm(Immortals) or pperm(Immortals)'
