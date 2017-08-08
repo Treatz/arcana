@@ -12,5 +12,4 @@ from evennia.objects.models import ObjectDB
 
 for each in ObjectDB.objects.all():
     if each.is_typeclass('typeclasses.characters.Character'):
-        each.attributes.add("occult", 1)
-        each.attributes.add("rituals", 1)
+        each.attributes.add("magic", 1)

@@ -14,6 +14,9 @@ class CmdSource(MuxCommand):
     locks = "cmd:all()"
 
     def func(self):
+        if not self.caller.db.magic:
+            self.caller.msg("You can't use magic!")
+            return
         current_room = self.caller.location
         self.caller.msg("%s is set as your source location." % self.caller.location.name)
         self.caller.ndb.source = current_room

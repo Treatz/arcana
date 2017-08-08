@@ -120,7 +120,7 @@ def creating(request):
         newchar.db.push = 0
         newchar.db.rush = 0
         newchar.db.spy = "None"
-
+        newchar.db.magic = 1
         newchar.db.bashing = 0
         newchar.db.lethal = 0
 

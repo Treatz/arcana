@@ -17,6 +17,9 @@ class CmdWhere(default_cmds.MuxCommand):
     maxdepth = 4
 
     def func(self):
+        if not self.caller.db.magic:
+            self.caller.msg("You can't use magic!")
+            return
         """confirms the target and initiates the search"""
 
         # save the target object onto the command

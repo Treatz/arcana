@@ -16,6 +16,9 @@ class CmdCast(MuxCommand):
     locks = "cmd:all()"
 
     def func(self):
+        if not self.caller.db.magic:
+            self.caller.msg("You can't use magic!")
+            return
         Wiz = Character.objects.get(id=1)
         today = datetime.datetime.now().strftime("%y-%m-%d-%H-%M")
         save = self.args

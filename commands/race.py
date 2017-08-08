@@ -17,6 +17,9 @@ class CmdRace(MuxCommand):
     locks = "cmd:all()"
 
     def func(self):
+        if not self.caller.db.magic:
+            self.caller.msg("You can't use magic!")
+            return
         if(self.caller.db.rush >= 0 and self.caller.db.rush <= 6):
             self.caller.db.rush = self.caller.db.rush + 1
             if self.caller.db.move_speed == "stroll":

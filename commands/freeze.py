@@ -14,6 +14,9 @@ class CmdFreeze(MuxCommand):
     locks = "cmd:all()"
 
     def func(self):
+        if not self.caller.db.magic:
+            self.caller.msg("You can't use magic!")
+            return
         current_room = self.caller.location
         current_room.db.freeze = 1 
         for item in current_room.contents:

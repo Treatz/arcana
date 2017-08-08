@@ -47,6 +47,7 @@ class CmdSpell(MuxCommand):
                +Project - Causes a character to see an illusion.
                +Send - Sends a message to another character with telepathy.
            Prime
+               +Dispell - Stops target from using magic.
                +Drain - Drains quintessence from targets willpower.
            Spirit
                +Exorcise - Send ghosts back to where they belong.

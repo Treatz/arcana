@@ -14,6 +14,9 @@ class CmdScryExample(MuxCommand):
     locks = "cmd:all()"
 
     def func(self):
+        if not self.caller.db.magic:
+            self.caller.msg("You can't use magic!")
+            return
         if not self.lhslist:
             self.msg("You must provide a list of directions.")
             return

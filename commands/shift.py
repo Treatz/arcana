@@ -15,8 +15,10 @@ class CmdShift(MuxCommand):
    
     key = "+shift"
     locks = "cmd:all()"
-
     def func(self):
+        if not self.caller.db.magic:
+            self.caller.msg("You can't use magic!")
+            return
         if not self.args:
             self.caller.msg("You must suply a form to change to.")
             return

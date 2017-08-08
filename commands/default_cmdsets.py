@@ -85,6 +85,7 @@ from commands.done import CmdDone
 from commands.cast import CmdCast
 from commands.slog import CmdSlog
 from commands.sheet import Sheet
+from commands.dispell import CmdDispell
 
 class CharacterCmdSet(default_cmds.CharacterCmdSet):
         """
@@ -178,6 +179,8 @@ class CharacterCmdSet(default_cmds.CharacterCmdSet):
                 self.add(CmdSlog())
                 self.add(CmdDone())
                 self.add(Sheet())
+                self.add(CmdDispell())
+
 class PlayerCmdSet(default_cmds.PlayerCmdSet):
         """
         This is the cmdset available to the Player at all times. It is

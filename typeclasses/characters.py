@@ -261,6 +261,7 @@ class Character(DefaultCharacter):
         self.db.burned = 0
         self.db.astro = 0
         self.db.attack_not = 1
+        self.db.magic = 1
         self.touch = 0
         self.intimidated = 0
 
@@ -326,6 +327,9 @@ class Character(DefaultCharacter):
 
         if(self.db.cursed > 0):
             self.db.cursed = int(self.db.cursed) - 1
+
+        if(self.db.magic == 0):
+            self.db.magic = 1
 
         if(self.db.lethal > 0 and self.db.alive == 1):
             self.msg("You heal 1 point of lethal damage.")
