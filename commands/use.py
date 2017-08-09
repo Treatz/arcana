@@ -23,6 +23,11 @@ class CmdUse(MuxCommand):
         if not self.args:
             self.caller.msg("You must suply a target for the spell.")
             return
+        if not self.caller.db.quintessence:
+            self.caller.msg("You don't have enough quintessence for that!")
+            return
+        else:
+            self.caller.db.quintessence -= 1
 
         if(self.args == 'luck' or self.args == 'Luck'):
             if(self.caller.db.burned <= self.caller.db.luck):

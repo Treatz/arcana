@@ -308,7 +308,6 @@ def punch(caller):
         for player in players:
             if not player.ndb.end_combat:
                 player.msg("%s punches %s." % (caller, caller.db.target))
-
         EvMenu(caller.db.target, "typeclasses.menu", startnode="defend_node", auto_quit=False, cmd_on_exit=None)
     else:
         caller.msg("|/|gYou miss %s." % caller.db.target)
@@ -1017,7 +1016,13 @@ def dodge(caller):
             caller.db.target.msg("|/|gYou deal %i points of lethal damage to %s." % (dmg, caller))
             caller.db.target.msg("|/|g%s loses a total of %i hit points." % (caller, dmg))
 
-    EvMenu(caller, "typeclasses.menu", startnode="attack_node", auto_quit=False, cmd_on_exit=None)
+    if(caller.db.target.db.slowtime == 1):
+        caller.msg("%s is moving too fast for you to react!" % caller.db.target)
+        caller.db.target.msg("You move too fast for %s to react!" % caller)
+        EvMenu(caller.db.target, "typeclasses.menu", startnode="attack_node", auto_quit=False, cmd_on_exit=None)
+    else:
+        EvMenu(caller, "typeclasses.menu", startnode="attack_node", auto_quit=False, cmd_on_exit=None)
+
     text = ""
     options = ({"key": "skip",
         "goto": "skip_attack"})
@@ -1140,9 +1145,13 @@ def block(caller):
             caller.db.lethal = caller.db.lethal + dmg
             caller.db.target.msg("|/|gYou deal %i points of lethal damage with your attack." % (dmg))
             caller.db.target.msg("|/|g%s loses a total of %i hit points." % (caller, dmg))
+    if(caller.db.target.db.slowtime == 1):
+        caller.msg("%s is moving too fast for you to react!" % caller.db.target)
+        caller.db.target.msg("You move too fast for %s to react!" % caller)
+        EvMenu(caller.db.target, "typeclasses.menu", startnode="attack_node", auto_quit=False, cmd_on_exit=None)
+    else:
+        EvMenu(caller, "typeclasses.menu", startnode="attack_node", auto_quit=False, cmd_on_exit=None)
 
-
-    EvMenu(caller, "typeclasses.menu", startnode="attack_node", auto_quit=False, cmd_on_exit=None)
     text = ""
     options = ({"key": "skip",
         "goto": "skip_attack"})

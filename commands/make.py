@@ -29,5 +29,10 @@ class CmdMake(MuxCommand):
 	if args not in self.ITEM_TYPES:
 		self.caller.msg("It must be one of the following: %s" % ", ".join(self.ITEM_TYPES))
 		return
+        if not self.caller.db.quintessence:
+            self.caller.msg("You don't have enough quintessence for that!")
+            return
+        else:
+            self.caller.db.quintessence -= 1
 	new_object = create_object("typeclasses.objects.Object",  key=args, location=self.caller)
 	self.caller.msg("You now have %s." % new_object.key)

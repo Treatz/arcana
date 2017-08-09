@@ -57,7 +57,8 @@ class CmdSpell(MuxCommand):
                +Summon - Opens the room to the spirit world.
                +Reach - Interact with the spirit world.
            Time    
-               +Freeze - Freezes time in a location.    
+               +Freeze - Freezes time in a location.
+               +Slowtime - Slows time around you    
     """   
     help_category = "Magic"
     auto_help = True

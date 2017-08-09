@@ -28,6 +28,11 @@ class CmdClone(MuxCommand):
             return
         if hit == self.caller:
             hit.msg("You can't clone your self.")
+        if not self.caller.db.quintessence:
+            self.caller.msg("You don't have enough quintessence for that!")
+            return
+        else:
+            self.caller.db.quintessence -= 1
         if not self.caller.key == hit.key:
             self.caller.ndb.nameSave = self.caller.key
             self.caller.key = hit.key

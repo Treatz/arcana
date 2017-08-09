@@ -17,6 +17,11 @@ class CmdSummon(MuxCommand):
         if not self.caller.db.magic:
             self.caller.msg("You can't use magic!")
             return
+        if not self.caller.db.quintessence:
+            self.caller.msg("You don't have enough quintessence for that!")
+            return
+        else:
+            self.caller.db.quintessence -= 1
         players = [con for con in self.caller.location.contents if con.has_player]
         for player in players:
             if(player.db.alive == 1):

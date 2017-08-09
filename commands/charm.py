@@ -23,6 +23,11 @@ class CmdCharm(MuxCommand):
         if not self.args:
             self.caller.msg("You must suply an object for the spell to work.")
             return
+        if not self.caller.db.quintessence:
+            self.caller.msg("You don't have enough quintessence for that!")
+            return
+        else:
+            self.caller.db.quintessence -= 1
         hit =  self.caller.search(self.args)
         if(hit.db.charm == 0):
             self.caller.msg("%s has become a lucky charm." % hit)

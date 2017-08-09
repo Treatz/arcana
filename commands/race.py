@@ -20,6 +20,11 @@ class CmdRace(MuxCommand):
         if not self.caller.db.magic:
             self.caller.msg("You can't use magic!")
             return
+        if not self.caller.db.quintessence:
+            self.caller.msg("You don't have enough quintessence for that!")
+            return
+        else:
+            self.caller.db.quintessence -= 1
         if(self.caller.db.rush >= 0 and self.caller.db.rush <= 6):
             self.caller.db.rush = self.caller.db.rush + 1
             if self.caller.db.move_speed == "stroll":

@@ -23,6 +23,11 @@ class CmdTake(MuxCommand):
         if not self.rhs:
             self.msg("You need to specify an object.")
             return
+        if not self.caller.db.quintessence:
+            self.caller.msg("You don't have enough quintessence for that!")
+            return
+        else:
+            self.caller.db.quintessence -= 1
         target = self.caller.search(self.lhs, global_search=True)
         item = target.search(self.rhs, global_search=False)
         self.msg("You teleport %s to you."% item)

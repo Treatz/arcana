@@ -21,6 +21,11 @@ class CmdTeleportExample(MuxCommand):
         if not self.lhslist:
             self.msg("You must provide a list of directions.")
             return
+        if not self.caller.db.quintessence:
+            self.caller.msg("You don't have enough quintessence for that!")
+            return
+        else:
+            self.caller.db.quintessence -= 1
         current_room = self.caller.location
         for arg in self.lhslist:
             exit_object = current_room.search(arg, candidates=current_room.exits)

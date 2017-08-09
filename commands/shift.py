@@ -23,6 +23,11 @@ class CmdShift(MuxCommand):
         if not self.args:
             self.caller.msg("You must suply a form to change to.")
             return
+        if not self.caller.db.quintessence:
+            self.caller.msg("You don't have enough quintessence for that!")
+            return
+        else:
+            self.caller.db.quintessence -= 1
         if self.args == "cat":
             self.caller.ndb.nameSave = self.caller.key
             self.caller.key = "A black cat"

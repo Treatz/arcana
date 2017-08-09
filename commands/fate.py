@@ -23,7 +23,11 @@ class CmdFate(MuxCommand):
         if not self.args:
             self.caller.msg("You must suply a target for the spell.")
             return
-
+        if not self.caller.db.quintessence:
+            self.caller.msg("You don't have enough quintessence for that!")
+            return
+        else:
+            self.caller.db.quintessence -= 1
         hit =  self.caller.search(self.args)
         if hit:
             self.caller.msg("The person has charged up |g(%i) |Wpoints of karma." % int(hit.db.blessed - hit.db.cursed))

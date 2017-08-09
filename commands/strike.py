@@ -28,6 +28,12 @@ class CmdStrike(MuxCommand):
         if hit == self.caller:
             self.caller.msg("You don't want to do that!")
             return                
+        if not self.caller.db.quintessence:
+            self.caller.msg("You don't have enough quintessence for that!")
+            return
+        else:
+            self.caller.db.quintessence -= 1
+
         if hit:
             hit.msg("You are struck by lightning!")
             self.caller.msg("%s is truck by lightning!" % hit)                  

@@ -86,6 +86,8 @@ from commands.cast import CmdCast
 from commands.slog import CmdSlog
 from commands.sheet import Sheet
 from commands.dispell import CmdDispell
+from commands.meditate import CmdMeditate
+from commands.slowtime import CmdSlowtime
 
 class CharacterCmdSet(default_cmds.CharacterCmdSet):
         """
@@ -180,6 +182,8 @@ class CharacterCmdSet(default_cmds.CharacterCmdSet):
                 self.add(CmdDone())
                 self.add(Sheet())
                 self.add(CmdDispell())
+                self.add(CmdMeditate())
+                self.add(CmdSlowtime())
 
 class PlayerCmdSet(default_cmds.PlayerCmdSet):
         """

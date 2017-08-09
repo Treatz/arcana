@@ -22,6 +22,11 @@ class CmdCurse(MuxCommand):
         if not self.args:
             self.caller.msg("You must suply a target for the spell.")
             return
+        if not self.caller.db.quintessence:
+            self.caller.msg("You don't have enough quintessence for that!")
+            return
+        else:
+            self.caller.db.quintessence -= 1
         hit =  self.caller.search(self.args)
 
         if hit == self.caller:

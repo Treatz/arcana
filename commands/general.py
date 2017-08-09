@@ -426,15 +426,15 @@ class CmdSay(COMMAND_DEFAULT_CLASS):
         speech = caller.location.at_say(caller, speech)
 
         # Feedback for the object doing the talking.
-        caller.msg('You say, "%s|n"' % speech)
-        # Build the string to emit to neighbors.
-        emit_string = '%s says, "%s|n"' % (caller.name, speech)
-        for item in self.caller.location.contents:
-             if (item is not self.caller) and (item.db.present):
-                 item.msg(emit_string)        
-             elif (item is not self.caller) and (item.location.db.freeze == 0):
-                 item.msg(emit_string)  
-
+        if(caller.db.present):
+            caller.msg('You say, "%s|n"' % speech)
+            # Build the string to emit to neighbors.
+            emit_string = '%s says, "%s|n"' % (caller.name, speech)
+            for item in self.caller.location.contents:
+                 if (item is not self.caller):
+                     item.msg(emit_string)        
+        else:
+            caller.msg("Time has stopped.") 
 
 
 class CmdWhisper(COMMAND_DEFAULT_CLASS):

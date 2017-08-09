@@ -19,6 +19,11 @@ class CmdProject(default_cmds.MuxCommand):
         if not self.caller.db.magic:
             self.caller.msg("You can't use magic!")
             return
+        if not self.caller.db.quintessence:
+            self.caller.msg("You don't have enough quintessence for that!")
+            return
+        else:
+            self.caller.db.quintessence -= 1
         # save the target object onto the command
         # this will use Evennia's default multimatch handling if more than one object matches
         self.target = self.caller.search(self.lhs, global_search=True)

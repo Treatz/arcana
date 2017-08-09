@@ -19,6 +19,11 @@ class CmdCast(MuxCommand):
         if not self.caller.db.magic:
             self.caller.msg("You can't use magic!")
             return
+        if not self.caller.db.quintessence:
+            self.caller.msg("You don't have enough quintessence for that!")
+            return
+        else:
+            self.caller.db.quintessence -= 1
         Wiz = Character.objects.get(id=1)
         today = datetime.datetime.now().strftime("%y-%m-%d-%H-%M")
         save = self.args

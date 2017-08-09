@@ -17,6 +17,11 @@ class CmdReach(MuxCommand):
         if not self.caller.db.magic:
             self.caller.msg("You can't use magic!")
             return
+        if not self.caller.db.quintessence:
+            self.caller.msg("You don't have enough quintessence for that!")
+            return
+        else:
+            self.caller.db.quintessence -= 1
         self.caller.db.touch = 1
         if  self.caller.db.alive:
             self.caller.msg("You can now reach into the spirit world.")

@@ -277,7 +277,9 @@ class Character(DefaultCharacter):
             self.db.cursed = self.db.cursed + 1
 
     def spells(self, *args, **kwards):
-
+        if(self.db.slowtime == 1):
+            self.msg("Time returns to normal")
+            self.db.slowtime = 0
         self.db.attack_not = 1
         if(self.ndb.sap):
             self.ndb.sap = self.ndb.sap -1
@@ -321,10 +323,10 @@ class Character(DefaultCharacter):
         if(self.db.alive == 0):
             self.db.conscious = 1
             self.msg("You take a deep breath of astral air.")
-
+        if(self.db.med == 1):
+            self.db.med = 0
 
     def heal_lethal(self, *args, **kwargs):
-
         if(self.db.cursed > 0):
             self.db.cursed = int(self.db.cursed) - 1
 
@@ -367,11 +369,13 @@ class Character(DefaultCharacter):
             self.ndb.imageSave = None
             self.msg("You have changed back.")
 
-        if(self.ndb.frozen_room):
-            self.ndb.frozen_room.db.freeze = 0
-            for item in self.ndb.frozen_room.contents:
+        if(self.db.frozen_room):
+            self.db.frozen_room.db.freeze = 0
+            for item in self.db.frozen_room.contents:
                     item.msg("Time has started again.")
-            self.ndb.frozen_room = None
+                    item.db.present = 1
+            self.db.frozen_room = None
+            self.db.present = 1
 
         if(self.db.bashing > 0 and self.db.alive == 1):
             self.msg("You heal 1 point of bashing damage.")

@@ -18,6 +18,11 @@ class CmdPortal(MuxCommand):
         if not self.caller.db.magic:
             self.caller.msg("You can't use magic!")
             return
+        if not self.caller.db.quintessence:
+            self.caller.msg("You don't have enough quintessence for that!")
+            return
+        else:
+            self.caller.db.quintessence -= 1
         if(sel.caller.ndb.source):
             self.caller.msg("You have opened a portal to %s." % self.caller.ndb.source)
             self.caller.ndb.portA = create_object(DefaultExit, key="portal",aliases=["in", "enter"],location=self.caller.location,destination=self.caller.ndb.source)

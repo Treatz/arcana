@@ -7,7 +7,8 @@ class Exit(mySlowExit):
         if character.db.conscious == 0:
             character.msg("You are unconscious and cannot move.")
             return
-        if character.location.db.freeze:
+     #   if character.location.db.freeze and character.ndb.present == 0:
+        if character.db.present == 0:
             character.msg("Time has stopped and you can't move.")
             return
         if self.access(character, 'traverse'):

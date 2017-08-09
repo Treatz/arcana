@@ -31,6 +31,12 @@ class CmdInflict(MuxCommand):
         if not hit.db.alive:
             self.caller.msg("Target must be alive.")
             return
+        if not self.caller.db.quintessence:
+            self.caller.msg("You don't have enough quintessence for that!")
+            return
+        else:
+            self.caller.db.quintessence -= 1
+
         if(hit.db.location == self.caller.db.location):
             hit.db.bashing = hit.db.bashing + 1
             self.caller.msg("You inflict 1 point of bashing damage on %s" % hit)

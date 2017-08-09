@@ -17,9 +17,15 @@ class CmdFreeze(MuxCommand):
         if not self.caller.db.magic:
             self.caller.msg("You can't use magic!")
             return
+        if not self.caller.db.quintessence:
+            self.caller.msg("You don't have enough quintessence for that!")
+            return
+        else:
+            self.caller.db.quintessence -= 1
         current_room = self.caller.location
         current_room.db.freeze = 1 
         for item in current_room.contents:
             item.msg("Time comes to a stop.") 
-        self.caller.ndb.present = 1
-        self.caller.ndb.frozen_room = current_room      
+            item.db.present = 0
+        self.caller.db.present = 1
+        self.caller.db.frozen_room = current_room      

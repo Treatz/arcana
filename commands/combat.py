@@ -18,6 +18,9 @@ class CmdAttack(Command):
     def func(self):
         self.caller.db.target = self.caller.search(self.args)
         self.caller.db.target.db.target = self.caller
+        if(self.caller.db.present == 0 or self.caller.db.target.db.present == 0):
+            self.caller.msg("You can't do that while time has stopped.")
+            return
         if self.caller.db.invis:
             self.caller.msg("You have become visibile.")
             self.caller.db.invis = 0

@@ -17,6 +17,11 @@ class CmdPeek(MuxCommand):
         if not self.caller.db.magic:
             self.caller.msg("You can't use magic!")
             return
+        if not self.caller.db.quintessence:
+            self.caller.msg("You don't have enough quintessence for that!")
+            return
+        else:
+            self.caller.db.quintessence -= 1
         char =  self.caller.search(self.args)
         self.caller.msg("You peek into what %s is carrying: " % char)
         for item in char.contents:

@@ -1,21 +1,22 @@
 from evennia.commands.default.muxcommand import MuxCommand
 
 
-class CmdInvis(MuxCommand):
+class CmdSlowtime(MuxCommand):
+
     """
-       +Invis - Temporarily makes you invisible.
+       +slowtime - Slows time down for other people.
     
        Usage: 
-         +invisible
-   
-       Can only be used on yourself..
+         +slowtime
+
+       Slows time down.
     
     """   
-    auto_help = True   
-    key = "+invis"
+   
+    key = "+slowtime"
     locks = "cmd:all()"
     auto_help=False
-    def func(self):
+    def func(self):     
         if not self.caller.db.magic:
             self.caller.msg("You can't use magic!")
             return
@@ -24,5 +25,5 @@ class CmdInvis(MuxCommand):
             return
         else:
             self.caller.db.quintessence -= 1
-        self.caller.db.invis = 1
-        self.caller.msg("You are now invisible.")
+        self.caller.db.slowtime = 1
+        self.caller.msg("The time around you slows down.")

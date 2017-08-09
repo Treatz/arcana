@@ -20,5 +20,10 @@ class CmdPush(MuxCommand):
         if not self.caller.db.magic:
             self.caller.msg("You can't use magic!")
             return
+        if not self.caller.db.quintessence:
+            self.caller.msg("You don't have enough quintessence for that!")
+            return
+        else:
+            self.caller.db.quintessence -= 1
         self.caller.db.strength = self.caller.db.strength + 3
         self.caller.msg("You feel powerful.")

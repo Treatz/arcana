@@ -105,6 +105,8 @@ def creating(request):
         newchar.db.familiar = trans(myform["Familiar"])-1
         newchar.db.resources = trans(myform["Resources"])-1
 
+        newchar.db.slowtime = 0
+        newchar.db.meditate = 0
         newchar.db.invis = 0
         newchar.db.blessed = 0
         newchar.db.cursed = 0
