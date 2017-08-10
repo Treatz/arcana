@@ -28,6 +28,22 @@ class CmdHeal(MuxCommand):
         if not hit.db.alive:
             self.caller.msg("Target must be alive.")
             return
+
+        from evennia.contrib.dice import roll_dice
+
+        if not self.caller.db.life:
+            self.caller.msg("This spell requires knowledge of the life sphere.")
+            return
+        wins = 0
+        for x in range(0, self.caller.db.arete):
+            roll = roll_dice(1,10)
+            if(roll > 5):
+                wins += 1
+        wins = wins + self.caller.db.life
+        if wins < 7:
+            self.caller.msg("Your spell fizzles out and fails.")
+            return
+
         if not self.caller.db.quintessence:
             self.caller.msg("You don't have enough quintessence for that!")
             return

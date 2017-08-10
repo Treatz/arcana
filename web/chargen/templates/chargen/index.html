@@ -1714,17 +1714,17 @@ function switch3(){
 
 
 function switch4(){
-    if(document.getElementById("Alignment4").value == "5"){
+    if(document.getElementById("Alignment4").value == "6"){
         document.getElementById("Alignment5").value = "10";
-        document.getElementById("Alignment6").value = "7";
+        document.getElementById("Alignment6").value = "8";
     }
-    if(document.getElementById("Alignment4").value == "7"){
-        document.getElementById("Alignment5").value = "5";
+    if(document.getElementById("Alignment4").value == "8"){
+        document.getElementById("Alignment5").value = "6";
         document.getElementById("Alignment6").value = "10";
     }
     if(document.getElementById("Alignment4").value == "10"){
-        document.getElementById("Alignment5").value = "7";
-        document.getElementById("Alignment6").value = "5";
+        document.getElementById("Alignment5").value = "8";
+        document.getElementById("Alignment6").value = "6";
     }
     myFunction2();
 }
@@ -1794,7 +1794,9 @@ function myFunction1() {
 
 function myFunction2() {
 
-
+    document.getElementById('totalPrice4').innerHTML = "Talents: 0 / " + document.getElementById("Alignment4").value;
+    document.getElementById('totalPrice5').innerHTML = "Skills: 0 / " + document.getElementById("Alignment5").value;
+    document.getElementById('totalPrice6').innerHTML = "Knowledges: 0 / " +  document.getElementById("Alignment6").value;
 
     document.cakeform.testA[0].checked=true;
     document.cakeform.testA1[0].checked=true;
@@ -1816,16 +1818,6 @@ function myFunction2() {
     document.cakeform.testC3[0].checked=true;
     document.cakeform.testC4[0].checked=true;
     document.cakeform.testC5[0].checked=true;
-
-    var clear = document.getElementById('totalPrice4');
-    clear.style.display='block';
-    clear.innerHTML = "Talents: 0 / "+ (parseInt(document.getElementById("Alignment4").value));
-    var clear2 = document.getElementById('totalPrice5');
-    clear2.style.display='block';
-    clear2.innerHTML = "Skills: 0 / "+ (parseInt(document.getElementById("Alignment5").value));
-    var clear3 = document.getElementById('totalPrice6');
-    clear3.style.display='block';
-    clear3.innerHTML = "Knowledges: 0 / "+ (parseInt(document.getElementById("Alignment6").value));
 
 }
 

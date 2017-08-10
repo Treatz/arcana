@@ -20,6 +20,22 @@ class CmdEnchant(MuxCommand):
         if not self.args:
             self.caller.msg("You must suply an object for the spell to work.")
             return
+
+        from evennia.contrib.dice import roll_dice
+
+        if not self.caller.db.matter:
+            self.caller.msg("This spell requires knowledge of the matter sphere.")
+            return
+        wins = 0
+        for x in range(0, self.caller.db.arete):
+            roll = roll_dice(1,10)
+            if(roll > 5):
+                wins += 1
+        wins = wins + self.caller.db.matter
+        if wins < 7:
+            self.caller.msg("Your spell fizzles out and fails.")
+            return
+
         hit =  self.caller.search(self.args)
         if not hit.db.enchant:
             self.caller.msg("%s has become enchanted." % hit)

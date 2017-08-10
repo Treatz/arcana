@@ -1,5 +1,5 @@
 from evennia import default_cmds
-
+from evennia.contrib.dice import roll_dice
 
 class CmdBan(default_cmds.MuxCommand):
     """
@@ -19,11 +19,28 @@ class CmdBan(default_cmds.MuxCommand):
         if not self.caller.db.magic:
             self.caller.msg("You can't use magic!")
             return
+        from evennia.contrib.dice import roll_dice
+
+        if not self.caller.db.entropy:
+            self.caller.msg("This spell requires knowledge of the Entropy sphere.")
+            return
+        wins = 0
+        for x in range(0, self.caller.db.arete):
+            roll = roll_dice(1,10)
+            if(roll > 5):
+                wins += 1
+        wins = wins + self.caller.db.entropy
+        if wins < 7:
+            self.caller.msg("Your spell fizzles out and fails.")
+            return
+
         if not self.caller.db.quintessence:
             self.caller.msg("You don't have enough quintessence for that!")
             return
         else:
             self.caller.db.quintessence -= 1
+
+
         # save the target object onto the command
         # this will use Evennia's default multimatch handling if more than one object matches
         self.target = self.caller.search(self.lhs, global_search=True)
