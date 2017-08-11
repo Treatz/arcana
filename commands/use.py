@@ -26,24 +26,9 @@ class CmdUse(MuxCommand):
 
         from evennia.contrib.dice import roll_dice
 
-        if not self.caller.db.entropy:
-            self.caller.msg("This spell requires knowledge of the Entropy sphere.")
+        if not self.caller.db.prime:
+            self.caller.msg("This requires knowledge of the prime sphere.")
             return
-        wins = 0
-        for x in range(0, self.caller.db.arete):
-            roll = roll_dice(1,10)
-            if(roll > 5):
-                wins += 1
-        wins = wins + self.caller.db.entropy
-        if wins < 7:
-            self.caller.msg("Your spell fizzles out and fails.")
-            return
-
-        if not self.caller.db.quintessence:
-            self.caller.msg("You don't have enough quintessence for that!")
-            return
-        else:
-            self.caller.db.quintessence -= 1
 
         if(self.args == 'luck' or self.args == 'Luck'):
             if(self.caller.db.burned <= self.caller.db.luck):
@@ -53,6 +38,31 @@ class CmdUse(MuxCommand):
             else:
                 self.caller.msg("You have burned up all of your natural luck.")
             return
+
+        if(self.args == 'Willpower' or self.args == 'willpower'):
+            if(self.caller.db.autopoint > 0):
+                self.caller.msg("You can only spend one point of willpower at a time.")
+                return
+            if(self.caller.db.used_will <= self.caller.db.willpower):
+                self.caller.msg("You add a point of willpower to your pool.")
+                self.caller.db.used_will += 1
+                self.caller.db.autopoint += 1
+            else:
+                self.caller.msg("You have used up all of your willpower.")
+            return
+
+        if(self.args == 'Quintessence' or self.args == 'quintessence'):
+            if(self.caller.db.magic_fuel >= 3):
+                self.caller.msg("You can't spend anymore quintessence at this time.")
+                return
+            if(self.caller.db.quintessence > 0):
+                self.caller.msg("You add a point of your quintessence to your magic pool.")
+                self.caller.db.quintessence -= 1
+                self.caller.db.magic_fuel += 1
+            else:
+                self.caller.msg("You have used up all of your quintessence.")
+            return
+
         hit =  self.caller.contents
         for item in hit:
             if item.key == self.args:

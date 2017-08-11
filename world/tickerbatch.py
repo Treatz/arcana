@@ -12,4 +12,4 @@ from evennia.objects.models import ObjectDB
 
 for each in ObjectDB.objects.all():
     if each.is_typeclass('typeclasses.characters.Character'):
-        each.attributes.add("slowtime", 0)
+        each.attributes.add("focus", 0)

@@ -22,7 +22,6 @@ class CmdSpell(MuxCommand):
                +Deathtouch - Knock a subject unconscious.
                +Fate - View another persons luck / karma.
                +Hex - Ruins targets luck at everything.
-               +Use - Use luck or the luck of a charmed object.
            Forces
                +Kinetic - Changes unarmed attacks to lethal.
                +Push - Increase your strength using forces.
@@ -49,6 +48,7 @@ class CmdSpell(MuxCommand):
            Prime
                +Dispell - Stops target from using magic.
                +Drain - Drains quintessence from targets willpower.
+               +Use - Use personal luck/quintessence/willpower, or from an object.
            Spirit
                +Exorcise - Send ghosts back to where they belong.
                +Lastbreath - Determine identity and cause of corpses.

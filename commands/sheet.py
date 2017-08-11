@@ -54,7 +54,7 @@ class Sheet(MuxCommand):
                         44: self.caller.db.avatar,
                         45: self.caller.db.willpower,
                         46: self.caller.db.belief,
-                        47: self.caller.db.familiar,
+                        47: self.caller.db.focus,
                         48: self.caller.db.quintessence,
                         49: self.caller.db.luck,
                         50: self.caller.db.resources})

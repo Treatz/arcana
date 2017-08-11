@@ -285,7 +285,9 @@ def punch(caller):
         roll = roll_dice(1,10)
         if(roll >= 6):
             attackpoints = attackpoints + 1
-
+    if caller.db.autopoint:
+        attackpoints +=1
+        caller.db.autopoint = 0
     global damage
     damage = attackpoints
     hit = caller.db.strength
@@ -333,7 +335,9 @@ def claw(caller):
         roll = roll_dice(1,10)
         if(roll >= 6):
             attackpoints = attackpoints + 1
-
+    if caller.db.autopoint:
+        attackpoints +=1
+        caller.db.autopoint = 0
     global damage
     damage = attackpoints
     hit = caller.db.strength
@@ -382,7 +386,9 @@ def bite(caller):
         roll = roll_dice(1,10)
         if(roll >= 6):
             attackpoints = attackpoints + 1
-
+    if caller.db.autopoint:
+        attackpoints +=1
+        caller.db.autopoint = 0
     global damage
     damage = attackpoints
     hit = caller.db.strength
@@ -433,7 +439,9 @@ def kick(caller):
         roll = roll_dice(1,10)
         if(roll >= 7):
             attackpoints = attackpoints + 1
-
+    if caller.db.autopoint:
+        attackpoints +=1
+        caller.db.autopoint = 0
     global damage
     damage = attackpoints
 
@@ -487,7 +495,9 @@ def axe(caller):
         roll = roll_dice(1,10)
         if(roll >= 7):
             attackpoints = attackpoints + 1
-
+    if caller.db.autopoint:
+        attackpoints +=1
+        caller.db.autopoint = 0
     global damage
     damage = attackpoints
 
@@ -543,7 +553,9 @@ def knife(caller):
         roll = roll_dice(1,10)
         if(roll >= 4):
             attackpoints = attackpoints + 1
-
+    if caller.db.autopoint:
+        attackpoints +=1
+        caller.db.autopoint = 0
     global damage
     damage = attackpoints
 
@@ -598,7 +610,9 @@ def bat(caller):
         roll = roll_dice(1,10)
         if(roll >= 5):
             attackpoints = attackpoints + 1
-
+    if caller.db.autopoint:
+        attackpoints +=1
+        caller.db.autopoint = 0
     global damage
     damage = attackpoints
 
@@ -652,7 +666,9 @@ def staff(caller):
         roll = roll_dice(1,10)
         if(roll >= 6):
             attackpoints = attackpoints + 1
-
+    if caller.db.autopoint:
+        attackpoints +=1
+        caller.db.autopoint = 0
     global damage
     damage = attackpoints
 
@@ -706,7 +722,9 @@ def katana(caller):
         roll = roll_dice(1,10)
         if(roll >= 6):
             attackpoints = attackpoints + 1
-
+    if caller.db.autopoint:
+        attackpoints +=1
+        caller.db.autopoint = 0
     global damage
     damage = attackpoints
 
@@ -936,7 +954,9 @@ def dodge(caller):
         roll = roll_dice(1, 10)
         if (roll >= 6):
             defendpoints = defendpoints + 1
-
+    if caller.db.autopoint:
+        defendpoints +=1
+        caller.db.autopoint = 0
     counter = 0
     soakpoints = 0
     while (counter < soak):
@@ -1062,7 +1082,9 @@ def block(caller):
         roll = roll_dice(1, 10)
         if (roll >= 6):
             defendpoints = defendpoints + 1
-
+    if caller.db.autopoint:
+        defendpoints +=1
+        caller.db.autopoint = 0
     counter = 0
     soakpoints = 0
     while (counter < soak):
@@ -1265,7 +1287,9 @@ def flee_attack(caller):
     init_b = caller.db.target.db.dexterity + caller.db.target.db.wits
     init_a = init_a + roll_dice(1,10) 
     init_b = init_b + roll_dice(1,10)
-
+    if caller.db.autopoint:
+        init_a += roll_dice(1,10)
+        caller.db.autopoint = 0
     if caller.db.target.db.conscious == 0:
         caller.msg("|/|yYou leave from combat!|/|/")
         caller.db.target.msg("|/|y%s leaves from combat!|/|/" % caller)
@@ -1317,6 +1341,9 @@ def flee(caller):
     init_b = caller.db.target.db.dexterity + caller.db.target.db.wits
     init_a = init_a + roll_dice(1,10) 
     init_b = init_b + roll_dice(1,10)
+    if caller.db.autopoint:
+        init_a +=1
+        caller.db.autopoint = 0
     if(init_a > init_b or caller.db.target.db.conscious == 0 or caller.db.target.db.alive == 0):
         caller.msg("|/|yYou flee from combat!|/|/")
         caller.db.target.msg("|/|y%s flees from combat!|/|/" % caller)

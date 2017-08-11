@@ -102,7 +102,7 @@ def creating(request):
         newchar.db.belief = trans(myform["Belief"])-1
         newchar.db.luck = trans(myform["Luck"])-1
         newchar.db.avatar = trans(myform["Avatar"])-1
-        newchar.db.familiar = trans(myform["Familiar"])-1
+        newchar.db.focus = trans(myform["Focus"])-1
         newchar.db.resources = trans(myform["Resources"])-1
 
         newchar.db.slowtime = 0
@@ -125,6 +125,9 @@ def creating(request):
         newchar.db.magic = 1
         newchar.db.bashing = 0
         newchar.db.lethal = 0
+        newchar.db.used_will = 0
+        newchar.db.autopoint = 0
+        newchar.db.magic_fuel = 0
 
         urlz = '/character/sheet/'
         nchr = str(newchar.id);

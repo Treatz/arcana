@@ -4,7 +4,7 @@ from evennia.commands.default.muxcommand import MuxCommand
 class CmdInflict(MuxCommand):
 
     """
-       +Inflict - Causes harm to the living or the dead
+       +Inflict - Causes harm to the living
     
        Usage: 
          +inflict <target>
@@ -38,20 +38,24 @@ class CmdInflict(MuxCommand):
             self.caller.msg("This spell requires knowledge of the spirit sphere.")
             return
         wins = 0
-        for x in range(0, self.caller.db.arete):
+        if(self.caller.db.magic_fuel):
+            self.caller.msg("You roll %s dice for the spell with a difficulty of %s, using %s quintessence." % (self.caller.db.arete + self.caller.db.spirit, 6-self.caller.db.magic_fuel, self.caller.db.magic_fuel))
+        else:  
+            self.caller.msg("You roll %s dice for the spell with a difficulty of %s." % (self.caller.db.arete + self.caller.db.spirit, 6-self.caller.db.magic_fuel))
+        for x in range(0, self.caller.db.arete + self.caller.db.spirit):
             roll = roll_dice(1,10)
-            if(roll > 5):
+            if(roll > 5 - self.caller.db.magic_fuel):
                 wins += 1
-        wins = wins + self.caller.db.spirit
-        if wins < 7:
+        wins = wins + self.caller.db.autopoint
+        if(self.caller.db.autopoint):
+            self.caller.msg("You have %s successes out of 4 needed, using a point of willpower" % wins)
+        else:
+            self.caller.msg("You have %s successes out of 4 needed." % wins)
+        self.caller.db.magic_fuel = 0
+        self.caller.db.autopoint = 0
+        if wins < 4:
             self.caller.msg("Your spell fizzles out and fails.")
             return
-
-        if not self.caller.db.quintessence:
-            self.caller.msg("You don't have enough quintessence for that!")
-            return
-        else:
-            self.caller.db.quintessence -= 1
 
         if(hit.db.location == self.caller.db.location):
             hit.db.bashing = hit.db.bashing + 1

@@ -74,7 +74,7 @@ var avtr = "Avatar"
 var arc = "Arcane"
 var qui = "Quintessence"
 var bel = "Belief"
-var fam = "Familiar"
+var fam = "Focus"
 var luc = "Luck";
 var res = "Resources"
 var testingA = "testA";
@@ -222,7 +222,7 @@ function getphysical()
     var Quintessence = theForm.elements["Quintessence"]
     var Arcane = theForm.elements["Arcane"]
     var Belief = theForm.elements["Belief"]
-    var Familiar = theForm.elements["Familiar"]
+    var Focus = theForm.elements["Focus"]
     var Luck = theForm.elements["Luck"]
     var Resources = theForm.elements["Resources"]
 
@@ -465,10 +465,10 @@ function getphysical()
             compBel = xp[Belief[i].value];
 
         }
-        if(Familiar[i].checked)
+        if(Focus[i].checked)
         {
-            advXP = advXP + xp[Familiar[i].value];
-            compFam = xp[Familiar[i].value];
+            advXP = advXP + xp[Focus[i].value];
+            compFam = xp[Focus[i].value];
 
         }
 
@@ -1144,34 +1144,34 @@ function jumpStart(obj)
     if(obj == fam){
 
 
-        if(document.cakeform.Familiar[5].checked  && advXP < 13){
-            document.cakeform.Familiar[5].checked=true;
+        if(document.cakeform.Focus[5].checked  && advXP < 13){
+            document.cakeform.Focus[5].checked=true;
         }
-        else if(document.cakeform.Familiar[5].checked && advXP > 12){
+        else if(document.cakeform.Focus[5].checked && advXP > 12){
             advXP = advXP - 1;
-            document.cakeform.Familiar[4].checked=true;
+            document.cakeform.Focus[4].checked=true;
         }
 
-        if(document.cakeform.Familiar[4].checked  && advXP < 13){
-            document.cakeform.Familiar[4].checked=true;
+        if(document.cakeform.Focus[4].checked  && advXP < 13){
+            document.cakeform.Focus[4].checked=true;
         }
-        else if(document.cakeform.Familiar[4].checked && advXP > 12) {
+        else if(document.cakeform.Focus[4].checked && advXP > 12) {
             advXP = advXP - 1;
-            document.cakeform.Familiar[3].checked = true
+            document.cakeform.Focus[3].checked = true
         }
-        if(document.cakeform.Familiar[3].checked  && advXP < 13){
-            document.cakeform.Familiar[3].checked=true;
+        if(document.cakeform.Focus[3].checked  && advXP < 13){
+            document.cakeform.Focus[3].checked=true;
         }
-        else if(document.cakeform.Familiar[3].checked && advXP > 12){
+        else if(document.cakeform.Focus[3].checked && advXP > 12){
             advXP = advXP - 1;
-            document.cakeform.Familiar[2].checked=true;
+            document.cakeform.Focus[2].checked=true;
         }
-        if(document.cakeform.Familiar[2].checked  && advXP < 13){
-            document.cakeform.Familiar[2].checked=true;
+        if(document.cakeform.Focus[2].checked  && advXP < 13){
+            document.cakeform.Focus[2].checked=true;
         }
-        else if(document.cakeform.Familiar[2].checked && advXP > 12){
+        else if(document.cakeform.Focus[2].checked && advXP > 12){
             advXP = advXP - 1;
-            document.cakeform.Familiar[0].checked=true;
+            document.cakeform.Focus[0].checked=true;
         }
 
     }
@@ -2417,13 +2417,13 @@ function myFunction2() {
     </td>
         <td style="width:100px">
 
-            <label >Familiar</label></td><td style="width:225px">
-        <label class='radiolabel'><input type="radio"  name="Familiar" value="One" onclick="jumpStart(fam)" checked/></label>
-        <label class='radiolabel'><input type="radio"  name="Familiar" value="Two" onclick="jumpStart(fam)" /></label>
-        <label class='radiolabel'><input type="radio"  name="Familiar" value="Three" onclick="jumpStart(fam)" /></label>
-        <label class='radiolabel'><input type="radio"  name="Familiar" value="Four" onclick="jumpStart(fam)" /></label>
-        <label class='radiolabel'><input type="radio"  name="Familiar" value="Five" onclick="jumpStart(fam)" /></label>
-        <label class='radiolabel'><input type="radio"  name="Familiar" value="Six" onclick="jumpStart(fam)" /></label>
+            <label >Focus</label></td><td style="width:225px">
+        <label class='radiolabel'><input type="radio"  name="Focus" value="One" onclick="jumpStart(fam)" checked/></label>
+        <label class='radiolabel'><input type="radio"  name="Focus" value="Two" onclick="jumpStart(fam)" /></label>
+        <label class='radiolabel'><input type="radio"  name="Focus" value="Three" onclick="jumpStart(fam)" /></label>
+        <label class='radiolabel'><input type="radio"  name="Focus" value="Four" onclick="jumpStart(fam)" /></label>
+        <label class='radiolabel'><input type="radio"  name="Focus" value="Five" onclick="jumpStart(fam)" /></label>
+        <label class='radiolabel'><input type="radio"  name="Focus" value="Six" onclick="jumpStart(fam)" /></label>
     </td>
         <td style="width:130px">
 
