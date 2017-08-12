@@ -47,7 +47,7 @@ FORM = '''
 |                                                           |
 |   Arete   x42x Willpower   x45x Quintessence   x48x       |
 |   Arcane  x43x Belief      x46x Luck           x49x       |
-|   Avatar  x44x Familiar    x47x Resources      x50x       |
+|   Avatar  x44x Focus       x47x Resources      x50x       |
 |                                                           |
 .-----------------------------------------------------------.
 
