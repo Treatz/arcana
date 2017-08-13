@@ -50,13 +50,10 @@ class Sheet(MuxCommand):
                         40: self.caller.db.spirit,
                         41: self.caller.db.time,
                         42: self.caller.db.arete,
-                        43: self.caller.db.arcane,
-                        44: self.caller.db.avatar,
-                        45: self.caller.db.willpower,
-                        46: self.caller.db.belief,
-                        47: self.caller.db.focus,
-                        48: self.caller.db.quintessence,
-                        49: self.caller.db.luck,
-                        50: self.caller.db.resources})
+                        43: self.caller.db.avatar,
+                        44: self.caller.db.willpower,
+                        45: self.caller.db.belief,
+                        46: self.caller.db.quintessence,
+                        47: self.caller.db.luck})
 
         self.caller.msg(unicode(form))

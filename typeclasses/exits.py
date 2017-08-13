@@ -11,6 +11,9 @@ class Exit(mySlowExit):
         if character.db.present == 0:
             character.msg("Time has stopped and you can't move.")
             return
+        if character.ndb.ritual == 1:
+            character.msg("You can't move while in a ritual.")
+            return
         if self.access(character, 'traverse'):
             # we may traverse the exit.
             return True

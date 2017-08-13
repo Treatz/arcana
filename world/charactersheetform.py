@@ -45,9 +45,8 @@ FORM = '''
 |                                                           |
 .-------------------------Advantages------------------------.
 |                                                           |
-|   Arete   x42x Willpower   x45x Quintessence   x48x       |
-|   Arcane  x43x Belief      x46x Luck           x49x       |
-|   Avatar  x44x Focus       x47x Resources      x50x       |
+|   Arete   x42x Willpower   x44x Quintessence   x46x       |
+|   Avatar  x43x Belief      x45x Luck           x47x       |
 |                                                           |
 .-----------------------------------------------------------.
 

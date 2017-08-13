@@ -865,6 +865,9 @@ def skip_defend(caller):
     return text, options
 
 def defend_node(caller):
+    if caller.ndb.ritual:
+        caller.msg("You are forced to stop your ritual.")
+        caller.ndb.ritual = 0
     healthbar = "|/|X|[wHealth:"
     total = caller.db.lethal + caller.db.bashing
 
@@ -1252,25 +1255,7 @@ def mercy(caller):
     else:
         caller.msg("|yYour cries for mercy go unheard.")
         caller.db.target.msg("|y%s's cries for mercy go unheard" % caller)
-        if(caller.db.target.db.weapon == 1):
-            caller.msg("|/|g%s causes %i points of lethal damage." % (caller.db.target, damage))
-            caller.msg("|/|gYou lose a total of %i health points." % (damage))
-            caller.db.lethal = caller.db.lethal + damage
-            caller.db.target.msg("|/|gYou deal %i points of lethal damage with your attack." % (damage))
-            caller.db.target.msg("|/|g%s loses a total of %i hit points." % (caller, damage))
-        if(caller.db.target.db.weapon == 0):
-            if(caller.db.target.db.form == "cat"):
-                if damage > 3:
-                   damage = 3
-            if(caller.db.target.db.form == "dog"):
-                if damage > 3:
-                   damage = 3
-            caller.msg("|/|g%s causes %i points of bashing damage to you." % (caller.db.target, damage))
-            caller.msg("|/|gYou lose a total of %i health points." % (damage))
-            caller.db.bashing = caller.db.bashing + damage
-            caller.db.target.msg("|/|gYou deal %i points of bashing damage with your attack." % (damage))
-            caller.db.target.msg("|/|g%s loses a total of %i hit points." % (caller, damage))
-        EvMenu(caller, "typeclasses.menu", startnode="attack_node", auto_quit=False, cmd_on_exit=None)
+        EvMenu(caller.db.target, "typeclasses.menu", startnode="attack_node", auto_quit=False, cmd_on_exit=None)
 
     text = ""
     options = ()

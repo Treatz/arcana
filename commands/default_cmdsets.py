@@ -89,8 +89,7 @@ from commands.dispell import CmdDispell
 from commands.meditate import CmdMeditate
 from commands.slowtime import CmdSlowtime
 from commands.ritual import CmdRitual
-from commands.setfocus import CmdSetFocus
-from commands.setbelief import CmdSetBelief
+from commands.setritual import CmdSetRitual
 
 class CharacterCmdSet(default_cmds.CharacterCmdSet):
         """
@@ -188,8 +187,7 @@ class CharacterCmdSet(default_cmds.CharacterCmdSet):
                 self.add(CmdMeditate())
                 self.add(CmdSlowtime())
                 self.add(CmdRitual())
-                self.add(CmdSetFocus())
-                self.add(CmdSetBelief())
+                self.add(CmdSetRitual())
 
 class PlayerCmdSet(default_cmds.PlayerCmdSet):
         """

@@ -98,12 +98,9 @@ def creating(request):
         newchar.db.quintessence = trans(myform["Quintessence"])-1
         newchar.db.arete = trans(myform["Arete"])-1
         newchar.db.willpower = trans(myform["Willpower"])-1
-        newchar.db.arcane = trans(myform["Arcane"])-1
         newchar.db.belief = trans(myform["Belief"])-1
         newchar.db.luck = trans(myform["Luck"])-1
         newchar.db.avatar = trans(myform["Avatar"])-1
-        newchar.db.focus = trans(myform["Focus"])-1
-        newchar.db.resources = trans(myform["Resources"])-1
 
         newchar.db.slowtime = 0
         newchar.db.meditate = 0
@@ -128,7 +125,8 @@ def creating(request):
         newchar.db.used_will = 0
         newchar.db.autopoint = 0
         newchar.db.magic_fuel = 0
-
+        newchar.db.meritual = None
+        newchar.db.roomritual = None        
         urlz = '/character/sheet/'
         nchr = str(newchar.id);
         urlz = urlz + nchr + '/'
