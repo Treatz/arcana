@@ -868,6 +868,9 @@ def defend_node(caller):
     if caller.ndb.ritual:
         caller.msg("You are forced to stop your ritual.")
         caller.ndb.ritual = 0
+    if caller.ndb.ritual:
+        caller.msg("You are forced to stop your ritual.")
+        caller.ndb.ritual = 0
     healthbar = "|/|X|[wHealth:"
     total = caller.db.lethal + caller.db.bashing
 

@@ -323,8 +323,7 @@ class Character(DefaultCharacter):
         if(self.db.alive == 0):
             self.db.conscious = 1
             self.msg("You take a deep breath of astral air.")
-        if(self.db.med == 1):
-            self.db.med = 0
+
 
     def heal_lethal(self, *args, **kwargs):
         if(self.db.cursed > 0):

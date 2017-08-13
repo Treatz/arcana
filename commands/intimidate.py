@@ -20,6 +20,12 @@ class CmdIntimidate(MuxCommand):
     locks = "cmd:all()"
 
     def func(self):
+        if self.caller.db.med:
+            self.caller.msg("You are forced to stop your meditation.")
+            self.caller.db.med = 0
+        if self.caller.ndb.ritual:
+            self.caller.msg("You are forced to stop your ritual.")
+            self.caller.ndb.ritual = 0
         if not self.args:
             self.caller.msg("You must suply a target for this to work.")
             return

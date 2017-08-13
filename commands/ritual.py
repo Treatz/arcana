@@ -19,13 +19,14 @@ class CmdRitual(MuxCommand):
     locks = "cmd:all()"
 
     def func(self):
+
+        if self.caller.ndb.ritual:
+            self.caller.msg("You are already in a ritual.")
+            return
         if not self.caller.db.meritual or not self.caller.db.roomritual:
             self.caller.msg("Please use @setritual to describe your magic.")
             return
 
-        if(self.caller.ndb.ritual):
-            self.caller.msg("You are already doing a ritual!")
-            return
         if(self.caller.db.magic_fuel > self.caller.db.belief):
             self.caller.msg("You can't add anymore energy to this ritual.")
             return

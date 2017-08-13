@@ -16,6 +16,12 @@ class CmdBan(default_cmds.MuxCommand):
     auto_help=False
     def func(self):
         """confirms the target and initiates the search"""
+        if self.caller.ndb.ritual:
+            self.caller.msg("You are forced to stop your ritual.")
+            self.caller.ndb.ritual = 0
+        if self.caller.db.med:
+            self.caller.msg("You are forced to stop your meditation.")
+            self.caller.db.med = 0
         if not self.caller.db.magic:
             self.caller.msg("You can't use magic!")
             return

@@ -17,6 +17,12 @@ class CmdJump(default_cmds.MuxCommand):
     maxdepth = 4
 
     def func(self):
+        if self.caller.ndb.ritual:
+        if self.caller.db.med:
+            self.caller.msg("You are forced to stop your meditation.")
+            self.caller.db.med = 0
+            self.caller.msg("You are forced to stop your ritual.")
+            self.caller.ndb.ritual = 0
         """confirms the target and initiates the search"""
         if not self.caller.db.magic:
             self.caller.msg("You can't use magic!")
