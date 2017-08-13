@@ -20,12 +20,12 @@ class CmdStop(MuxCommand):
         if self.caller.db.med:
             self.caller.msg("You are forced to stop your meditation.")
             self.caller.db.med = 0
-        if not self.caller.db.magic:
         if self.caller.ndb.ritual:
             self.caller.msg("You are forced to stop your ritual.")
             self.caller.ndb.ritual = 0
-            self.caller.msg("You can't use magic!")
-            return
+        if not self.caller.db.magic:
+                self.caller.msg("You can't use magic!")
+                return
 
         from evennia.contrib.dice import roll_dice
 
