@@ -54,4 +54,11 @@ class CmdFreeze(MuxCommand):
             item.msg("Time comes to a stop.") 
             item.db.present = 0
         self.caller.db.present = 1
-        self.caller.db.frozen_room = current_room      
+        self.caller.db.frozen_room = current_room
+        yield 30      
+        self.caller.db.frozen_room.db.freeze = 0
+        for item in self.caller.db.frozen_room.contents:
+            item.msg("Time has started again.")
+            item.db.present = 1
+        self.caller.db.frozen_room = None
+                

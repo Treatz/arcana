@@ -358,6 +358,10 @@ class Character(DefaultCharacter):
                 self.db.conscious = 1
                
     def heal(self, *args, **kwargs):
+        if self.db.alive:
+           self.locks.add("view:attr(alive, 1)")
+        else:
+           self.locks.add("view:attr(alive, 0)")
         if(self.ndb.nameSave):
             self.db.form = "human"
             self.key = self.ndb.nameSave
@@ -367,14 +371,6 @@ class Character(DefaultCharacter):
             self.ndb.descSave = None
             self.ndb.imageSave = None
             self.msg("You have changed back.")
-
-        if(self.db.frozen_room):
-            self.db.frozen_room.db.freeze = 0
-            for item in self.db.frozen_room.contents:
-                    item.msg("Time has started again.")
-                    item.db.present = 1
-            self.db.frozen_room = None
-            self.db.present = 1
 
         if(self.db.bashing > 0 and self.db.alive == 1):
             self.msg("You heal 1 point of bashing damage.")

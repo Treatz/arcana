@@ -50,5 +50,8 @@ class CmdInvis(MuxCommand):
         if wins < 4:
             self.caller.msg("Your spell fizzles out and fails.")
             return
-        self.caller.db.invis = 1
+        self.caller.locks.add("view:none()")
         self.caller.msg("You are now invisible.")
+        yield 60
+        self.caller.msg("You are visible again.")
+        self.caller.locks.add("view:all()")
