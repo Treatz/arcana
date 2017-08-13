@@ -49,27 +49,27 @@ DEBUG = False
 # may survive.
 SECRET_KEY = 'Tg"%FpD1+Px_sy0eIobz*92H)S@,jOE6|R=Y;~Vc'
 
-TELNET_PORTS = [4200]
+TELNET_PORTS = [4800]
 # The webserver sits behind a Portal proxy. This is a list
 # of tuples (proxyport,serverport) used. The proxyports are what
 # the Portal proxy presents to the world. The serverports are
 # the internal ports the proxy uses to forward data to the Server-side
 # webserver (these should not be publicly open)
-WEBSERVER_PORTS = [(8080, 5006)]
+WEBSERVER_PORTS = [(8888, 8008)]
 # Ports to use for SSH
-SSH_PORTS = [8020]
+SSH_PORTS = [8028]
 # Ports to use for SSL
-SSL_PORTS = [4020]
+SSL_PORTS = [4028]
 # The game server opens an AMP port so that the portal can
 # communicate with it. This is an internal functionality of Evennia, usually
 # operating between two processes on the same machine. You usually don't need to
 # change this unless you cannot use the default AMP port/host for
 # whatever reason.
 AMP_HOST = 'localhost'
-AMP_PORT = 6666
+AMP_PORT = 6668
 AMP_INTERFACE = '127.0.0.1'
 # Server-side websocket port to open for the webclient.
-WEBSOCKET_CLIENT_PORT = 8301
+WEBSOCKET_CLIENT_PORT = 8308
 
 ######################################################################
 # Contrib config
