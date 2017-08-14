@@ -9,6 +9,7 @@ creation commands.
 
 """
 from evennia import DefaultCharacter, TICKER_HANDLER
+from evennia.contrib.dice import roll_dice
 import random
 
 class Character(DefaultCharacter):
@@ -496,8 +497,21 @@ class Character(DefaultCharacter):
             return
         if msg:
             string = msg
-        else:
+        elif self.db.alive == 1 and self.db.invis == 0 and not self.ndb.sneak:
             string = "{object} is leaving {origin}, heading for {destination}."
+        elif self.ndb.sneak:
+            total = self.db.dexterity + self.db.stealth
+            winz = 0
+            for x in range(1, total):
+                roll = roll_dice(1,10)
+                if roll >=6:
+                    winz += 1
+            if winz < 3:
+                string = "{object} is leaving {origin}, heading for {destination}."
+            else:
+                string = ""
+        else:
+            string =  "{object} is leaving {origin}, heading for {destination}."
 
         location = self.location
         exits = [o for o in location.contents if o.location is location and o.destination is destination]
@@ -555,11 +569,37 @@ class Character(DefaultCharacter):
         if source_location:
             if msg:
                 string = msg
-            else:
+            elif self.db.alive == 1 and self.db.invis == 0 and not self.ndb.sneak:
                 string = "{object} arrives to {destination} from {origin}."
-        else:
+            elif self.ndb.sneak:
+                total = self.db.dexterity + self.db.stealth
+                winz = 0
+                for x in range(1, total):
+                    roll = roll_dice(1,10)
+                    if roll >=6:
+                        winz += 1
+                if winz < 3:
+                    string = "{object} arrives to {destination} from {origin}."
+                else:
+                    string = ""
+            else:
+                string = "" 
+        elif self.db.alive == 1 and self.db.invis ==0 and not self.ndb.sneak:
             string = "{object} arrives to {destination}."
+        elif self.ndb.sneak:
+            total = self.db.dexterity + self.db.stealth
+            winz = 0
+            for x in range(1, total):
+                roll = roll_dice(1,10)
+                if roll >=6:
+                    winz += 1
+            if winz < 3:
+                string = "{object} arrives to {destination}."
+            else:
+                string = ""
 
+        else:
+            string = ""
         origin = source_location
         destination = self.location
         exits = []
