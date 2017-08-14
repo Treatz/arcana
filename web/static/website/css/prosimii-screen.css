@@ -31,7 +31,7 @@ acronym, .titleTip {
 
 a {
   color: white;
-  background-color: #222222;
+  background-color: black;
   text-decoration: underline;
   margin: 0;
   padding: 0 1px 2px 1px;
@@ -97,7 +97,7 @@ dd {
 
 .superHeader {
   color: rgb(130,128,154);
-  background-color: #222222;
+  background-color: black;
   text-align: right;
   margin: 0;
   padding: 0.5ex 10px;
@@ -105,14 +105,14 @@ dd {
 
 .superHeader span {
   color: rgb(195,196,210);
-  background-color: #222222;
+  background-color: black;
   font-weight: bold;
   text-transform: uppercase;
 }
 
 .superHeader a {
   color: rgb(195,196,210);
-  background-color: #222222;
+  background-color: black;
   text-decoration: none;
   margin: 0;
   padding: 0 0.25ex 0 0;
@@ -120,13 +120,13 @@ dd {
 
 .superHeader a:hover {
   color: rgb(193,102,90);
-  background-color: #222222;
+  background-color: black;
   text-decoration: none;
 }
 
 .midHeader {
   color: white;
-  background-color: #222222;
+  background-color: black;
   margin: 0;
   padding: 0.26ex 10px;
 }
@@ -156,7 +156,7 @@ dd {
 
 .headerLinks a {
   color: white;
-  background-color: #222222;
+  background-color: black;
   text-decoration: none;
   margin: 0;
   padding: 0 0 0.5ex 0;
@@ -165,20 +165,20 @@ dd {
 
 .headerLinks a:hover {
   color: rgb(195,196,210);
-  background-color: #222222;
+  background-color: black;
   text-decoration: underline;
 }
 
 .subHeader {
   color: white;
-  background-color: #222222;
+  background-color: black;
   margin: 0;
   padding: 0.5ex 10px;
 }
 
 .subHeader a, .subHeader .highlight {
   color: white;
-  background-color: #222222;
+  background-color: black;
   font-size: 110%;
   font-weight: bold;
   text-decoration: none;
@@ -188,7 +188,7 @@ dd {
 
 .subHeader a:hover, .subHeader .highlight {
   color: rgb(255,204,0);
-  background-color: #222222;
+  background-color: black;
   text-decoration: none;
 }
 
@@ -203,7 +203,7 @@ dd {
 
 #main-copy h1 {
   color: white;
-  background-color: #222222;
+  background-color: black;
   font-family: "trebuchet ms", verdana, helvetica, arial, sans-serif;
   font-size: 200%;
   margin: 0;
@@ -212,7 +212,7 @@ dd {
 
 #main-copy h2 {
   color: white;
-  background-color: #222222;
+  background-color: black;
   font-family: "trebuchet ms", verdana, helvetica, arial, sans-serif;
   font-weight: normal;
   font-size: 151%;
@@ -228,7 +228,7 @@ dd {
 
 .newsHeading {
   color: white;
-  background-color: #222222;
+  background-color: black;
   font-family: "trebuchet ms", verdana, helvetica, arial, sans-serif;
   font-size: 145%;
   text-decoration: none;
@@ -239,7 +239,7 @@ dd {
 
 .newsHeading:hover {
   color: white;
-  background-color: #222222;
+  background-color: black;
   text-decoration: underline;
 }
 
@@ -262,7 +262,7 @@ dd {
 
 .more a {
   color: white;
-  background-color: #222222;
+  background-color: black;
   font-size: 92%;
   text-decoration: underline;
   margin: 0;
@@ -343,7 +343,7 @@ dd {
 
 #footer {
   color: white;
-  background-color: #222222;
+  background-color: black;
   font-size: 87%;
   text-align: center;
   line-height: 1.25em;
@@ -354,7 +354,7 @@ dd {
 
 #footer a {
   color: white;
-  background-color: #222222;
+  background-color: black;
   text-decoration: underline;
 }
 

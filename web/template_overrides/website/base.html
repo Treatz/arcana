@@ -14,7 +14,7 @@
     {% endif %}
     <link rel="stylesheet alternative" type="text/css" href="{% static "website/css/prosimii-print.css" %}" media="screen" title="Print Preview" />
     <link rel="stylesheet" type="text/css" href="{% static "website/css/prosimii-print.css" %}" media="print" />
-    <link rel="icon" type="image/x-icon" href="/static/website/images/evennia_logo.png" />
+    <link rel="icon" type="image/x-icon" href="/static/website/images/work.png" />
 
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="{% static "website/css/app.css" %}">
@@ -49,7 +49,7 @@
       </div>
 
       <div class="midHeader" style="padding-top: 0em">
-        <img src="{% static "website/images/evennia_logo.png" %}" align='left'/> <h1 class="headerTitle" lang="la">{{game_name}} Online</h1>
+        <div id="cover"><img src="{% static "website/images/work.png" %}" align='left'/></div><h1 class="headerTitle" lang="la">{{game_name}} Online</h1>
         <div class="headerSubTitle" title="Slogan">
         <!-- Insert a slogan here if you want -->
         {{game_slogan}}			&nbsp;
@@ -80,7 +80,7 @@
        <a href="http://mud.streetwitch.com/ff/">Fan Fiction</a> |
        <a href="http://mud.streetwitch.com/links/">Links</a> |
         {% if webclient_enabled %}
-        <a href="{% url 'webclient:index' %}">Play Online</a> |
+        <a href="{% url 'webclient:index' %}">Play Online</a>
         {% endif %}
       </div>
     </div>

@@ -126,7 +126,8 @@ def creating(request):
         newchar.db.autopoint = 0
         newchar.db.magic_fuel = 0
         newchar.db.meritual = None
-        newchar.db.roomritual = None        
+        newchar.db.roomritual = None
+        newchar.db.present = 1        
         urlz = '/character/sheet/'
         nchr = str(newchar.id);
         urlz = urlz + nchr + '/'

@@ -218,7 +218,7 @@ class CmdInventory(COMMAND_DEFAULT_CLASS):
     arg_regex = r"$"
 
     def func(self):
-        if(self.caller.ndb.present or self.caller.location.db.freeze == 0):
+        if(self.caller.db.present or self.caller.location.db.freeze == 0):
             """check inventory"""
             items = self.caller.contents
             if not items:
@@ -251,7 +251,7 @@ class CmdGet(COMMAND_DEFAULT_CLASS):
         """implements the command."""
 
         caller = self.caller
-        if(caller.ndb.present or caller.location.db.freeze == 0):
+        if(caller.db.present or caller.location.db.freeze == 0):
             if not self.args:
                 caller.msg("Get what?")
                 return
@@ -303,7 +303,7 @@ class CmdDrop(COMMAND_DEFAULT_CLASS):
         """Implement command"""
 
         caller = self.caller
-        if(caller.ndb.present or caller.location.db.freeze == 0):
+        if(caller.db.present or caller.location.db.freeze == 0):
 
             if not self.args:
                 caller.msg("Drop what?")
@@ -348,7 +348,7 @@ class CmdGive(COMMAND_DEFAULT_CLASS):
         """Implement give"""
       
         caller = self.caller
-        if(caller.ndb.present or caller.location.db.freeze == 0):
+        if(caller.db.present or caller.location.db.freeze == 0):
             if not self.args or not self.rhs:
                 caller.msg("Usage: give <inventory object> = <target>")
                 return
