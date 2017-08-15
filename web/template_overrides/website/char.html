@@ -1,17 +1,6 @@
 {% extends "base.html" %}
 
 {% block header_ext %}
-<style>
-
-    table, div {
-        font-size: 16px;
-        font-family: "Courier New", Courier, monospace;
-    }
-
-
-
-
-</style>
 
 <script type="text/javascript">
   <!--
@@ -26,7 +15,19 @@
 {% endblock %}
 
 {% block content %}
+<style>
+@media screen and (max-width: 1200px) {
+#cover {
+    display: none;
+  }
+}
+@media screen and (min-width: 1201px) {
+#mobile {
+   display: none;
+ }
+}
 
+</style>
 
 
 

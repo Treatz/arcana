@@ -34,6 +34,15 @@
   ga('send', 'pageview');
 
 </script>
+<style>
+ul ul {
+    display: none;
+}
+
+ul li:hover ul {
+    display: block;
+}​
+</style>
   </head>
 
   <body>
@@ -49,15 +58,16 @@
       </div>
 
       <div class="midHeader" style="padding-top: 0em">
-        <div id="cover"><img src="{% static "website/images/work.png" %}" align='left'/></div><h1 class="headerTitle" lang="la">{{game_name}} Online</h1>
+        <div id="mobile"><img src="{% static "website/images/mage2.png" %}" align='left'/></div>
+        <div id="cover"><img src="{% static "website/images/work.png" %}" align='left'/><h1 class="headerTitle" lang="la">{{game_name}} Online</h1>
         <div class="headerSubTitle" title="Slogan">
         <!-- Insert a slogan here if you want -->
         {{game_slogan}}			&nbsp;
-        </div>
+        </div></div>
 
         <br class="doNotDisplay doNotPrint" />
 
-        <div class="headerLinks">
+        <div class="headerLinks" id="cover">
           <span class="doNotDisplay">Tools:</span>
           {% if user.is_authenticated %}
             <a href="{% url 'logout' %}">Log Out &laquo;</a>
@@ -70,9 +80,10 @@
           {% endif %}
         </div>
       </div>
-
+<div id="cover">
       <div class="subHeader" style="padding-bottom: 1em">
         <!--span class="doNotDisplay">Navigation:</span-->
+
         <a href="/">Home</a> |
         <a href="http://mud.streetwitch.com/about/">About</a> |
         <a href="http://mud.streetwitch.com/chargen/">Chargen</a> |
@@ -82,8 +93,23 @@
         {% if webclient_enabled %}
         <a href="{% url 'webclient:index' %}">Play Online</a>
         {% endif %}
-      </div>
-    </div>
+     </div></div>
+
+<div id="mobile" style="font-size: 115%;">
+<ul style="list-style-type:none">
+       
+       <li><img src="{% static "website/images/mobilemenu.png" %}" /><ul>
+       <li> <a href="/">Home</a></li>
+      <li> <a href="http://mud.streetwitch.com/about/">About</a></li>
+       <li> <a href="http://mud.streetwitch.com/chargen/">Chargen</a></li>
+       <li> <a href="{% url 'admin:index' %}">Admin Interface</a></li>
+      <li> <a href="http://mud.streetwitch.com/ff/">Fan Fiction</a></li>
+      <li> <a href="http://mud.streetwitch.com/links/">Links</a></li>
+        {% if webclient_enabled %}
+      <li>  <a href="{% url 'webclient:index' %}">Play Online</a></li></ul></li>
+        {% endif %}
+</ul>
+     </div></div>
 
     <!-- ##### Side Menu ##### -->
     {% block sidebar %}{% endblock %}
