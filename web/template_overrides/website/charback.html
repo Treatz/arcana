@@ -1,24 +1,33 @@
 {% extends "base.html" %}
 
 {% block header_ext %}
-<style>
 
-    table, div {
-        font-size: 16px;
-        font-family: "Courier New", Courier, monospace;
-    }
-
-
-
-
-</style>
+<script type="text/javascript">
+  <!--
+  if (screen.width >= 1000) {
+    window.location = "http://www.streetwitch.com/";
+  }
+  //-->
+</script>
 {% endblock %}
 
 {% block sidebar %}
 {% endblock %}
 
 {% block content %}
+<style>
+@media screen and (max-width: 1200px) {
+#cover {
+    display: none;
+  }
+}
+@media screen and (min-width: 1201px) {
+#mobile {
+   display: none;
+ }
+}
 
+</style>
 
 
 
@@ -57,7 +66,7 @@ var sphere6 = "Spirit"
 var sphere7 = "Forces"
 var sphere8 = "Mind"
 var sphere9 = "Time"
-var sphere10 = "Death"
+
 
 var will = "Willpower"
 var art = "Arete"
@@ -206,7 +215,6 @@ function getphysical()
     var Forces = theForm.elements["Forces"];
     var Mind = theForm.elements["Mind"];
     var Time = theForm.elements["Time"];
-    var Death = theForm.elements["Death"];
     var Willpower = theForm.elements["Willpower"];
     var Arete = theForm.elements["Arete"];
     var Avatar = theForm.elements["Avatar"];
@@ -436,12 +444,7 @@ function getphysical()
 
         }
 
-        if(Death[i].checked){
 
-            sphereXP = sphereXP + xp[Death[i].value];
-            compTest = xp[Death[i].value];
-
-        }
 
         if(Avatar[i].checked){
             advXP = advXP + i;
@@ -528,7 +531,6 @@ function getphysical()
                 document.cakeform.Forces[0].checked=true;
                 document.cakeform.Mind[0].checked=true;
                 document.cakeform.Time[0].checked=true;
-                document.cakeform.Death[0].checked=true;
 
             }
 
@@ -1020,29 +1022,7 @@ function jumpStart(obj)
         }
     }
 
-    if(obj == sphere10){
 
-        if(document.cakeform.Death[5].checked && (sphereXP > 7 || globalArete<6)){
-            document.cakeform.Death[4].checked=true;
-            sphereXP = sphereXP - 1;
-        }
-        if(document.cakeform.Death[4].checked && (sphereXP > 7 || globalArete<5)){
-            document.cakeform.Death[3].checked=true;
-            sphereXP = sphereXP - 1;
-        }
-        if(document.cakeform.Death[3].checked && (sphereXP > 7 || globalArete<4)){
-            document.cakeform.Death[2].checked=true;
-            sphereXP = sphereXP - 1;
-        }
-        if(document.cakeform.Death[2].checked && (sphereXP > 7 || globalArete<3)){
-            document.cakeform.Death[1].checked=true;
-            sphereXP = sphereXP - 1;
-        }
-        if(document.cakeform.Death[1].checked && (sphereXP > 7 || globalArete<2)){
-            document.cakeform.Death[0].checked=true;
-            sphereXP = sphereXP - 1;
-        }
-    }
 
 
     if(obj == art){
@@ -1856,20 +1836,16 @@ function myFunction2() {
 
 <form action="/chargen/create/" name = "cakeform" id = "myform" method="post">
     {% csrf_token %}
-    <div><h1  style="font-size:27px; padding-left: 320px;">Character Sheet</h1></div>
+    <div><h1  style="font-size:27px; padding-left: 0px;">Character Sheet</h1></div>
     <br>
-    <table>
-        <tr><td style="width:100px">
-            Name:</td><td style="padding-left:15px"> <input type="text" name="name"></input></td>
-            <td style="padding-left:50px">
-                Essnece: <select name="testinput" form="myform">
+            Name:</td><td style="padding-left:0px"> <input type="text" name="name"></input></td>
+<br><br>  Password:</td><td style="padding-left:0px"> <input type="password" name="password">
+               <br><br> Essnece: <select name="testinput" form="myform">
                 <option value="Dynamic">Dynamic</option>
                 <option value="Pattern">Pattern</option>
                 <option value="Primordial">Primordial</option>
                 <option value="Questing">Questing</option></select>
-            </td>
-            <td style="padding-left:57px">
-                Concept: <select name="concept" form="myform" >
+               <br><br>  Concept: <select name="concept" form="myform" >
                 <option value="Activist">Activist</option>
                 <option value="Artist">Artist</option>
                 <option value="Criminal">Criminal</option>
@@ -1891,16 +1867,8 @@ function myFunction2() {
                 <option value="Visionary">Visionary</option>
                 <option value="Wage Slave">Wage Slave</option>
             </select>
-            </td>
-        </tr>
-    </table>
     <br>
-    <table>
-        <tr><td style="width:100px">
-            Password:</td><td style="padding-left:15px"> <input type="password" name="password">
-        </td>
-        <td style="padding-left:50px">
-                Tradition: <select name="tradition" form="myform">
+              <br><br>   Tradition: <select name="tradition" form="myform">
                 <option value="Akashic Brotherhood">Akashic Brotherhood</option>
                 <option value="Celestial Chorus">Celestial Chorus</option>
                 <option value="Cult of Ecstasy">Cult of Ecstasy</option>
@@ -1912,161 +1880,118 @@ function myFunction2() {
                 <option value="Verbena">Verbena</option>
                 <option value="Virtual Adepts">Virtual Adepts</option>
                 <option value="Orphans">Orphans</option></select>
-            </td>
-
-        <td style="padding-left:50px">
-                Star Sign: <select name="starsign" form="myform">
-                <option value="4">Aries</option>
-                <option value="5">Taurus</option>
-                <option value="6">Gemini</option>
-                <option value="7">Cancer</option>
-                <option value="8">Leo</option>
-                <option value="9">Virgo</option>
-                <option value="10">Libra</option>
-                <option value="11">Scorpio</option>
-                <option value="12">Sagitarius</option>
-                <option value="1">Capricorn</option>
-                <option value="2">Aquarius</option>
-                <option value="3">Pisces</option></select>
-            </td>
-
-        </tr>
-    </table>
+              <br><br>   Star Sign: <select name="starsign" form="myform">
+                <option value="Aries">Aries</option>
+                <option value="Taurus">Taurus</option>
+                <option value="Gemini">Gemini</option>
+                <option value="Cancer">Cancer</option>
+                <option value="Leo">Leo</option>
+                <option value="Virgo">Virgo</option>
+                <option value="Libra">Libra</option>
+                <option value="Scorpio">Scorpio</option>
+                <option value="Sagitarius">Sagitarius</option>
+                <option value="Capricorn">Capricorn</option>
+                <option value="Aquarius">Aquarius</option>
+                <option value="Pisces">Pisces</option></select>
     <br>
-    <table>
-        <tr><td style="width:100px padding-left:15px">
-            Description:</td><td> <TEXTAREA Name="description" rows="6" cols="80"></TEXTAREA>
-        </td></tr>
-        <tr><td><br></td></tr>
-        <tr><td style="width:100px padding-left:15px">
-            Image URL:</td><td> <TEXTAREA Name="image" rows="1" cols="80"></TEXTAREA>
-        </td></tr>
-    </table>
+          <br><br>   Description:<td> <TEXTAREA Name="description" rows="6" cols="35"></TEXTAREA>
+           <br><br>  Image URL:<td> <TEXTAREA Name="image" rows="1" cols="35"></TEXTAREA>
     <BR><BR>
-    <h1  style="font-size:27px; padding-left: 350px;">Attributes</h1>
+    <h1  style="font-size:27px; padding-left: 0px;">Attributes</h1>
     <br><br>
-    <table>
-        <tr><td style="width:105px">
+<div>
+<table><tr><td style="width:130px">
             <select id="Alignment" onchange="switch1()">
                 <option value="6" selected>Primary</option>
                 <option value="4">Secondary</option>
                 <option value="2">Tertiary</option>
-            </select></td><td style="width:185px"><div id="totalPrice">Physical: 3 / 10</div></td><td style="width:128px"><select id="Alignment2" onchange="switch2()">
+            </select></td><td style="width:214px">
+            <div id="totalPrice">Physical: 3 / 10</div></td></tr>
+
+            <tr><td style="width:117px"><select id="Alignment2" onchange="switch2()">
             <option value="6">Primary</option>
             <option value="4" selected>Secondary</option>
             <option value="2">Tertiary</option>
-        </select></td><td style="width:195px"><div id="totalPrice2">Social: 3 / 8</div></td><td style="width:128px"><select id="Alignment3" onchange="switch3()">
+        </select></td><td style="width:214px"><div id="totalPrice2">Social: 3 / 8</div></td></tr>
+           
+            <tr><td style="width:115px"><select id="Alignment3" onchange="switch3()">
             <option value="6">Primary</option>
             <option value="4">Secondary</option>
-            <option value="2" selected>Tertiary</option></select></td><td><div id="totalPrice3">Mental: 3 / 6</div></td>
-        </tr>
-
-    </table>
+            <option value="2" selected>Tertiary</option>
+        </select></td><td><div id="totalPrice3">Mental: 3 / 6</div></td</tr>
+        </table></div>
 <br>
-    <table>
-        <tr>
-
-            <td style="width:90px">
+<br><div>       Physical<br><br>
                 <label >Strength</label>
-            </td>
-            <td style="width:200px">
                 <label class='radiolabel'><input type="radio"  name="Strength" value="One" onclick="jumpStart(str)" checked/></label>
                 <label class='radiolabel'><input type="radio"  name="Strength" value="Two" onclick="jumpStart(str)" /></label>
                 <label class='radiolabel'><input type="radio"  name="Strength" value="Three" onclick="jumpStart(str)" /></label>
                 <label class='radiolabel'><input type="radio"  name="Strength" value="Four" onclick="jumpStart(str)" /></label>
                 <label class='radiolabel'><input type="radio"  name="Strength" value="Five" onclick="jumpStart(str)" /></label>
-
-            </td>
-            <td style="width:124px">
-
-                <label >Charisma</label>
-            </td><td style="width:200px">
-            <label class='radiolabel'><input type="radio"  name="Charisma" value="One" onclick="jumpStart(cha)" checked/></label>
-            <label class='radiolabel'><input type="radio"  name="Charisma" value="Two" onclick="jumpStart(cha)" /></label>
-            <label class='radiolabel'><input type="radio"  name="Charisma" value="Three" onclick="jumpStart(cha)" /></label>
-            <label class='radiolabel'><input type="radio"  name="Charisma" value="Four" onclick="jumpStart(cha)" /></label>
-            <label class='radiolabel'><input type="radio"  name="Charisma" value="Five" onclick="jumpStart(cha)" /></label>
-
-        </td>
-            <td style="width:126px">
-
-                <label >Perception</label></td><td>
-            <label class='radiolabel'><input type="radio"  name="Perception" value="One" onclick="jumpStart(per)" checked/></label>
-            <label class='radiolabel'><input type="radio"  name="Perception" value="Two" onclick="jumpStart(per)" /></label>
-            <label class='radiolabel'><input type="radio"  name="Perception" value="Three" onclick="jumpStart(per)" /></label>
-            <label class='radiolabel'><input type="radio"  name="Perception" value="Four" onclick="jumpStart(per)" /></label>
-            <label class='radiolabel'><input type="radio"  name="Perception" value="Five" onclick="jumpStart(per)" /></label>
-
-        </td>
-        </tr>
-    </table>
-    <table>
-        <tr>
-            <td style="width:90px">
-                <label >Dexterity</label></td><td style="width:200px">
+                <br><br>
+                <label >Dexterity</label>
             <label class='radiolabel'><input type="radio"  name="Dexterity" value="One" onclick="jumpStart(dex)" checked/></label>
             <label class='radiolabel'><input type="radio"  name="Dexterity" value="Two" onclick="jumpStart(dex)" /></label>
             <label class='radiolabel'><input type="radio"  name="Dexterity" value="Three" onclick="jumpStart(dex)" /></label>
             <label class='radiolabel'><input type="radio"  name="Dexterity" value="Four" onclick="jumpStart(dex)" /></label>
             <label class='radiolabel'><input type="radio"  name="Dexterity" value="Five" onclick="jumpStart(dex)" /></label>
-
-        </td>
-            <td style="width:124px">
-
-                <label >Manipulation</label></td><td style="width:200px">
-            <label class='radiolabel'><input type="radio"  name="Manipulation" value="One" onclick="jumpStart(man)" checked/></label>
-            <label class='radiolabel'><input type="radio"  name="Manipulation" value="Two" onclick="jumpStart(man)" /></label>
-            <label class='radiolabel'><input type="radio"  name="Manipulation" value="Three" onclick="jumpStart(man)" /></label>
-            <label class='radiolabel'><input type="radio"  name="Manipulation" value="Four" onclick="jumpStart(man)" /></label>
-            <label class='radiolabel'><input type="radio"  name="Manipulation" value="Five" onclick="jumpStart(man)" /></label>
-
-        </td>
-            <td style="width:126px">
-
-                <label >Intelligence</label></td><td>
-            <label class='radiolabel'><input type="radio"  name="Intelligence" value="One" onclick="jumpStart(int)" checked/></label>
-            <label class='radiolabel'><input type="radio"  name="Intelligence" value="Two" onclick="jumpStart(int)" /></label>
-            <label class='radiolabel'><input type="radio"  name="Intelligence" value="Three" onclick="jumpStart(int)" /></label>
-            <label class='radiolabel'><input type="radio"  name="Intelligence" value="Four" onclick="jumpStart(int)" /></label>
-            <label class='radiolabel'><input type="radio"  name="Intelligence" value="Five" onclick="jumpStart(int)" /></label>
-
-        </td>
-        </tr>
-    </table>
-    <table>
-        <tr>
-            <td style="width:90px">
-
-                <label >Stamina</label></td><td style="width:200px">
+                <br><br>
+                <label >Stamina</label>
             <label class='radiolabel'><input type="radio"  name="Stamina" value="One" onclick="jumpStart(sta)" checked/></label>
             <label class='radiolabel'><input type="radio"  name="Stamina" value="Two" onclick="jumpStart(sta)" /></label>
             <label class='radiolabel'><input type="radio"  name="Stamina" value="Three" onclick="jumpStart(sta)" /></label>
             <label class='radiolabel'><input type="radio"  name="Stamina" value="Four" onclick="jumpStart(sta)" /></label>
             <label class='radiolabel'><input type="radio"  name="Stamina" value="Five" onclick="jumpStart(sta)" /></label>
-        </td>
-            <td style="width:124px">
-
-                <label >Appearance</label></td><td style="width:200px">
+                <br><br><br>
+                Social<br><br>
+                <label >Charisma</label>
+            <label class='radiolabel'><input type="radio"  name="Charisma" value="One" onclick="jumpStart(cha)" checked/></label>
+            <label class='radiolabel'><input type="radio"  name="Charisma" value="Two" onclick="jumpStart(cha)" /></label>
+            <label class='radiolabel'><input type="radio"  name="Charisma" value="Three" onclick="jumpStart(cha)" /></label>
+            <label class='radiolabel'><input type="radio"  name="Charisma" value="Four" onclick="jumpStart(cha)" /></label>
+            <label class='radiolabel'><input type="radio"  name="Charisma" value="Five" onclick="jumpStart(cha)" /></label>
+                <br><br>
+                <label >Manipulation</label>
+            <label class='radiolabel'><input type="radio"  name="Manipulation" value="One" onclick="jumpStart(man)" checked/></label>
+            <label class='radiolabel'><input type="radio"  name="Manipulation" value="Two" onclick="jumpStart(man)" /></label>
+            <label class='radiolabel'><input type="radio"  name="Manipulation" value="Three" onclick="jumpStart(man)" /></label>
+            <label class='radiolabel'><input type="radio"  name="Manipulation" value="Four" onclick="jumpStart(man)" /></label>
+            <label class='radiolabel'><input type="radio"  name="Manipulation" value="Five" onclick="jumpStart(man)" /></label>
+                <br><br>
+                <label >Appearance</label>
             <label class='radiolabel'><input type="radio"  name="Appearance" value="One" onclick="jumpStart(app)" checked/></label>
             <label class='radiolabel'><input type="radio"  name="Appearance" value="Two" onclick="jumpStart(app)" /></label>
             <label class='radiolabel'><input type="radio"  name="Appearance" value="Three" onclick="jumpStart(app)" /></label>
             <label class='radiolabel'><input type="radio"  name="Appearance" value="Four" onclick="jumpStart(app)" /></label>
             <label class='radiolabel'><input type="radio"  name="Appearance" value="Five" onclick="jumpStart(app)" /></label>
-        </td>
-            <td style="width:126px">
+<br><br><br>
+                Mental<br><br>
+                <label >Perception</label>
+            <label class='radiolabel'><input type="radio"  name="Perception" value="One" onclick="jumpStart(per)" checked/></label>
+            <label class='radiolabel'><input type="radio"  name="Perception" value="Two" onclick="jumpStart(per)" /></label>
+            <label class='radiolabel'><input type="radio"  name="Perception" value="Three" onclick="jumpStart(per)" /></label>
+            <label class='radiolabel'><input type="radio"  name="Perception" value="Four" onclick="jumpStart(per)" /></label>
+            <label class='radiolabel'><input type="radio"  name="Perception" value="Five" onclick="jumpStart(per)" /></label>
+                <br><br>
 
-                <label >Wits</label></td><td>
+                <label >Intelligence</label>
+            <label class='radiolabel'><input type="radio"  name="Intelligence" value="One" onclick="jumpStart(int)" checked/></label>
+            <label class='radiolabel'><input type="radio"  name="Intelligence" value="Two" onclick="jumpStart(int)" /></label>
+            <label class='radiolabel'><input type="radio"  name="Intelligence" value="Three" onclick="jumpStart(int)" /></label>
+            <label class='radiolabel'><input type="radio"  name="Intelligence" value="Four" onclick="jumpStart(int)" /></label>
+            <label class='radiolabel'><input type="radio"  name="Intelligence" value="Five" onclick="jumpStart(int)" /></label>
+                <br><br>
+
+                <label >Wits</label>
             <label class='radiolabel'><input type="radio"  name="Wits" value="One" onclick="jumpStart(wit)" checked/></label>
             <label class='radiolabel'><input type="radio"  name="Wits" value="Two" onclick="jumpStart(wit)" /></label>
             <label class='radiolabel'><input type="radio"  name="Wits" value="Three" onclick="jumpStart(wit)" /></label>
             <label class='radiolabel'><input type="radio"  name="Wits" value="Four" onclick="jumpStart(wit)" /></label>
             <label class='radiolabel'><input type="radio"  name="Wits" value="Five" onclick="jumpStart(wit)" /></label>
-
-        </td>
-        </tr>
-    </table>
+</div>
     <br><br>
-    <h1  style="font-size:27px; padding-left: 350px;">Abilities</h1><br>
+    <h1  style="font-size:27px; padding-left: 0px;">Abilities</h1><br>
+<div>
     <table>
 
         <tr><td style="width:130px">
@@ -2075,13 +2000,13 @@ function myFunction2() {
                 <option value="8">Secondary</option>
                 <option value="6">Tertiary</option>
             </select></td><td style="width:214px"><div id="totalPrice4">Talents: 0 / 10</div></td>
-
+            </tr><tr>
             <td style="width:117px"><select id="Alignment5" onchange="switch5()">
                 <option value="10">Prmary</option>
                 <option value="8" selected>Secondary</option>
                 <option value="6">Tertiary</option>
             </select></td><td style="width:214px"><div id="totalPrice5">Skills: 0 / 8</div></td>
-
+            </tr><tr>
             <td style="width:115px"><select id="Alignment6" onchange="switch6()">
                 <option value="10">Primary</option>
                 <option value="8">Secondary</option>
@@ -2089,239 +2014,167 @@ function myFunction2() {
             <td><div id="totalPrice6">Knowledges: 0 / 6</div></td>
         </tr>
 
-    </table><br><br><table>
-
-    <tr>
-        <td style="width:125px">
-
-            <label >Alertness</label></td><td style="width:220px">
+    </table></div><br>
+       <br><br>             <label >Talents</label>
+       <br><br>             <label >Alertness</label>
         <label class='radiolabel'><input type="radio"  name="testA" value="One" onclick="jumpStart(testingA)" checked/></label>
         <label class='radiolabel'><input type="radio"  name="testA" value="Two" onclick="jumpStart(testingA)" /></label>
         <label class='radiolabel'><input type="radio"  name="testA" value="Three" onclick="jumpStart(testingA)" /></label>
         <label class='radiolabel'><input type="radio"  name="testA" value="Four" onclick="jumpStart(testingA)" /></label>
         <label class='radiolabel'><input type="radio"  name="testA" value="Five" onclick="jumpStart(testingA)" /></label>
         <label class='radiolabel'><input type="radio"  name="testA" value="Six" onclick="jumpStart(testingA)" /></label>
-    </td>
-        <td style="width:110px">
-            <label >Firearms</label></td><td style="width:220px">
-        <label class='radiolabel'><input type="radio"  name="testB1" value="One" onclick="jumpStart(testingB1)" checked/></label>
-        <label class='radiolabel'><input type="radio"  name="testB1" value="Two" onclick="jumpStart(testingB1)" /></label>
-        <label class='radiolabel'><input type="radio"  name="testB1" value="Three" onclick="jumpStart(testingB1)" /></label>
-        <label class='radiolabel'><input type="radio"  name="testB1" value="Four" onclick="jumpStart(testingB1)" /></label>
-        <label class='radiolabel'><input type="radio"  name="testB1" value="Five" onclick="jumpStart(testingB1)" /></label>
-        <label class='radiolabel'><input type="radio"  name="testB1" value="Six" onclick="jumpStart(testingB1)" /></label>
-    </td>
-        <td style="width:110px">
-          <label >Astrology</label></td><td style="width:200px">
-        <label class='radiolabel'><input type="radio"  name="testC" value="One" onclick="jumpStart(testingC)" checked/></label>
-        <label class='radiolabel'><input type="radio"  name="testC" value="Two" onclick="jumpStart(testingC)" /></label>
-        <label class='radiolabel'><input type="radio"  name="testC" value="Three" onclick="jumpStart(testingC)" /></label>
-        <label class='radiolabel'><input type="radio"  name="testC" value="Four" onclick="jumpStart(testingC)" /></label>
-        <label class='radiolabel'><input type="radio"  name="testC" value="Five" onclick="jumpStart(testingC)" /></label>
-        <label class='radiolabel'><input type="radio"  name="testC" value="Six" onclick="jumpStart(testingC)" /></label>
-    </td>
-    </tr></table><table>
-    <tr>
-        <td style="width:125px">
-
-            <label >Athletics</label></td><td style="width:220px">
+       <br><br>             <label >Athletics</label>
         <label class='radiolabel'><input type="radio"  name="testA1" value="One" onclick="jumpStart(testingA1)" checked/></label>
         <label class='radiolabel'><input type="radio"  name="testA1" value="Two" onclick="jumpStart(testingA1)" /></label>
         <label class='radiolabel'><input type="radio"  name="testA1" value="Three" onclick="jumpStart(testingA1)" /></label>
         <label class='radiolabel'><input type="radio"  name="testA1" value="Four" onclick="jumpStart(testingA1)" /></label>
         <label class='radiolabel'><input type="radio"  name="testA1" value="Five" onclick="jumpStart(testingA1)" /></label>
         <label class='radiolabel'><input type="radio"  name="testA1" value="Six" onclick="jumpStart(testingA1)" /></label>
-    </td>
-        <td style="width:110px">
-            <label >Martial Arts</label></td><td style="width:220px">
-        <label class='radiolabel'><input type="radio"  name="testB2" value="One" onclick="jumpStart(testingB2)" checked/></label>
-        <label class='radiolabel'><input type="radio"  name="testB2" value="Two" onclick="jumpStart(testingB2)" /></label>
-        <label class='radiolabel'><input type="radio"  name="testB2" value="Three" onclick="jumpStart(testingB2)" /></label>
-        <label class='radiolabel'><input type="radio"  name="testB2" value="Four" onclick="jumpStart(testingB2)" /></label>
-        <label class='radiolabel'><input type="radio"  name="testB2" value="Five" onclick="jumpStart(testingB2)" /></label>
-        <label class='radiolabel'><input type="radio"  name="testB2" value="Six" onclick="jumpStart(testingB2)" /></label>
-    </td>
-        <td style="width:110px">
-        <label >Computer</label></td><td style="width:200px">
-        <label class='radiolabel'><input type="radio"  name="testC1" value="One" onclick="jumpStart(testingC1)" checked/></label>
-        <label class='radiolabel'><input type="radio"  name="testC1" value="Two" onclick="jumpStart(testingC1)" /></label>
-        <label class='radiolabel'><input type="radio"  name="testC1" value="Three" onclick="jumpStart(testingC1)" /></label>
-        <label class='radiolabel'><input type="radio"  name="testC1" value="Four" onclick="jumpStart(testingC1)" /></label>
-        <label class='radiolabel'><input type="radio"  name="testC1" value="Five" onclick="jumpStart(testingC1)" /></label>
-        <label class='radiolabel'><input type="radio"  name="testC1" value="Six" onclick="jumpStart(testingC1)" /></label>
-    </td>
-    </tr></table><table>
-    <tr>
-        <td style="width:125px">
-
-            <label >Awareness</label></td><td style="width:220px">
+       <br><br>             <label >Awareness</label>
         <label class='radiolabel'><input type="radio"  name="testA2" value="One" onclick="jumpStart(testingA2)" checked/></label>
         <label class='radiolabel'><input type="radio"  name="testA2" value="Two" onclick="jumpStart(testingA2)" /></label>
         <label class='radiolabel'><input type="radio"  name="testA2" value="Three" onclick="jumpStart(testingA2)" /></label>
         <label class='radiolabel'><input type="radio"  name="testA2" value="Four" onclick="jumpStart(testingA2)" /></label>
         <label class='radiolabel'><input type="radio"  name="testA2" value="Five" onclick="jumpStart(testingA2)" /></label>
         <label class='radiolabel'><input type="radio"  name="testA2" value="Six" onclick="jumpStart(testingA2)" /></label>
-    </td>
-        <td style="width:110px">
- <label >Melee</label></td><td style="width:220px">
-        <label class='radiolabel'><input type="radio"  name="testB3" value="One" onclick="jumpStart(testingB3)" checked/></label>
-        <label class='radiolabel'><input type="radio"  name="testB3" value="Two" onclick="jumpStart(testingB3)" /></label>
-        <label class='radiolabel'><input type="radio"  name="testB3" value="Three" onclick="jumpStart(testingB3)" /></label>
-        <label class='radiolabel'><input type="radio"  name="testB3" value="Four" onclick="jumpStart(testingB3)" /></label>
-        <label class='radiolabel'><input type="radio"  name="testB3" value="Five" onclick="jumpStart(testingB3)" /></label>
-        <label class='radiolabel'><input type="radio"  name="testB3" value="Six" onclick="jumpStart(testingB3)" /></label>
-    </td>
-        <td style="width:110px">
-            <label >Medicine</label></td><td style="width:200px">
-        <label class='radiolabel'><input type="radio"  name="testC3" value="One" onclick="jumpStart(testingC3)" checked/></label>
-        <label class='radiolabel'><input type="radio"  name="testC3" value="Two" onclick="jumpStart(testingC3)" /></label>
-        <label class='radiolabel'><input type="radio"  name="testC3" value="Three" onclick="jumpStart(testingC3)" /></label>
-        <label class='radiolabel'><input type="radio"  name="testC3" value="Four" onclick="jumpStart(testingC3)" /></label>
-        <label class='radiolabel'><input type="radio"  name="testC3" value="Five" onclick="jumpStart(testingC3)" /></label>
-        <label class='radiolabel'><input type="radio"  name="testC3" value="Six" onclick="jumpStart(testingC3)" /></label>
-    </td>
-    </tr></table><table>
-    <tr>
-        <td style="width:125px">
-
-            <label >Brawl</label></td><td style="width:220px">
+       <br><br>             <label >Brawl</label>
         <label class='radiolabel'><input type="radio"  name="testA3" value="One" onclick="jumpStart(testingA3)" checked/></label>
         <label class='radiolabel'><input type="radio"  name="testA3" value="Two" onclick="jumpStart(testingA3)" /></label>
         <label class='radiolabel'><input type="radio"  name="testA3" value="Three" onclick="jumpStart(testingA3)" /></label>
         <label class='radiolabel'><input type="radio"  name="testA3" value="Four" onclick="jumpStart(testingA3)" /></label>
         <label class='radiolabel'><input type="radio"  name="testA3" value="Five" onclick="jumpStart(testingA3)" /></label>
         <label class='radiolabel'><input type="radio"  name="testA3" value="Six" onclick="jumpStart(testingA3)" /></label>
-    </td>
-        <td style="width:110px">
-<label >Meditation</label></td><td style="width:220px">
-        <label class='radiolabel'><input type="radio"  name="testB4" value="One" onclick="jumpStart(testingB4)" checked/></label>
-        <label class='radiolabel'><input type="radio"  name="testB4" value="Two" onclick="jumpStart(testingB4)" /></label>
-        <label class='radiolabel'><input type="radio"  name="testB4" value="Three" onclick="jumpStart(testingB4)" /></label>
-        <label class='radiolabel'><input type="radio"  name="testB4" value="Four" onclick="jumpStart(testingB4)" /></label>
-        <label class='radiolabel'><input type="radio"  name="testB4" value="Five" onclick="jumpStart(testingB4)" /></label>
-        <label class='radiolabel'><input type="radio"  name="testB4" value="Six" onclick="jumpStart(testingB4)" /></label>
-    </td>
-        <td style="width:110px">
-            <label >Occult</label></td><td style="width:200px">
-        <label class='radiolabel'><input type="radio"  name="testC4" value="One" onclick="jumpStart(testingC4)" checked/></label>
-        <label class='radiolabel'><input type="radio"  name="testC4" value="Two" onclick="jumpStart(testingC4)" /></label>
-        <label class='radiolabel'><input type="radio"  name="testC4" value="Three" onclick="jumpStart(testingC4)" /></label>
-        <label class='radiolabel'><input type="radio"  name="testC4" value="Four" onclick="jumpStart(testingC4)" /></label>
-        <label class='radiolabel'><input type="radio"  name="testC4" value="Five" onclick="jumpStart(testingC4)" /></label>
-        <label class='radiolabel'><input type="radio"  name="testC4" value="Six" onclick="jumpStart(testingC4)" /></label>
-    </td>
-    </tr></table><table>
-    <tr>
-        <td style="width:125px">
-
-            <label >Intimidation</label></td><td style="width:220px">
+       <br><br>             <label >Intimidate</label>
         <label class='radiolabel'><input type="radio"  name="testA4" value="One" onclick="jumpStart(testingA4)" checked/></label>
         <label class='radiolabel'><input type="radio"  name="testA4" value="Two" onclick="jumpStart(testingA4)" /></label>
         <label class='radiolabel'><input type="radio"  name="testA4" value="Three" onclick="jumpStart(testingA4)" /></label>
         <label class='radiolabel'><input type="radio"  name="testA4" value="Four" onclick="jumpStart(testingA4)" /></label>
         <label class='radiolabel'><input type="radio"  name="testA4" value="Five" onclick="jumpStart(testingA4)" /></label>
         <label class='radiolabel'><input type="radio"  name="testA4" value="Six" onclick="jumpStart(testingA4)" /></label>
-    </td>
-        <td style="width: 110px;px">
-<label >Stealth</label></td><td style="width:220px">
+       <br><br><br>            <label >Skills</label>
+       <br><br>            <label >Firearms</label>
+        <label class='radiolabel'><input type="radio"  name="testB1" value="One" onclick="jumpStart(testingB1)" checked/></label>
+        <label class='radiolabel'><input type="radio"  name="testB1" value="Two" onclick="jumpStart(testingB1)" /></label>
+        <label class='radiolabel'><input type="radio"  name="testB1" value="Three" onclick="jumpStart(testingB1)" /></label>
+        <label class='radiolabel'><input type="radio"  name="testB1" value="Four" onclick="jumpStart(testingB1)" /></label>
+        <label class='radiolabel'><input type="radio"  name="testB1" value="Five" onclick="jumpStart(testingB1)" /></label>
+        <label class='radiolabel'><input type="radio"  name="testB1" value="Six" onclick="jumpStart(testingB1)" /></label>
+       <br><br>             <label >MartialArt</label>
+        <label class='radiolabel'><input type="radio"  name="testB2" value="One" onclick="jumpStart(testingB2)" checked/></label>
+        <label class='radiolabel'><input type="radio"  name="testB2" value="Two" onclick="jumpStart(testingB2)" /></label>
+        <label class='radiolabel'><input type="radio"  name="testB2" value="Three" onclick="jumpStart(testingB2)" /></label>
+        <label class='radiolabel'><input type="radio"  name="testB2" value="Four" onclick="jumpStart(testingB2)" /></label>
+        <label class='radiolabel'><input type="radio"  name="testB2" value="Five" onclick="jumpStart(testingB2)" /></label>
+        <label class='radiolabel'><input type="radio"  name="testB2" value="Six" onclick="jumpStart(testingB2)" /></label>
+       <br><br>  <label >Melee</label>
+        <label class='radiolabel'><input type="radio"  name="testB3" value="One" onclick="jumpStart(testingB3)" checked/></label>
+        <label class='radiolabel'><input type="radio"  name="testB3" value="Two" onclick="jumpStart(testingB3)" /></label>
+        <label class='radiolabel'><input type="radio"  name="testB3" value="Three" onclick="jumpStart(testingB3)" /></label>
+        <label class='radiolabel'><input type="radio"  name="testB3" value="Four" onclick="jumpStart(testingB3)" /></label>
+        <label class='radiolabel'><input type="radio"  name="testB3" value="Five" onclick="jumpStart(testingB3)" /></label>
+        <label class='radiolabel'><input type="radio"  name="testB3" value="Six" onclick="jumpStart(testingB3)" /></label>
+
+       <br><br> <label >Meditation</label>
+        <label class='radiolabel'><input type="radio"  name="testB4" value="One" onclick="jumpStart(testingB4)" checked/></label>
+        <label class='radiolabel'><input type="radio"  name="testB4" value="Two" onclick="jumpStart(testingB4)" /></label>
+        <label class='radiolabel'><input type="radio"  name="testB4" value="Three" onclick="jumpStart(testingB4)" /></label>
+        <label class='radiolabel'><input type="radio"  name="testB4" value="Four" onclick="jumpStart(testingB4)" /></label>
+        <label class='radiolabel'><input type="radio"  name="testB4" value="Five" onclick="jumpStart(testingB4)" /></label>
+        <label class='radiolabel'><input type="radio"  name="testB4" value="Six" onclick="jumpStart(testingB4)" /></label>
+
+       <br><br> <label >Stealth</label>
         <label class='radiolabel'><input type="radio"  name="testB5" value="One" onclick="jumpStart(testingB5)" checked/></label>
         <label class='radiolabel'><input type="radio"  name="testB5" value="Two" onclick="jumpStart(testingB5)" /></label>
         <label class='radiolabel'><input type="radio"  name="testB5" value="Three" onclick="jumpStart(testingB5)" /></label>
         <label class='radiolabel'><input type="radio"  name="testB5" value="Four" onclick="jumpStart(testingB5)" /></label>
         <label class='radiolabel'><input type="radio"  name="testB5" value="Five" onclick="jumpStart(testingB5)" /></label>
         <label class='radiolabel'><input type="radio"  name="testB5" value="Six" onclick="jumpStart(testingB5)" /></label>
-    </td>
-        <td style="width:110px">
-            <label >Rituals</label></td><td style="width:200px">
+       <br><br><br>             <label >Knowledges</label>
+       <br><br>           <label >Astrology</label>
+        <label class='radiolabel'><input type="radio"  name="testC" value="One" onclick="jumpStart(testingC)" checked/></label>
+        <label class='radiolabel'><input type="radio"  name="testC" value="Two" onclick="jumpStart(testingC)" /></label>
+        <label class='radiolabel'><input type="radio"  name="testC" value="Three" onclick="jumpStart(testingC)" /></label>
+        <label class='radiolabel'><input type="radio"  name="testC" value="Four" onclick="jumpStart(testingC)" /></label>
+        <label class='radiolabel'><input type="radio"  name="testC" value="Five" onclick="jumpStart(testingC)" /></label>
+        <label class='radiolabel'><input type="radio"  name="testC" value="Six" onclick="jumpStart(testingC)" /></label>
+
+       <br><br>         <label >Computer</label>
+        <label class='radiolabel'><input type="radio"  name="testC1" value="One" onclick="jumpStart(testingC1)" checked/></label>
+        <label class='radiolabel'><input type="radio"  name="testC1" value="Two" onclick="jumpStart(testingC1)" /></label>
+        <label class='radiolabel'><input type="radio"  name="testC1" value="Three" onclick="jumpStart(testingC1)" /></label>
+        <label class='radiolabel'><input type="radio"  name="testC1" value="Four" onclick="jumpStart(testingC1)" /></label>
+        <label class='radiolabel'><input type="radio"  name="testC1" value="Five" onclick="jumpStart(testingC1)" /></label>
+        <label class='radiolabel'><input type="radio"  name="testC1" value="Six" onclick="jumpStart(testingC1)" /></label>
+
+       <br><br>             <label >Medicine</label>
+        <label class='radiolabel'><input type="radio"  name="testC3" value="One" onclick="jumpStart(testingC3)" checked/></label>
+        <label class='radiolabel'><input type="radio"  name="testC3" value="Two" onclick="jumpStart(testingC3)" /></label>
+        <label class='radiolabel'><input type="radio"  name="testC3" value="Three" onclick="jumpStart(testingC3)" /></label>
+        <label class='radiolabel'><input type="radio"  name="testC3" value="Four" onclick="jumpStart(testingC3)" /></label>
+        <label class='radiolabel'><input type="radio"  name="testC3" value="Five" onclick="jumpStart(testingC3)" /></label>
+        <label class='radiolabel'><input type="radio"  name="testC3" value="Six" onclick="jumpStart(testingC3)" /></label>
+
+       <br><br>             <label >Occult</label>
+        <label class='radiolabel'><input type="radio"  name="testC4" value="One" onclick="jumpStart(testingC4)" checked/></label>
+        <label class='radiolabel'><input type="radio"  name="testC4" value="Two" onclick="jumpStart(testingC4)" /></label>
+        <label class='radiolabel'><input type="radio"  name="testC4" value="Three" onclick="jumpStart(testingC4)" /></label>
+        <label class='radiolabel'><input type="radio"  name="testC4" value="Four" onclick="jumpStart(testingC4)" /></label>
+        <label class='radiolabel'><input type="radio"  name="testC4" value="Five" onclick="jumpStart(testingC4)" /></label>
+        <label class='radiolabel'><input type="radio"  name="testC4" value="Six" onclick="jumpStart(testingC4)" /></label>
+
+       <br><br>             <label >Rituals</label>
         <label class='radiolabel'><input type="radio"  name="testC5" value="One" onclick="jumpStart(testingC5)" checked/></label>
         <label class='radiolabel'><input type="radio"  name="testC5" value="Two" onclick="jumpStart(testingC5)" /></label>
         <label class='radiolabel'><input type="radio"  name="testC5" value="Three" onclick="jumpStart(testingC5)" /></label>
         <label class='radiolabel'><input type="radio"  name="testC5" value="Four" onclick="jumpStart(testingC5)" /></label>
         <label class='radiolabel'><input type="radio"  name="testC5" value="Five" onclick="jumpStart(testingC5)" /></label>
         <label class='radiolabel'><input type="radio"  name="testC5" value="Six" onclick="jumpStart(testingC5)" /></label>
-    </td>
-    </tr></table>
     <br><br>
-    <h1  style="font-size:27px; padding-left: 340px;">Spheres <font size = "3"> (No sphere can be higher than your Arete)</font></h1>
+    <h1  style="font-size:27px; padding-left: 0px;">Spheres</h1>
     <br>
-    <div id="totalPrice7" style="padding-left: 160px;"> Spheres: 0 / 7</div>
-    <br>
-    <table>
-        <tr>
-            <td style="width:100px">
+    <div id="totalPrice7" style="padding-left: 25px;"> Spheres: 0 / 7<br> (Sphere Max is Arete)</div>
 
-                <label >Death</label></td><td style="width:200px">
-            <label class='radiolabel'><input type="radio"  name="Death" id="dea1" value="One" onclick="jumpStart(sphere10)" checked/></label>
-            <label class='radiolabel'><input type="radio"  name="Death" id="dea2" value="Two" onclick="jumpStart(sphere10)" /></label>
-            <label class='radiolabel'><input type="radio"  name="Death" id="dea3" value="Three" onclick="jumpStart(sphere10)" /></label>
-            <label class='radiolabel'><input type="radio"  name="Death" id="dea4" value="Four" onclick="jumpStart(sphere10)" /></label>
-            <label class='radiolabel'><input type="radio"  name="Death" id="dea5" value="Five" onclick="jumpStart(sphere10)" /></label>
-            <label class='radiolabel'><input type="radio"  name="Death" id="dea6" value="Six" onclick="jumpStart(sphere10)" /></label>
-        </td>
-            <td style="width:100px">
-
-                <label >Matter</label></td><td style="width:200px">
+            <br><br>     <label >Matter</label>
             <label class='radiolabel'><input type="radio"  name="Matter" value="One" id="mat1" onclick="jumpStart(sphere5)" checked/></label>
             <label class='radiolabel'><input type="radio"  name="Matter" value="Two" id="mat2" onclick="jumpStart(sphere5)" /></label>
             <label class='radiolabel'><input type="radio"  name="Matter" value="Three" id="mat3" onclick="jumpStart(sphere5)" /></label>
             <label class='radiolabel'><input type="radio"  name="Matter" value="Four" id="mat4" onclick="jumpStart(sphere5)" /></label>
             <label class='radiolabel'><input type="radio"  name="Matter" value="Five" id="mat5" onclick="jumpStart(sphere5)" /></label>
             <label class='radiolabel'><input type="radio"  name="Matter" value="Six" id="mat6" onclick="jumpStart(sphere5)" /></label>
-        </td>
-        </tr>
-    </table>
-    <table>
-        <tr>
-            <td style="width:100px">
 
-                <label >Fate</label></td><td style="width:200px">
+            <br><br>     <label >Fate</label>
             <label class='radiolabel'><input type="radio"  name="Entropy" value="One" id="ent1" onclick="jumpStart(sphere4)" checked/></label>
             <label class='radiolabel'><input type="radio"  name="Entropy" value="Two" id="ent2" onclick="jumpStart(sphere4)" /></label>
             <label class='radiolabel'><input type="radio"  name="Entropy" value="Three" id="ent3" onclick="jumpStart(sphere4)" /></label>
             <label class='radiolabel'><input type="radio"  name="Entropy" value="Four" id="ent4" onclick="jumpStart(sphere4)" /></label>
             <label class='radiolabel'><input type="radio"  name="Entropy" value="Five" id="ent5" onclick="jumpStart(sphere4)" /></label>
             <label class='radiolabel'><input type="radio"  name="Entropy" value="Six" id="ent6" onclick="jumpStart(sphere4)" /></label>
-        </td>
-            <td style="width:100px">
 
-                <label >Time</label></td><td style="width:200px">
+            <br><br>     <label >Time</label>
             <label class='radiolabel'><input type="radio"  name="Time" value="One" id="tim1" onclick="jumpStart(sphere9)" checked/></label>
             <label class='radiolabel'><input type="radio"  name="Time" value="Two" id="tim2" onclick="jumpStart(sphere9)" /></label>
             <label class='radiolabel'><input type="radio"  name="Time" value="Three" id="tim3" onclick="jumpStart(sphere9)" /></label>
             <label class='radiolabel'><input type="radio"  name="Time" value="Four" id="tim4" onclick="jumpStart(sphere9)" /></label>
             <label class='radiolabel'><input type="radio"  name="Time" value="Five" id="tim5" onclick="jumpStart(sphere9)" /></label>
             <label class='radiolabel'><input type="radio"  name="Time" value="Six" id="tim6" onclick="jumpStart(sphere9)" /></label>
-        </td>
-        </tr>
-    </table>
-    <table>
-        <tr>
-            <td style="width:100px">
 
-                <label >Mind</label></td><td style="width:200px">
+            <br><br>     <label >Mind</label>
             <label class='radiolabel'><input type="radio"  name="Mind" value="One" id="min1" onclick="jumpStart(sphere8)" checked/></label>
             <label class='radiolabel'><input type="radio"  name="Mind" value="Two" id="min2" onclick="jumpStart(sphere8)" /></label>
             <label class='radiolabel'><input type="radio"  name="Mind" value="Three" id="min3" onclick="jumpStart(sphere8)" /></label>
             <label class='radiolabel'><input type="radio"  name="Mind" value="Four" id="min4" onclick="jumpStart(sphere8)" /></label>
             <label class='radiolabel'><input type="radio"  name="Mind" value="Five" id="min5" onclick="jumpStart(sphere8)" /></label>
             <label class='radiolabel'><input type="radio"  name="Mind" value="Six" id="min6" onclick="jumpStart(sphere8)" /></label>
-        </td>
-            <td style="width:100px">
 
-                <label >Space</label></td><td style="width:200px">
+            <br><br>    <label >Space</label>
             <label class='radiolabel'><input type="radio"  name="Correspondence" value="One" id="cor1" onclick="jumpStart(sphere1)" checked/></label>
             <label class='radiolabel'><input type="radio"  name="Correspondence" value="Two" id="cor2" onclick="jumpStart(sphere1)" /></label>
             <label class='radiolabel'><input type="radio"  name="Correspondence" value="Three" id="cor3" onclick="jumpStart(sphere1)" /></label>
             <label class='radiolabel'><input type="radio"  name="Correspondence" value="Four" id="cor4" onclick="jumpStart(sphere1)" /></label>
             <label class='radiolabel'><input type="radio"  name="Correspondence" value="Five" id="cor5" onclick="jumpStart(sphere1)" /></label>
             <label class='radiolabel'><input type="radio"  name="Correspondence" value="Six" id="cor6" onclick="jumpStart(sphere1)" /></label>
-        </td>
-        </tr>        </table>
-        <table>
-        <tr>
-                    <td style="width:100px">
 
-                <label >Prime</label></td><td style="width:200px">
+            <br><br>     <label >Prime</label>
             <label class='radiolabel'><input type="radio"  name="Prime" value="One" id="pri1" onclick="jumpStart(sphere3)" checked/></label>
             <label class='radiolabel'><input type="radio"  name="Prime" value="Two" id="pri2" onclick="jumpStart(sphere3)" /></label>
             <label class='radiolabel'><input type="radio"  name="Prime" value="Three" id="pri3" onclick="jumpStart(sphere3)" /></label>
@@ -2329,10 +2182,8 @@ function myFunction2() {
             <label class='radiolabel'><input type="radio"  name="Prime" value="Five" id="pri5" onclick="jumpStart(sphere3)" /></label>
             <label class='radiolabel'><input type="radio"  name="Prime" value="Six" id="pri6" onclick="jumpStart(sphere3)" /></label>
 
-        </td>
-            <td style="width:100px">
 
-            <label >Forces</label></td><td style="width:200px">
+            <br><br> <label >Forces</label>
             <label class='radiolabel'><input type="radio"  name="Forces" value="One" id="for1" onclick="jumpStart(sphere7)" checked/></label>
             <label class='radiolabel'><input type="radio"  name="Forces" value="Two" id="for2" onclick="jumpStart(sphere7)" /></label>
             <label class='radiolabel'><input type="radio"  name="Forces" value="Three" id="for3" onclick="jumpStart(sphere7)" /></label>
@@ -2340,15 +2191,8 @@ function myFunction2() {
             <label class='radiolabel'><input type="radio"  name="Forces" value="Five" id="for5" onclick="jumpStart(sphere7)" /></label>
             <label class='radiolabel'><input type="radio"  name="Forces" value="Six" id="for6" onclick="jumpStart(sphere7)" /></label>
 
-        </td>
-        </tr>
-        </table>
 
-        <table>
-        <tr>
-                    <td style="width:100px">
-
-                <label >Spirit</label></td><td style="width:200px">
+            <br><br>     <label >Spirit</label>
             <label class='radiolabel'><input type="radio"  name="Spirit" value="One" id="spi1" onclick="jumpStart(sphere6)" checked/></label>
             <label class='radiolabel'><input type="radio"  name="Spirit" value="Two" id="spi2" onclick="jumpStart(sphere6)" /></label>
             <label class='radiolabel'><input type="radio"  name="Spirit" value="Three" id="spi3" onclick="jumpStart(sphere6)" /></label>
@@ -2356,10 +2200,8 @@ function myFunction2() {
             <label class='radiolabel'><input type="radio"  name="Spirit" value="Five" id="spi5" onclick="jumpStart(sphere6)" /></label>
             <label class='radiolabel'><input type="radio"  name="Spirit" value="Six" id="spi6" onclick="jumpStart(sphere6)" /></label>
 
-        </td>
-            <td style="width:100px">
 
-                <label >Life</label></td><td style="width:200px">
+            <br><br>   <label >Life</label>
             <label class='radiolabel'><input type="radio"  name="Life" value="One" id="lif1" onclick="jumpStart(sphere2)" checked/></label>
             <label class='radiolabel'><input type="radio"  name="Life" value="Two" id="lif2" onclick="jumpStart(sphere2)" /></label>
             <label class='radiolabel'><input type="radio"  name="Life" value="Three" id="lif3" onclick="jumpStart(sphere2)" /></label>
@@ -2367,20 +2209,13 @@ function myFunction2() {
             <label class='radiolabel'><input type="radio"  name="Life" value="Five" id="lif5" onclick="jumpStart(sphere2)" /></label>
             <label class='radiolabel'><input type="radio"  name="Life" value="Six" id="lif6" onclick="jumpStart(sphere2)" /></label>
 
-        </td>
-        </tr>
-        </table>
 
+    <br><br>
+    <h1  style="font-size:27px; padding-left: 0px;">Advantages</h1>
     <br>
-    <h1  style="font-size:27px; padding-left: 320px;">Advantages</h1>
-    <br>
-    <div id="totalPrice8" style="padding-left: 77px;">  Advantages: 0 / 12</div>
-<br>   
- <table>
-        <tr>
-            <td style="width: 65px;">
-
-                <label >Arete</label></td><td style="width:225px">
+    <div id="totalPrice8" style="padding-left: 25px;">  Advantages: 0 / 12</div>
+<div>
+       <br><br>          <label >Arete</label>
             <label class='radiolabel'><input type="radio"  name="Arete" value="One" id="arete1" onclick="jumpStart(art)" checked/></label>
             <label class='radiolabel'><input type="radio"  name="Arete" value="Two" id="arete2" onclick="jumpStart(art)" /></label>
             <label class='radiolabel'><input type="radio"  name="Arete" value="Three" id="arete3" onclick="jumpStart(art)" /></label>
@@ -2390,10 +2225,8 @@ function myFunction2() {
 
 
 
-        </td>
-            <td style="width:100px">
 
-                <label >Willpower</label></td><td style="width:225px">
+            <br><br>     <label >Will</label>
             <label class='radiolabel'><input type="radio"  name="Willpower" id="wil1" value="One" onclick="jumpStart(will)" /></label>
             <label class='radiolabel'><input type="radio"  name="Willpower" id="wil2" value="Two" onclick="jumpStart(will)" /></label>
             <label class='radiolabel'><input type="radio"  name="Willpower" id="wil3" value="Three" onclick="jumpStart(will)" /></label>
@@ -2403,10 +2236,8 @@ function myFunction2() {
             <label class='radiolabel'><input type="radio"  name="Willpower" id="wil7" value="Seven" onclick="jumpStart(will)" /></label>
 
 
-        </td>
-            <td style="width: 130px">
 
-                <label >Quintessence</label></td><td style="width:280px">
+   <br><br>              <label >Mana</label>
             <label class='radiolabel'><input type="radio"  name="Quintessence" id="quin1" value="One" onclick="jumpStart(qui)" checked/></label>
             <label class='radiolabel'><input type="radio"  name="Quintessence" id="quin2" value="Two" onclick="jumpStart(qui)" /></label>
             <label class='radiolabel'><input type="radio"  name="Quintessence" id="quin3" value="Three" onclick="jumpStart(qui)" /></label>
@@ -2417,33 +2248,24 @@ function myFunction2() {
 
 
 
-        </td>
-        </tr>
-    </table><table>
-    <tr>
-        <td style="width:65px">
 
-            <label >Arcane</label></td><td style="width:225px">
+ <br><br>            <label >Arcane</label>
         <label class='radiolabel'><input type="radio"  name="Arcane" value="One" onclick="jumpStart(arc)" checked/></label>
         <label class='radiolabel'><input type="radio"  name="Arcane" value="Two" onclick="jumpStart(arc)" /></label>
         <label class='radiolabel'><input type="radio"  name="Arcane" value="Three" onclick="jumpStart(arc)" /></label>
         <label class='radiolabel'><input type="radio"  name="Arcane" value="Four" onclick="jumpStart(arc)" /></label>
         <label class='radiolabel'><input type="radio"  name="Arcane" value="Five" onclick="jumpStart(arc)" /></label>
         <label class='radiolabel'><input type="radio"  name="Arcane" value="Six" onclick="jumpStart(arc)" /></label>
-    </td>
-        <td style="width:100px">
 
-            <label >Belief</label></td><td style="width:225px">
+   <br><br>          <label >Belief</label>
         <label class='radiolabel'><input type="radio"  name="Belief" value="One" onclick="jumpStart(bel)" checked/></label>
         <label class='radiolabel'><input type="radio"  name="Belief" value="Two" onclick="jumpStart(bel)" /></label>
         <label class='radiolabel'><input type="radio"  name="Belief" value="Three" onclick="jumpStart(bel)" /></label>
         <label class='radiolabel'><input type="radio"  name="Belief" value="Four" onclick="jumpStart(bel)" /></label>
         <label class='radiolabel'><input type="radio"  name="Belief" value="Five" onclick="jumpStart(bel)" /></label>
         <label class='radiolabel'><input type="radio"  name="Belief" value="Six" onclick="jumpStart(bel)" /></label>
-    </td>
-        <td style="width:130px">
 
-            <label >Luck</label></td><td>
+   <br><br>          <label >Luck</label>
         <label class='radiolabel'><input type="radio"  name="Luck" value="One" onclick="jumpStart(luc)" checked/></label>
         <label class='radiolabel'><input type="radio"  name="Luck" value="Two" onclick="jumpStart(luc)" /></label>
         <label class='radiolabel'><input type="radio"  name="Luck" value="Three" onclick="jumpStart(luc)" /></label>
@@ -2451,32 +2273,24 @@ function myFunction2() {
         <label class='radiolabel'><input type="radio"  name="Luck" value="Five" onclick="jumpStart(luc)" /></label>
         <label class='radiolabel'><input type="radio"  name="Luck" value="Six" onclick="jumpStart(luc)" /></label>
 
-    </td>
-    </tr></table><table>
-    <tr>
-        <td style="width:65px">
 
-            <label >Avatar</label></td><td style="width:225px">
+ <br><br>            <label >Avatar</label>
         <label class='radiolabel'><input type="radio"  name="Avatar" id="avatar1" value="One" onclick="jumpStart(avtr)" checked/></label>
         <label class='radiolabel'><input type="radio"  name="Avatar" id="avatar2" value="Two" onclick="jumpStart(avtr)" /></label>
         <label class='radiolabel'><input type="radio"  name="Avatar" id="avatar3" value="Three" onclick="jumpStart(avtr)" /></label>
         <label class='radiolabel'><input type="radio"  name="Avatar" id="avatar4" value="Four" onclick="jumpStart(avtr)" /></label>
         <label class='radiolabel'><input type="radio"  name="Avatar" id="avatar5" value="Five" onclick="jumpStart(avtr)" /></label>
         <label class='radiolabel'><input type="radio"  name="Avatar" id="avatar6" value="Six" onclick="jumpStart(avtr)" /></label>
-    </td>
-        <td style="width:100px">
 
-            <label >Familiar</label></td><td style="width:225px">
+      <br><br>       <label >Familiar</label>
         <label class='radiolabel'><input type="radio"  name="Familiar" value="One" onclick="jumpStart(fam)" checked/></label>
         <label class='radiolabel'><input type="radio"  name="Familiar" value="Two" onclick="jumpStart(fam)" /></label>
         <label class='radiolabel'><input type="radio"  name="Familiar" value="Three" onclick="jumpStart(fam)" /></label>
         <label class='radiolabel'><input type="radio"  name="Familiar" value="Four" onclick="jumpStart(fam)" /></label>
         <label class='radiolabel'><input type="radio"  name="Familiar" value="Five" onclick="jumpStart(fam)" /></label>
         <label class='radiolabel'><input type="radio"  name="Familiar" value="Six" onclick="jumpStart(fam)" /></label>
-    </td>
-        <td style="width:130px">
 
-            <label >Resources</label></td><td>
+<br><br>             <label >Resources</label>
         <label class='radiolabel'><input type="radio"  name="Resources" value="One" onclick="jumpStart(res)" checked/></label>
         <label class='radiolabel'><input type="radio"  name="Resources" value="Two" onclick="jumpStart(res)" /></label>
         <label class='radiolabel'><input type="radio"  name="Resources" value="Three" onclick="jumpStart(res)" /></label>
@@ -2484,9 +2298,7 @@ function myFunction2() {
         <label class='radiolabel'><input type="radio"  name="Resources" value="Five" onclick="jumpStart(res)" /></label>
         <label class='radiolabel'><input type="radio"  name="Resources" value="Six" onclick="jumpStart(res)" /></label>
 
-    </td>
-    </tr></table>
-
+</div>
     <br><br>
       What Month is it? <input type="text" name="validation"></input>
     <br><br>

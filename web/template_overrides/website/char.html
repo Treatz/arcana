@@ -71,12 +71,9 @@ var sphere9 = "Time"
 var will = "Willpower"
 var art = "Arete"
 var avtr = "Avatar"
-var arc = "Arcane"
 var qui = "Quintessence"
 var bel = "Belief"
-var fam = "Familiar"
 var luc = "Luck";
-var res = "Resources"
 var testingA = "testA";
 var testingA1 = "testA1";
 var testingA2 = "testA2";
@@ -219,11 +216,8 @@ function getphysical()
     var Arete = theForm.elements["Arete"];
     var Avatar = theForm.elements["Avatar"];
     var Quintessence = theForm.elements["Quintessence"]
-    var Arcane = theForm.elements["Arcane"]
     var Belief = theForm.elements["Belief"]
-    var Familiar = theForm.elements["Familiar"]
     var Luck = theForm.elements["Luck"]
-    var Resources = theForm.elements["Resources"]
 
     //Here since there are 4 radio buttons selectedCake.length = 4
     //We loop through each radio buttons
@@ -450,24 +444,10 @@ function getphysical()
             advXP = advXP + i;
         }
 
-        if(Arcane[i].checked)
-        {
-            advXP = advXP + xp[Arcane[i].value];
-            compArc = xp[Arcane[i].value];
-
-
-
-        }
         if(Belief[i].checked)
         {
             advXP = advXP + xp[Belief[i].value];
             compBel = xp[Belief[i].value];
-
-        }
-        if(Familiar[i].checked)
-        {
-            advXP = advXP + xp[Familiar[i].value];
-            compFam = xp[Familiar[i].value];
 
         }
 
@@ -475,12 +455,6 @@ function getphysical()
         {
             advXP = advXP + xp[Luck[i].value];
             compLuc = xp[Luck[i].value];
-
-        }
-        if(Resources[i].checked)
-        {
-            advXP = advXP + xp[Resources[i].value];
-            compRes = xp[Resources[i].value];
 
         }
 
@@ -1070,41 +1044,6 @@ function jumpStart(obj)
 
     }
 
-    if(obj == arc){
-
-
-        if(document.cakeform.Arcane[5].checked  && advXP < 13){
-            document.cakeform.Arcane[5].checked=true;
-        }
-        else if(document.cakeform.Arcane[5].checked && advXP > 12){
-            advXP = advXP - 1;
-            document.cakeform.Arcane[4].checked=true;
-        }
-
-        if(document.cakeform.Arcane[4].checked  && advXP < 13){
-            document.cakeform.Arcane[4].checked=true;
-        }
-        else if(document.cakeform.Arcane[4].checked && advXP > 12) {
-            advXP = advXP - 1;
-            document.cakeform.Arcane[3].checked = true
-        }
-        if(document.cakeform.Arcane[3].checked  && advXP < 13){
-            document.cakeform.Arcane[3].checked=true;
-        }
-        else if(document.cakeform.Arcane[3].checked && advXP > 12){
-            advXP = advXP - 1;
-            document.cakeform.Arcane[2].checked=true;
-        }
-        if(document.cakeform.Arcane[2].checked  && advXP < 13){
-            document.cakeform.Arcane[2].checked=true;
-        }
-        else if(document.cakeform.Arcane[2].checked && advXP > 12){
-            advXP = advXP - 1;
-            document.cakeform.Arcane[0].checked=true;
-        }
-
-
-    }
 
     if(obj == bel){
 
@@ -1141,40 +1080,6 @@ function jumpStart(obj)
 
     }
 
-    if(obj == fam){
-
-
-        if(document.cakeform.Familiar[5].checked  && advXP < 13){
-            document.cakeform.Familiar[5].checked=true;
-        }
-        else if(document.cakeform.Familiar[5].checked && advXP > 12){
-            advXP = advXP - 1;
-            document.cakeform.Familiar[4].checked=true;
-        }
-
-        if(document.cakeform.Familiar[4].checked  && advXP < 13){
-            document.cakeform.Familiar[4].checked=true;
-        }
-        else if(document.cakeform.Familiar[4].checked && advXP > 12) {
-            advXP = advXP - 1;
-            document.cakeform.Familiar[3].checked = true
-        }
-        if(document.cakeform.Familiar[3].checked  && advXP < 13){
-            document.cakeform.Familiar[3].checked=true;
-        }
-        else if(document.cakeform.Familiar[3].checked && advXP > 12){
-            advXP = advXP - 1;
-            document.cakeform.Familiar[2].checked=true;
-        }
-        if(document.cakeform.Familiar[2].checked  && advXP < 13){
-            document.cakeform.Familiar[2].checked=true;
-        }
-        else if(document.cakeform.Familiar[2].checked && advXP > 12){
-            advXP = advXP - 1;
-            document.cakeform.Familiar[0].checked=true;
-        }
-
-    }
 
     if(obj == luc){
 
@@ -1211,41 +1116,6 @@ function jumpStart(obj)
 
     }
 
-
-    if(obj == res){
-
-
-        if(document.cakeform.Resources[5].checked  && advXP < 13){
-            document.cakeform.Resources[5].checked=true;
-        }
-        else if(document.cakeform.Resources[5].checked && advXP > 12){
-            advXP = advXP - 1;
-            document.cakeform.Resources[4].checked=true;
-        }
-
-        if(document.cakeform.Resources[4].checked  && advXP < 13){
-            document.cakeform.Resources[4].checked=true;
-        }
-        else if(document.cakeform.Resources[4].checked && advXP > 12) {
-            advXP = advXP - 1;
-            document.cakeform.Resources[3].checked = true
-        }
-        if(document.cakeform.Resources[3].checked  && advXP < 13){
-            document.cakeform.Resources[3].checked=true;
-        }
-        else if(document.cakeform.Resources[3].checked && advXP > 12){
-            advXP = advXP - 1;
-            document.cakeform.Resources[2].checked=true;
-        }
-        if(document.cakeform.Resources[2].checked  && advXP < 13){
-            document.cakeform.Resources[2].checked=true;
-        }
-        else if(document.cakeform.Resources[2].checked && advXP > 12){
-            advXP = advXP - 1;
-            document.cakeform.Resources[0].checked=true;
-        }
-
-    }
 
     if(obj == str){
         if(physicalXP >fire){
@@ -2237,7 +2107,7 @@ function myFunction2() {
 
 
 
-   <br><br>              <label >Mana</label>
+   <br><br>              <label >Quintessence</label>
             <label class='radiolabel'><input type="radio"  name="Quintessence" id="quin1" value="One" onclick="jumpStart(qui)" checked/></label>
             <label class='radiolabel'><input type="radio"  name="Quintessence" id="quin2" value="Two" onclick="jumpStart(qui)" /></label>
             <label class='radiolabel'><input type="radio"  name="Quintessence" id="quin3" value="Three" onclick="jumpStart(qui)" /></label>
@@ -2249,13 +2119,6 @@ function myFunction2() {
 
 
 
- <br><br>            <label >Arcane</label>
-        <label class='radiolabel'><input type="radio"  name="Arcane" value="One" onclick="jumpStart(arc)" checked/></label>
-        <label class='radiolabel'><input type="radio"  name="Arcane" value="Two" onclick="jumpStart(arc)" /></label>
-        <label class='radiolabel'><input type="radio"  name="Arcane" value="Three" onclick="jumpStart(arc)" /></label>
-        <label class='radiolabel'><input type="radio"  name="Arcane" value="Four" onclick="jumpStart(arc)" /></label>
-        <label class='radiolabel'><input type="radio"  name="Arcane" value="Five" onclick="jumpStart(arc)" /></label>
-        <label class='radiolabel'><input type="radio"  name="Arcane" value="Six" onclick="jumpStart(arc)" /></label>
 
    <br><br>          <label >Belief</label>
         <label class='radiolabel'><input type="radio"  name="Belief" value="One" onclick="jumpStart(bel)" checked/></label>
@@ -2282,21 +2145,6 @@ function myFunction2() {
         <label class='radiolabel'><input type="radio"  name="Avatar" id="avatar5" value="Five" onclick="jumpStart(avtr)" /></label>
         <label class='radiolabel'><input type="radio"  name="Avatar" id="avatar6" value="Six" onclick="jumpStart(avtr)" /></label>
 
-      <br><br>       <label >Familiar</label>
-        <label class='radiolabel'><input type="radio"  name="Familiar" value="One" onclick="jumpStart(fam)" checked/></label>
-        <label class='radiolabel'><input type="radio"  name="Familiar" value="Two" onclick="jumpStart(fam)" /></label>
-        <label class='radiolabel'><input type="radio"  name="Familiar" value="Three" onclick="jumpStart(fam)" /></label>
-        <label class='radiolabel'><input type="radio"  name="Familiar" value="Four" onclick="jumpStart(fam)" /></label>
-        <label class='radiolabel'><input type="radio"  name="Familiar" value="Five" onclick="jumpStart(fam)" /></label>
-        <label class='radiolabel'><input type="radio"  name="Familiar" value="Six" onclick="jumpStart(fam)" /></label>
-
-<br><br>             <label >Resources</label>
-        <label class='radiolabel'><input type="radio"  name="Resources" value="One" onclick="jumpStart(res)" checked/></label>
-        <label class='radiolabel'><input type="radio"  name="Resources" value="Two" onclick="jumpStart(res)" /></label>
-        <label class='radiolabel'><input type="radio"  name="Resources" value="Three" onclick="jumpStart(res)" /></label>
-        <label class='radiolabel'><input type="radio"  name="Resources" value="Four" onclick="jumpStart(res)" /></label>
-        <label class='radiolabel'><input type="radio"  name="Resources" value="Five" onclick="jumpStart(res)" /></label>
-        <label class='radiolabel'><input type="radio"  name="Resources" value="Six" onclick="jumpStart(res)" /></label>
 
 </div>
     <br><br>
