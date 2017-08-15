@@ -29,6 +29,7 @@ class Sheet(MuxCommand):
                         17: self.caller.db.awareness,
                         18: self.caller.db.brawl,
                         19: self.caller.db.intimidation,
+                        20: self.caller.db.starsign,
                         22: self.caller.db.firearms,
                         23: self.caller.db.martialarts,
                         24: self.caller.db.melee,

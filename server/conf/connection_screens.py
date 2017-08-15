@@ -19,23 +19,23 @@ from django.conf import settings
 from evennia import utils
 
 CONNECTION_SCREEN = \
-""" {wWelcome to %s Online{n
- =====================================
+""" {wWelcome to{n 
+ {w%s Online{n
+ ===================================
 
  If you have an existing account, 
  connect to it by typing:
-      {wconnect <username> <password>{n
+ {wconnect <username> <password>{n
 
- If you need to create an account,
+ If you need to create an account,{n
  use the character generator:
-      {whttp://mud.streetwitch.com/chargen/{n
+ {whttp://mud.streetwitch.com/chargen/{n
 
- If you want a character created for you, 
+ To generate a character for you,{n 
  type:
-      {wcreate <username> <password>{n
+ {wcreate <username> <password>{n
 
-
- If you have spaces in your username, 
+ If you have spaces in your name, 
  enclose it in quotes.
  
  Enter {whelp{n for more info. 
