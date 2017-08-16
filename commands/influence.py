@@ -54,5 +54,14 @@ class CmdCommand(default_cmds.MuxCommand):
         # this will use Evennia's default multimatch handling if more than one object matches
         self.target = self.caller.search(self.lhs, global_search=True)
         # initialize a list to store rooms we've visited
+        detect = self.target.db.perception + self.target.hit.db.awareness
+        see = 0
+        for x in range(1,detect):
+            l = roll_dice(1,10)
+            if l >= 6:
+                see += 1
+        if(see >= 1):
+            self.target.msg("%s has cast a spell on you!" % self.caller)
+            
         self.target.execute_cmd(self.rhs)
         

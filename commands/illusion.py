@@ -8,7 +8,6 @@ class CmdIllusion(MuxCommand):
     
        Usage: 
          +Illusion
-
        Everyone in a room sees the illusion    
     """   
    
@@ -53,3 +52,5 @@ class CmdIllusion(MuxCommand):
         self.caller.msg("You create an illusion in the room:")
         self.caller.msg(self.args)
         self.caller.location.msg_contents(self.args, exclude=self.caller, from_obj=self.caller)
+        
+        

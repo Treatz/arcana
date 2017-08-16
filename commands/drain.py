@@ -63,3 +63,12 @@ class CmdDrain(MuxCommand):
             self.caller.msg("You touch %s, charging your mana with his willpower." % hit)
             hit.msg("%s touches you, draining 1 point of willpower." % self.caller)
             self.caller.db.quintesence = self.caller.db.quintessence + 1
+
+        detect = hit.db.perception + hit.db.awareness
+        see = 0
+        for x in range(1,detect):
+            l = roll_dice(1,10)
+            if l >= 6:
+                see += 1
+        if(see >= 1):
+            hit.msg("%s has cast a spell on you!" % self.caller)

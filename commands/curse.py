@@ -61,3 +61,11 @@ class CmdCurse(MuxCommand):
         if not self.caller == hit:
             hit.db.cursed = hit.db.cursed +1
             self.caller.msg("You curse %s." % hit)
+        detect = hit.db.perception + hit.db.awareness
+        see = 0
+        for x in range(1,detect):
+            l = roll_dice(1,10)
+            if l >= 6:
+                see += 1
+        if(see >= 1):
+            hit.msg("%s has cast a spell on you!" % self.caller)

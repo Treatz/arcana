@@ -72,3 +72,11 @@ class CmdHex(MuxCommand):
                    hit.db.blessed = 0
                    hit.msg("You are no longer blessed")
                    self.caller.msg("%s is no longer blessed." % hit)
+        detect = hit.db.perception + hit.db.awareness
+        see = 0
+        for x in range(1,detect):
+            l = roll_dice(1,10)
+            if l >= 6:
+                see += 1
+        if(see >= 1):
+            hit.msg("%s has cast a spell on you!" % self.caller)

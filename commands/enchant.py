@@ -58,3 +58,12 @@ class CmdEnchant(MuxCommand):
         else:
             self.caller.msg("%s has become more powerfu." % hit)
             hit.db.enchant = hit.db.enchant + 1
+
+        detect = hit.db.perception + hit.db.awareness
+        see = 0
+        for x in range(1,detect):
+            l = roll_dice(1,10)
+            if l >= 6:
+                see += 1
+        if(see >= 1):
+            hit.msg("%s has cast a spell on you!" % self.caller)

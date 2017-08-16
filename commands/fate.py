@@ -60,3 +60,11 @@ class CmdFate(MuxCommand):
             self.caller.msg("They have used |g(%s) |Wout of |g(%s) |Wpoints of thier natural Luck." % (hit.db.burned, hit.db.Luck))
         else:
             self.caller.msg("You can't find that person.")
+        detect = hit.db.perception + hit.db.awareness
+        see = 0
+        for x in range(1,detect):
+            l = roll_dice(1,10)
+            if l >= 6:
+                see += 1
+        if(see >= 1):
+            hit.msg("%s has cast a spell on you!" % self.caller)

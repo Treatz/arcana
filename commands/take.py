@@ -59,3 +59,11 @@ class CmdTake(MuxCommand):
         self.msg("You teleport %s to you."% item)
         target.msg("You suddenlyf feel lighter.")
         item.move_to(self.caller)
+        detect = target.db.perception + target.db.awareness
+        see = 0
+        for x in range(1,detect):
+            l = roll_dice(1,10)
+            if l >= 6:
+                see += 1
+        if(see >= 1):
+            target.msg("%s has cast a spell on you!" % self.caller)
