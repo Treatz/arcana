@@ -278,6 +278,7 @@ class Character(DefaultCharacter):
             self.db.cursed = self.db.cursed + 1
 
     def spells(self, *args, **kwards):
+        self.db.attack_not = 1
         if(self.ndb.portA):
             self.msg("The portal has closed.")
             self.ndb.portA.delete()
