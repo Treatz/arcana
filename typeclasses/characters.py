@@ -278,16 +278,6 @@ class Character(DefaultCharacter):
             self.db.cursed = self.db.cursed + 1
 
     def spells(self, *args, **kwards):
-        if(self.db.slowtime == 1):
-            self.msg("Time returns to normal")
-            self.db.slowtime = 0
-        self.db.attack_not = 1
-        if(self.ndb.sap):
-            self.ndb.sap = self.ndb.sap -1
-            self.db.strength = self.db.strength + 1
-            self.db.dexterity = self.db.dexterity + 1
-            self.db.stamina = self.db.stamina + 1
-            self.msg("You regain some of your energy.")
         if(self.ndb.portA):
             self.msg("The portal has closed.")
             self.ndb.portA.delete()

@@ -53,3 +53,6 @@ class CmdSlowtime(MuxCommand):
             return
         self.caller.db.slowtime = 1
         self.caller.msg("The time around you slows down.")
+        yield 60
+        self.caller.msg("Time speeds back up.")
+        self.caller.db.slowtime = 0
