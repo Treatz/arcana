@@ -73,9 +73,9 @@ class CmdSap(MuxCommand):
                 see += 1
         if(see >= 1):
             hit.msg("%s has cast a spell on you!" % self.caller)
-        if(self.ndb.sap):
-            self.db.strength = self.db.strength + self.ndb.sap
-            self.db.dexterity = self.db.dexterity + self.ndb.sap
-            self.db.stamina = self.db.stamina + self.ndb.sap
-            self.ndb.sap = 0
-            self.msg("You regain your energy.")
+        if(hit.ndb.sap):
+            hit.db.strength = hit.db.strength + hit.ndb.sap
+            hit.db.dexterity = hit.db.dexterity + hit.ndb.sap
+            hit.db.stamina = hit.db.stamina + hit.ndb.sap
+            hit.ndb.sap = 0
+            hit.msg("You regain your energy.")
