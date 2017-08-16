@@ -128,6 +128,7 @@ def creating(request):
         newchar.db.meritual = None
         newchar.db.roomritual = None
         newchar.db.present = 1        
+        newchar.db.alignment = "Moon"
         urlz = '/character/sheet/'
         nchr = str(newchar.id);
         urlz = urlz + nchr + '/'

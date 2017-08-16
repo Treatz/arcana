@@ -91,6 +91,7 @@ from commands.slowtime import CmdSlowtime
 from commands.ritual import CmdRitual
 from commands.setritual import CmdSetRitual
 from commands.stealth import CmdStealth
+from commands.astrology import CmdAstrology
 
 class CharacterCmdSet(default_cmds.CharacterCmdSet):
         """
@@ -190,6 +191,8 @@ class CharacterCmdSet(default_cmds.CharacterCmdSet):
                 self.add(CmdRitual())
                 self.add(CmdSetRitual())
                 self.add(CmdStealth())
+                self.add(CmdAstrology())
+
 class PlayerCmdSet(default_cmds.PlayerCmdSet):
         """
         This is the cmdset available to the Player at all times. It is
