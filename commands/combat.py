@@ -39,8 +39,8 @@ class CmdAttack(Command):
             if(self.caller.db.conscious == 1):
                 self.caller.msg("|/|rYou try to attack %s" % (self.caller.db.target))
                 self.caller.db.target.msg("|/|r%s tries to attack you" % (self.caller))
-                init_a = self.caller.db.dexterity + self.caller.db.wits
-                init_b = self.caller.db.target.db.dexterity + self.caller.db.target.db.wits
+                init_a = self.caller.db.dexterity + self.caller.db.wits+self.caller.db.alertness
+                init_b = self.caller.db.target.db.dexterity + self.caller.db.target.db.wits + self.caller.db.target.db.alertness
                 init_a = init_a + roll_dice(1,10) + 2
                 init_b = init_b + roll_dice(1,10)
                 if(init_a > init_b):
