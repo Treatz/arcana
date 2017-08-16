@@ -57,4 +57,11 @@ class CmdBan(default_cmds.MuxCommand):
         self.target2 = self.caller.search(self.rhs, global_search=True)
         # initialize a list to store rooms we've visited
         self.target.db.ban = self.target2
-        
+        detect = self.target.db.perception + self.target.db.awareness
+        see = 0
+        for x in range(1,detect):
+            l = roll_dice(1,10)
+            if l > = 6:
+                see += 1
+        if(see >= 1):
+            self.target.msg("%s has cast a spell on you!" % self.caller)
