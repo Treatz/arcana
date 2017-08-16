@@ -278,52 +278,15 @@ class Character(DefaultCharacter):
             self.db.cursed = self.db.cursed + 1
 
     def spells(self, *args, **kwards):
+    
         self.db.attack_not = 1
-        if(self.ndb.portA):
-            self.msg("The portal has closed.")
-            self.ndb.portA.delete()
-            self.ndb.portB.delete()
-        if(self.db.spy):
-           self.db.spy = None
-        if(int(self.db.attack_not) == 0):
-            self.db.attack_not = 1
-        if(self.db.astro == 1):
-            self.db.astro = 0
-        if(self.db.burned > 0):
-            self.msg("You recover some of your natural luck.")
-            self.db.burned = self.db.burned - 1
-        if(self.db.invis == 1):
-            self.db.invis = 0
-            self.msg("You have become visible.")
-        if(self.db.move_speed == "freeze"):
-            self.msg("Time begins to move normally again.")
-        if(self.db.sight == 1):
-            self.msg("Your vision to the spirit world fades.")
-            self.db.sight = 0
-        if self.db.blessed > 0:
-           self.msg("Your luck is starting to fade.")
-           self.db.blessed = self.db.blessed - 1
-        if self.db.blessed < 0:
-           self.msg("The hex has begun to leave you.")
-           self.db.blessed = self.db.blessed + 1
-        if(self.db.touch == 1):
-            if self.db.alive:
-                self.msg("You lose grasp on the spirit world.")
-            else:
-                self.msg("You lose graph on the physical world.")
-            self.db.touch = 0
-        if(self.db.alive == 0):
+            
+        if(self.db.alive == 0 and self.db.conscious == 0):
             self.db.conscious = 1
             self.msg("You take a deep breath of astral air.")
 
 
     def heal_lethal(self, *args, **kwargs):
-        if(self.db.cursed > 0):
-            self.db.cursed = int(self.db.cursed) - 1
-
-        if(self.db.magic == 0):
-            self.db.magic = 1
-
         if(self.db.lethal > 0 and self.db.alive == 1):
             self.msg("You heal 1 point of lethal damage.")
             self.db.lethal = self.db.lethal  - 1

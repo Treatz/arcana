@@ -49,7 +49,13 @@ class CmdReach(MuxCommand):
             self.caller.msg("Your spell fizzles out and fails.")
             return
         self.caller.db.touch = 1
+        yield 30
         if  self.caller.db.alive:
             self.caller.msg("You can now reach into the spirit world.")
         else:
             self.caller.msg("You can now reach into the physical world.")
+        if self.caller.db.alive:
+            self.caller.msg("You lose grasp on the spirit world.")
+        else:
+            self.caller.msg("You lose graph on the physical world.")
+        self.caller.db.touch = 0

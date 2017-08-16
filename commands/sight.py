@@ -54,3 +54,7 @@ class CmdSight(MuxCommand):
             self.caller.msg("You can now see into the spirit world.")
         else:
             self.caller.msg("You can now see into the physical world.")
+        yield 30
+        if(self.db.sight == 1):
+            self.msg("Your vision to the spirit world fades.")
+            self.db.sight = 0

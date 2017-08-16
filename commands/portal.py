@@ -53,3 +53,7 @@ class CmdPortal(MuxCommand):
             self.caller.msg("You have opened a portal to %s." % self.caller.ndb.source)
             self.caller.ndb.portA = create_object(DefaultExit, key="portal",aliases=["in", "enter"],location=self.caller.location,destination=self.caller.ndb.source)
             self.caller.ndb.portB = create_object(DefaultExit, key="portal",aliases=["in", "enter"],location=self.caller.ndb.source,destination=self.caller.location)
+            yield 60
+            self.caller.msg("The portal has closed.")
+            self.caller.ndb.portA.delete()
+            self.caller.ndb.portB.delete()
