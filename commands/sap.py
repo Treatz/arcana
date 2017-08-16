@@ -73,7 +73,6 @@ class CmdSap(MuxCommand):
                 see += 1
         if(see >= 1):
             hit.msg("%s has cast a spell on you!" % self.caller)
-                    self.db.attack_not = 1
         if(self.ndb.sap):
             self.db.strength = self.db.strength + self.ndb.sap
             self.db.dexterity = self.db.dexterity + self.ndb.sap
