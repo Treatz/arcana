@@ -31,6 +31,23 @@ class CmdPortal(MuxCommand):
             self.caller.msg("This spell requires knowledge of the correspondence sphere.")
             return
         wins = 0
+        bonus = 0
+        if(self.caller.db.sign == self.caller.db.starsign):
+            self.caller.db.magic_fuel += 1
+            bonus += 1
+        if(self.caller.db.zodiac == self.caller.db.starsign):
+            self.caller.db.magic_fuel += 1
+            bonus += 1
+        if(self.caller.db.alignment == "Mercury")
+            self.caller.db.magic_fuel += 1
+            bonus+- 1
+        if(bonus > 0):
+            if bonus == 1:
+                self.caller.msg("The stars are aligned with you!")
+            if bonus == 2:
+                self.caller.msg("You are channeling cosmic energies!")
+            if bonus == 3:
+                self.caller.msg("Your magic is fueld by the planets!")
         if(self.caller.db.magic_fuel):
             self.caller.msg("You roll %s dice for the spell with a difficulty of %s, using %s quintessence." % (self.caller.db.arete + self.caller.db.correspondence, 6-self.caller.db.magic_fuel, self.caller.db.magic_fuel))
         else:  
