@@ -36,7 +36,7 @@ class CmdSap(MuxCommand):
             self.caller.msg("This spell requires knowledge of the life sphere.")
             return
         wins = 0
-       bonus = 0
+        bonus = 0
         if(self.caller.db.sign == self.caller.db.starsign):
             self.caller.db.magic_fuel += 1
             bonus += 1
