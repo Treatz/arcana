@@ -39,7 +39,7 @@ class CmdSend(default_cmds.MuxCommand):
         if(self.caller.db.zodiac == self.caller.db.starsign):
             self.caller.db.magic_fuel += 1
             bonus += 1
-        if(self.caller.db.alignment == "Mercury"):
+        if(self.caller.db.alignment == "Neptune"):
             self.caller.db.magic_fuel += 1
             bonus+- 1
         if(bonus > 0):

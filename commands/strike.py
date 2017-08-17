@@ -48,7 +48,7 @@ class CmdStrike(MuxCommand):
         if(self.caller.db.zodiac == self.caller.db.starsign):
             self.caller.db.magic_fuel += 1
             bonus += 1
-        if(self.caller.db.alignment == "Mercury"):
+        if(self.caller.db.alignment == "Mars"):
             self.caller.db.magic_fuel += 1
             bonus+- 1
         if(bonus > 0):
