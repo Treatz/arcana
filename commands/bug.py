@@ -38,7 +38,7 @@ class CmdBug(default_cmds.MuxCommand):
             bonus += 1
         if(self.caller.db.alignment == "Neptune"):
             self.caller.db.magic_fuel += 1
-            bonus+- 1
+            bonus += 1
         if(bonus > 0):
             if bonus == 1:
                 self.caller.msg("The stars are aligned with you!")

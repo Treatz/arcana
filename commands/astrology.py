@@ -5,14 +5,25 @@ import datetime
 
 class CmdAstrology(default_cmds.MuxCommand):
     """
-       +astrology - 
+       +astrology Align your magick with your star sign to fuel the spheres.
     
        Usage: 
         +astrology 
     
-       Astrology
-    
+       Astrology:  Spheres are more powerful when aligned with thier planets.
+                   This chart shows which planets assist in which sphere's magick.
+
+           Correspondence  Jupiter
+           Entropy         Mercury
+           Forces          Mars
+           Life            Venus
+           Matter          Uranus
+           Mind            Neptune
+           Prime           Moon
+           Spirit          Pluto
+           Time            Saturn    
     """
+    help_category = "Skills"
     key = "+astrology"
     locks = "cmd:all()"
     auto_help=True
