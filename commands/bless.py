@@ -93,6 +93,6 @@ class CmdBless(MuxCommand):
                 see += 1
         if(see >= 1 and self.target not self.caler):
            hit.msg("%s has cast a spell on you!" % self.caller)
-           yield 30
-           self.msg("Your luck has faded.")
-           self.db.blessed = 0
+        yield 60
+        self.msg("Your luck has faded.")
+        self.db.blessed = 0
