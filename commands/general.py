@@ -430,6 +430,7 @@ class CmdSay(COMMAND_DEFAULT_CLASS):
             caller.msg('You say, "%s|n"' % speech)
             # Build the string to emit to neighbors.
             emit_string = '%s says, "%s|n"' % (caller.name, speech)
+            caller.location.log_action(emit_string)
             for item in self.caller.location.contents:
                  if (item is not self.caller):
                      item.msg(emit_string)        

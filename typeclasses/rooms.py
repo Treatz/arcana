@@ -10,9 +10,11 @@ from evennia.utils.utils import inherits_from
 from typeclasses import exits
 
 class Room(DefaultRoom):
+    def log_action(message):
+        self.db.logged.append(message)
     def at_object_creation(self):
         self.db.image = "http://mud.streetwitch.com/static/website/images/1.jpg"
-
+        self.db.logged = []
     def return_appearance(self, looker):
         if not looker:
             return
