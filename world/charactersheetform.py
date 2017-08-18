@@ -4,9 +4,9 @@ TABLECHAR = "c"
 FORM = '''
 .-----------------------------------------------------------.
 |                                                           |
-|  Name: xxxxxxxxx1xxxxxxxxx Essence:  xxxxxxx3xxxxxxxxxxxx |
-|  Tradition: xxxxxxx2xxxxxx Concept:  xxxxxxx4xxxxxxxxxxxx |
-|  Star Sign: xxxxxxx20xxxxx                                |
+|  Name: xxxxxxxxx1xxxxxxxxxxxxxxx Essence:  xxxxxxx3xxxxxx |
+|  Tradition: xxxxxxx2xxxxxxxxxxxx Concept:  xxxxxxx4xxxxxx |
+|  Star Sign: xxxxxxx20xxxxxxxxxxx                          |
 |                                                           |
 .-----------------------------------------------------------.
 |  Description:                                             |

@@ -92,6 +92,8 @@ from commands.ritual import CmdRitual
 from commands.setritual import CmdSetRitual
 from commands.stealth import CmdStealth
 from commands.astrology import CmdAstrology
+from commands.contemplate import CmdContemplate
+from commands.charisma import CmdCharisma
 
 class CharacterCmdSet(default_cmds.CharacterCmdSet):
         """
@@ -192,6 +194,8 @@ class CharacterCmdSet(default_cmds.CharacterCmdSet):
                 self.add(CmdSetRitual())
                 self.add(CmdStealth())
                 self.add(CmdAstrology())
+                self.add(CmdContemplate())
+                self.add(CmdCharisma())
 
 class PlayerCmdSet(default_cmds.PlayerCmdSet):
         """

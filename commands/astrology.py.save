@@ -5,23 +5,14 @@ import datetime
 
 class CmdAstrology(default_cmds.MuxCommand):
     """
-       +astrology Align your magick with your star sign to fuel the spheres.
+       +astrology - 
     
        Usage: 
         +astrology 
     
-       Astrology:  Spheres are more powerful when aligned with thier planets.
-                   This chart shows which planets assist in which sphere's magick.
+       Astrology:
 
-           Correspondence  Jupiter
-           Entropy         Mercury
-           Forces          Mars
-           Life            Venus
-           Matter          Uranus
-           Mind            Neptune
-           Prime           Moon
-           Spirit          Pluto
-           Time            Saturn    
+    
     """
     help_category = "Skills"
     key = "+astrology"
@@ -39,16 +30,9 @@ class CmdAstrology(default_cmds.MuxCommand):
         if not self.caller.db.magic:
             self.caller.msg("You can't use magic!")
             return
-        wins = 0
-        for x in range(0, self.caller.db.astrology + self.caller.db.intelligence):
-           roll = roll_dice(1,10)
-           if(roll > 5):
-               wins += 1
-        if(wins < 4):
-           self.caller.msg("You can't see the stars.")
-           return
 
         if not self.caller.ndb.astro_timer:
+            from evennia.contrib.dice import roll_dice
 
             myDate = datetime.date.today()
             num = int (myDate.strftime("%j"))

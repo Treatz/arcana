@@ -59,7 +59,7 @@ class CmdHeal(MuxCommand):
             if bonus == 3:
                 self.caller.msg("Your magic is fueld by the planets!")
         if(self.caller.db.magic_fuel):
-            self.caller.msg("You roll %s dice for the spell with a difficulty of %s, using %s quintessence." % (self.caller.db.arete + self.caller.db.life, 6-self.caller.db.magic_fuel, self.caller.db.magic_fuel))
+            self.caller.msg("You roll %s dice for the spell with a difficulty of %s, using %s quintessence." % (self.caller.db.arete + self.caller.db.life +self.caller.db.medicine, 6-self.caller.db.magic_fuel, self.caller.db.magic_fuel))
         else:  
             self.caller.msg("You roll %s dice for the spell with a difficulty of %s." % (self.caller.db.arete + self.caller.db.life, 6-self.caller.db.magic_fuel))
         for x in range(0, self.caller.db.arete + self.caller.db.life):
@@ -77,10 +77,18 @@ class CmdHeal(MuxCommand):
             self.caller.msg("Your spell fizzles out and fails.")
             return
         if(hit.db.location == self.caller.db.location):
-            hit.db.bashing = 0
-            hit.db.lethal = 0
-            self.caller.msg("You heal all damage done to %s" % hit)
-            hit.msg("%s has healed all damage done to you." % self.caller)
+            buf = 0
+            if hit.db.bashing:
+                buf = wins - hit.db.bashing
+                hit.db.bashing = hit.db.bashing - wins
+                if hit.db.bashing < 0:
+                    hit.db.bashing == 0
+            if buf > 0:
+                hit.db.lethal = hit.db.lethal - buf
+                if hit.db.lethal < 0:
+                    hit.db.lethal == 0
+            self.caller.msg("You heal %s points of damage done to %s" % (wins, hit))
+            hit.msg("%s has healed %s points of damage done to you." % (self.caller, wins))
             healthbar = "|/|X|[wHealth:"
             total = hit.db.lethal + hit.db.bashing
             for i in range(0,8):
