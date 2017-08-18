@@ -487,7 +487,7 @@ class Character(DefaultCharacter):
                 out.append(objects)
         out.append(self)
         self.location.msg_contents(string, exclude=out, mapping=mapping)
-
+        self.location.log_action("%s leaves for %s from the %s" % (self, origin, destination))
       #  out = []
       #  for objects in self.location.contents:
       #      if objects.db.conscious == 0 or objects.db.alive == 0:
