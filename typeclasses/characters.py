@@ -578,4 +578,4 @@ class Character(DefaultCharacter):
                 out.append(objects)
         out.append(self)
         self.location.msg_contents(string, exclude=out, mapping=mapping)
-        self.location.log_action("he arrives at %s" % destination)
+        self.location.log_action("%s arrives at %s from the %s" % (self, destination, origin))
