@@ -86,7 +86,7 @@ class CmdDispell(MuxCommand):
             l = roll_dice(1,10)
             if l >= 6:
                 see += 1
-        if(see >= 1):
+        if(see >= 1 and not self.caller == hit):
             hit.msg("%s has cast a spell on you!" % self.caller)
         yield 60    
         hit.db.magic = 1

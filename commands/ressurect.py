@@ -91,5 +91,4 @@ class CmdRaise(MuxCommand):
             l = roll_dice(1,10)
             if l >= 6:
                 see += 1
-        if(see >= 1):
-            spirit.msg("%s has cast a spell on you!" % self.caller)
+

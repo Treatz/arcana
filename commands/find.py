@@ -120,5 +120,5 @@ class CmdFind(default_cmds.MuxCommand):
                 see += 1
         self.caller.msg(self.target)
         self.caller.msg(self.caller)
-        if(see >= 1):
+        if(see >= 1 and not self.caller == hit):
             hit.msg("%s has cast a spell on you!" % self.caller)

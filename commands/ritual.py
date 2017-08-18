@@ -40,8 +40,9 @@ class CmdRitual(MuxCommand):
                 self.caller.msg("Your ritual fails.")
                 return
             self.caller.ndb.ritual = 1
-            self.caller.msg(self.caller.db.meritual)
-            self.caller.location.msg_contents(self.caller.db.roomritual, exclude=self.caller, from_obj=self.caller)
+            self.caller.msg(self.caller.msg("You start the ritual.")
+            self.caller.location.msg_contents("%s begins his ritual." % self.caller, exclude = self.caller, from_obj=self.caller)
+            self.caller.location.msg_contents(self.caller.db.roomritual, from_obj=self.caller)
             yield 15
             if self.caller.ndb.ritual == 0:
                 return
