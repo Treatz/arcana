@@ -453,7 +453,7 @@ class Character(DefaultCharacter):
             string = msg
         elif self.db.alive == 1 and self.db.invis == 0 and not self.ndb.sneak:
             string = "{object} is leaving {origin}, heading for {destination}."
-            self.location.log_action(string)
+            
         elif self.ndb.sneak:
             total = self.db.dexterity + self.db.stealth
             winz = 0
@@ -467,7 +467,7 @@ class Character(DefaultCharacter):
                 string = ""
         else:
             string =  "{object} is leaving {origin}, heading for {destination}."
-            self.location.log_action(string)
+            
         location = self.location
         exits = [o for o in location.contents if o.location is location and o.destination is destination]
         if not mapping:
@@ -526,7 +526,7 @@ class Character(DefaultCharacter):
                 string = msg
             elif self.db.alive == 1 and self.db.invis == 0 and not self.ndb.sneak:
                 string = "{object} arrives to {destination} from {origin}."
-                self.location.log_action(string)
+                
             elif self.ndb.sneak:
                 total = self.db.dexterity + self.db.stealth
                 winz = 0
@@ -542,7 +542,7 @@ class Character(DefaultCharacter):
                 string = "" 
         elif self.db.alive == 1 and self.db.invis ==0 and not self.ndb.sneak:
             string = "{object} arrives to {destination}."
-            self.location.log_action(string)
+            
         elif self.ndb.sneak:
             total = self.db.dexterity + self.db.stealth
             winz = 0
@@ -578,3 +578,4 @@ class Character(DefaultCharacter):
                 out.append(objects)
         out.append(self)
         self.location.msg_contents(string, exclude=out, mapping=mapping)
+        self.location.log_action("he arrives at %s" % destination)
