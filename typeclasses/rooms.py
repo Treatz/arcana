@@ -10,7 +10,9 @@ from evennia.utils.utils import inherits_from
 from typeclasses import exits
 
 class Room(DefaultRoom):
-    def log_action(message):
+    def log_action(self, message):
+        if not self.db.logged:
+            self.db.logged = []
         self.db.logged.append(message)
     def at_object_creation(self):
         self.db.image = "http://mud.streetwitch.com/static/website/images/1.jpg"

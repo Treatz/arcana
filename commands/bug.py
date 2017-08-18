@@ -78,7 +78,7 @@ class CmdBug(default_cmds.MuxCommand):
             if l >= 6:
                 see += 1
                 if(see >= 1 and not self.caller == self.target):
-            self.target.msg("%s has cast a spell on you!" % self.caller)
+                    self.target.msg("%s has cast a spell on you!" % self.caller)
             
         yield 60
         target.db.spy = None
