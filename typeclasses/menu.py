@@ -797,6 +797,7 @@ def skip_attack(caller):
     if(caller.db.conscious == 0 and caller.db.alive ==1):
         text = "|r You are unconscious!"
         caller.db.target.msg("|/|r %s is unconscious."% caller)
+        caller.location.log_action("%s is unconscious" % caller)
         players = [con for con in caller.location.contents if con.has_player]
     if(caller.db.conscious == 1 or caller.db.alive == 0):
         if(caller.db.intimidated == 0):
@@ -809,10 +810,12 @@ def skip_attack(caller):
         caller.db.conscious = 1
         caller.msg("|/|rYou are dead!")
         caller.db.target.msg("|/|r%s is dead!"% caller)
+        caller.location.log_action("%s is dead." % caller)
         players = [con for con in caller.location.contents if con.has_player]
         for player in players:
             if not player.ndb.end_combat:
                 player.msg("%s is dead!." % caller.name)
+                caller.location.log_action("%s is dead." % caller.name)
         caller.ndb._menutree.close_menu()
         caller.db.target.ndb._menutree.close_menu()
         corpse1 = create_object(key="Corpse", location = caller.location)
@@ -837,6 +840,7 @@ def skip_defend(caller):
             player.msg("%s has been hit by %s." % (caller.name, caller.db.target))
     if(caller.db.conscious == 0):
         caller.db.target.msg("|/|r%s is unconscious.|/" % caller)
+        caller.location.log_action("%s is unconscious" % caller)
         players = [con for con in caller.location.contents if con.has_player]
     if(caller.db.conscious == 1):
         caller.db.target.msg("|/|r%s has skipped his turn.|/" % caller)
@@ -852,6 +856,7 @@ def skip_defend(caller):
         caller.db.conscious = 1
         caller.msg("|rYou are dead!")
         caller.db.target.msg("|/|r%s is dead!"% caller)
+        caller.location.log_action("%s is dead." % caller)
         caller.ndb._menutree.close_menu()
         caller.db.target.ndb._menutree.close_menu()
         corpse2 = create_object(key="Corpse", location = caller.location)
@@ -935,6 +940,7 @@ def defend_node(caller):
         caller.db.conscious = 1
         caller.msg("|rYou are dead!")
         caller.db.target.msg("|/|r%s is dead!"% caller)
+        caller.location.log_action("%s is dead." % caller)
         caller.ndb._menutree.close_menu()
         caller.db.target.ndb._menutree.close_menu()
         corpse3 = create_object(key="Corpse", location = caller.location)
@@ -1064,6 +1070,7 @@ def dodge(caller):
         caller.db.conscious = 1
         caller.db.target.db.conscious = 1
         caller.msg("|rYou are dead!")
+        caller.location.log_action("%s is dead." % caller.name)
         players = [con for con in caller.location.contents if con.has_player]
         for player in players:
             if not player == caller:
@@ -1200,6 +1207,7 @@ def block(caller):
             for player in players:
                  if not player == caller:
                     player.msg("|r%s is dead!" % caller.name)
+            caller.location.log_action("%s is dead." % caller.name)
             caller.db.target.ndb._menutree.close_menu()
             caller.ndb._menutree.close_menu()
             corpse5 = create_object(key="Corpse", location = caller.location)
@@ -1389,7 +1397,7 @@ def flee(caller):
                      if not player == caller:
                         player.msg("|r%s is dead!" % caller.name)
 
-
+                caller.location.log_action("%s is dead." % caller.name)
                 caller.db.target.ndb._menutree.close_menu()
                 caller.ndb._menutree.close_menu()
                 corpse5 = create_object(key="Corpse", location = caller.location)
@@ -1421,6 +1429,7 @@ def new_skip(caller):
     if(caller.db.conscious == 0 and caller.db.alive == 1):
         text = "|r You are unconscious."
         caller.db.target.msg("|/|r%s is unconscious. "% caller)
+        caller.location.log_action("%s is unconscious." % caller)
         players = [con for con in caller.location.contents if con.has_player]
     if(caller.db.conscious == 1 or caller.db.alive == 0):
         text = "|r You have skipped your turn!"
@@ -1435,6 +1444,7 @@ def new_skip(caller):
         for player in players:
             if not player.ndb.end_combat:
                 player.msg("%s is dead!." % caller.name)
+        caller.location.log_action("%s is dead" % caller.name
         caller.ndb._menutree.close_menu()
         caller.db.target.ndb._menutree.close_menu()
         corpse4 = create_object(key="Corpse", location = caller.location)

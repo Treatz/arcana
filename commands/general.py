@@ -276,7 +276,7 @@ class CmdGet(COMMAND_DEFAULT_CLASS):
                          item.msg("%s picks up %s." % (self.caller, obj.name)) 
                      elif (item is not self.caller) and (item.location.db.freeze == 0):
                          item.msg("%s picks up %s." % (self.caller, obj.name)) 
-
+                caller.location.log_action("%s picks up %s." % (self.caller, obj.name))
                 # calling hook method
                 obj.at_get(caller)
             else:
@@ -324,7 +324,8 @@ class CmdDrop(COMMAND_DEFAULT_CLASS):
                  if (item is not self.caller) and (item.db.present):
                      item.msg("%s drops %s." % (self.caller, obj.name))
                  elif (item is not self.caller) and (item.location.db.freeze == 0):
-                     item.msg("%s drops %s." % (self.caller, obj.name))  
+                     item.msg("%s drops %s." % (self.caller, obj.name))
+            caller.location.log_action("%s drops %s." % (self.caller, obj.name))
        # Call the object script's at_drop() method.
             obj.at_drop(caller)
         else:
@@ -368,6 +369,7 @@ class CmdGive(COMMAND_DEFAULT_CLASS):
             caller.msg("You give %s to %s." % (to_give.key, target.key))
             to_give.move_to(target, quiet=True)
             target.msg("%s gives you %s." % (caller.key, to_give.key))
+            caller.location.log_action("%s gives %s to %s." % (self.caller, obj.name, to_give.key))
         else:
             caller.msg("Time has stopped.")
 
@@ -521,6 +523,7 @@ class CmdPose(COMMAND_DEFAULT_CLASS):
             self.caller.msg(msg)
         else:
             msg = "%s%s" % (self.caller.name, self.args)
+            self.caller.location.log_action(msg)
         for item in self.caller.location.contents:
              if (item is not self.caller) and (item.db.present):
                  caller.msg(msg) 
