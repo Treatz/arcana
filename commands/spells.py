@@ -56,13 +56,14 @@ class CmdSpell(MuxCommand):
                +Sight - Temporarily see into the spirit world.
                +Summon - Opens the room to the spirit world.
                +Reach - Interact with the spirit world.
-           Time    
+           Time
                +Freeze - Freezes time in a location.
-               +Slowtime - Slows time around you    
-    """   
+               +Slowtime - Slows time around you
+               +History - Reviews the history in a location
+    """
     help_category = "Magic"
     auto_help = True
-   
+
     key = "Spheres"
     locks = "cmd:all()"
 

@@ -3,11 +3,11 @@ from evennia.commands.default.muxcommand import MuxCommand
 
 class CmdHistory(MuxCommand):
     """
-       +Scry - Remote view other locations.
+       +History - Review the astral history in a location.
 
        Usage:
-         +scry <direction>,<next direction>,<etc>
-       Requires a list of directions.
+         +history <num>
+       Reviews <num> events back in history.
 
     """
     key = "+history"
