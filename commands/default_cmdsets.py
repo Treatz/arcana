@@ -70,7 +70,7 @@ from commands.source import CmdSource
 from commands.portal import CmdPortal
 from commands.jump import CmdJump
 from commands.where import CmdWhere
-from commands.general import CmdDrop        
+from commands.general import CmdDrop
 from commands.general import CmdGive
 from commands.freeze import CmdFreeze
 from commands.sap import CmdSap
@@ -94,10 +94,12 @@ from commands.stealth import CmdStealth
 from commands.astrology import CmdAstrology
 from commands.contemplate import CmdContemplate
 from commands.charisma import CmdCharisma
+from commands.history import CmdHistory
 
 class CharacterCmdSet(default_cmds.CharacterCmdSet):
         """
         The `CharacterCmdSet` contains general in-game commands like `look`,
+from commands.history import CmdHistory
         `get`, etc available on in-game Character objects. It is merged with
         the `PlayerCmdSet` when a Player puppets a Character.
         """
@@ -130,13 +132,13 @@ class CharacterCmdSet(default_cmds.CharacterCmdSet):
                 self.add(CmdAttack())
                 self.add(FooBar())
                 self.add(Image())
-            	self.add(Wield())
-            	self.add(OverLook())
-            	self.add(CmdSay())
-            	self.add(OverGive())
-            	self.add(OverPose())
-            	self.add(OverWhisper())
-            	self.add(CmdSpell())
+                self.add(Wield())
+                self.add(OverLook())
+                self.add(CmdSay())
+                self.add(OverGive())
+                self.add(OverPose())
+                self.add(OverWhisper())
+                self.add(CmdSpell())
                 self.add(CmdCast())
                 self.add(CmdLastBreath())
                 self.add(CmdSight())
@@ -174,7 +176,7 @@ class CharacterCmdSet(default_cmds.CharacterCmdSet):
                 self.add(CmdDrop())
                 self.add(CmdFreeze())
                 self.add(CmdGive())
-                self.add(CmdSap())                
+                self.add(CmdSap())
                 self.add(CmdCon())
                 self.add(CmdClone())
                 self.add(CmdMake())
@@ -196,6 +198,7 @@ class CharacterCmdSet(default_cmds.CharacterCmdSet):
                 self.add(CmdAstrology())
                 self.add(CmdContemplate())
                 self.add(CmdCharisma())
+                self.add(CmdHistory())
 
 class PlayerCmdSet(default_cmds.PlayerCmdSet):
         """
