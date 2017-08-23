@@ -5,16 +5,17 @@ import datetime
 class CmdCast(MuxCommand):
     """
        +cast - Use ritual magic.
-    
-       Usage: 
+
+       Usage:
          +cast <entry>
 
        Define your ritual spell.
-    
-    """   
+
+    """
     key = "+cast"
     locks = "cmd:all()"
-    auto_help=False
+    help_category = "Magic"
+    auto_help = True
     def func(self):
 
         if not self.caller.db.magic:

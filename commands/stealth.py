@@ -5,17 +5,17 @@ class CmdStealth(MuxCommand):
 
     """
        +Stealth - Move through exits unseen.
-    
-       Usage: 
+
+       Usage:
          +stealth
-   
+
        Seperate from the invisibility spell.
-    
-    """   
+
+    """
 
     help_category = "Skills"
     auto_help = True
-   
+
     key = "+stealth"
     locks = "cmd:all()"
 

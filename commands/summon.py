@@ -4,15 +4,16 @@ from evennia.commands.default.muxcommand import MuxCommand
 class CmdSummon(MuxCommand):
     """
        +summon - Opens a room to the spirit world.
-    
-       Usage: 
-         +summon    
+
+       Usage:
+         +summon
        Allows ghosts and people in a room to hold an audience.
-    
-    """   
+
+    """
     key = "+summon"
     locks = "cmd:all()"
-    auto_help=False
+    help_category = "Magic"
+    auto_help = True
     def func(self):
         if self.caller.db.med:
             self.caller.msg("You are forced to stop your meditation.")
@@ -49,7 +50,7 @@ class CmdSummon(MuxCommand):
                 self.caller.msg("Your magic is fueld by the planets!")
         if(self.caller.db.magic_fuel):
             self.caller.msg("You roll %s dice for the spell with a difficulty of %s, using %s quintessence." % (self.caller.db.arete + self.caller.db.spirit, 6-self.caller.db.magic_fuel, self.caller.db.magic_fuel))
-        else:  
+        else:
             self.caller.msg("You roll %s dice for the spell with a difficulty of %s." % (self.caller.db.arete + self.caller.db.spirit, 6-self.caller.db.magic_fuel))
         for x in range(0, self.caller.db.arete + self.caller.db.spirit):
             roll = roll_dice(1,10)
@@ -72,4 +73,4 @@ class CmdSummon(MuxCommand):
             if(player.db.alive == 0):
                 player.msg("The physical plane is drawing closer.")
             player.db.sight = 1
-            player.db.touch = 1        
+            player.db.touch = 1

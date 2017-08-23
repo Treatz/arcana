@@ -5,17 +5,18 @@ class CmdUse(MuxCommand):
 
     """
        +Use - Use luck or the luck of a charmed object.
-    
-       Usage: 
+
+       Usage:
          +use <target>
 
        Can be increased if used again.
-    
-    """   
-   
+
+    """
+
     key = "+use"
     locks = "cmd:all()"
-    auto_help=False
+    help_category = "Magic"
+    auto_help = True
     def func(self):
         if self.caller.db.med:
             self.caller.msg("You are forced to stop your meditation.")

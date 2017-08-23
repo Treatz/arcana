@@ -4,14 +4,14 @@ from evennia.commands.default.muxcommand import MuxCommand
 class CmdMeditate(MuxCommand):
     """
        +Meditate - Regenerates quintessence.
-    
-       Usage: 
+
+       Usage:
          +Meditates
-   
+
        Can only be used on yourself..
-    
-    """   
-    auto_help = True   
+
+    """
+    auto_help = True
     key = "+meditate"
     locks = "cmd:all()"
     def func(self):

@@ -5,17 +5,17 @@ class CmdIntimidate(MuxCommand):
 
     """
        +Intimidate - Used to scare the target.
-    
-       Usage: 
+
+       Usage:
          +intimidate <target>
-   
+
        Can be used before attacking.
-    
-    """   
+
+    """
 
     help_category = "Skills"
     auto_help = True
-   
+
     key = "+intimidate"
     locks = "cmd:all()"
 

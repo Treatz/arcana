@@ -5,18 +5,19 @@ class CmdHeal(MuxCommand):
 
     """
        +Heal - Restores a living being back to health.
-    
-       Usage: 
-         +Heal <target>
-   
-       Cannot be used on corpses.
-    
-    """   
 
-   
+       Usage:
+         +Heal <target>
+
+       Cannot be used on corpses.
+
+    """
+
+
     key = "+heal"
     locks = "cmd:all()"
-    auto_help=False
+    help_category = "Magic"
+    auto_help = True
     def func(self):
         if self.caller.db.med:
             self.caller.msg("You are forced to stop your meditation.")
@@ -60,7 +61,7 @@ class CmdHeal(MuxCommand):
                 self.caller.msg("Your magic is fueld by the planets!")
         if(self.caller.db.magic_fuel):
             self.caller.msg("You roll %s dice for the spell with a difficulty of %s, using %s quintessence." % (self.caller.db.arete + self.caller.db.life +self.caller.db.medicine, 6-self.caller.db.magic_fuel, self.caller.db.magic_fuel))
-        else:  
+        else:
             self.caller.msg("You roll %s dice for the spell with a difficulty of %s." % (self.caller.db.arete + self.caller.db.life, 6-self.caller.db.magic_fuel))
         for x in range(0, self.caller.db.arete + self.caller.db.life):
             roll = roll_dice(1,10)
@@ -98,7 +99,7 @@ class CmdHeal(MuxCommand):
                     healthbar += " /"
                 else:
                     healthbar += " 0"
-            healthbar += "|/"        
+            healthbar += "|/"
             hit.msg(prompt=healthbar)
         else:
             self.caller.msg("You can't find them here.")

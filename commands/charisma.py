@@ -5,17 +5,17 @@ class CmdCharisma(MuxCommand):
 
     """
        +Charisma - Used to influence another character.
-    
-       Usage: 
+
+       Usage:
          +charisma <target> = <message>
-   
+
        Requires some role playing on everyones part..
-    
-    """   
+
+    """
 
     help_category = "Skills"
     auto_help = True
-   
+
     key = "+charisma"
     locks = "cmd:all()"
 

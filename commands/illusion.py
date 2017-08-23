@@ -5,15 +5,16 @@ class CmdIllusion(MuxCommand):
 
     """
        +illusion - Fills the room with an illusion.
-    
-       Usage: 
+
+       Usage:
          +Illusion
-       Everyone in a room sees the illusion    
-    """   
-   
+       Everyone in a room sees the illusion
+    """
+
     key = "+illusion"
     locks = "cmd:all()"
-    auto_help=False
+    help_category = "Magic"
+    auto_help = True
     def func(self):
         if self.caller.db.med:
             self.caller.msg("You are forced to stop your meditation.")
@@ -50,7 +51,7 @@ class CmdIllusion(MuxCommand):
                 self.caller.msg("Your magic is fueld by the planets!")
         if(self.caller.db.magic_fuel):
             self.caller.msg("You roll %s dice for the spell with a difficulty of %s, using %s quintessence." % (self.caller.db.arete + self.caller.db.mind, 6-self.caller.db.magic_fuel, self.caller.db.magic_fuel))
-        else:  
+        else:
             self.caller.msg("You roll %s dice for the spell with a difficulty of %s." % (self.caller.db.arete + self.caller.db.mind, 6-self.caller.db.magic_fuel))
         for x in range(0, self.caller.db.arete + self.caller.db.mind):
             roll = roll_dice(1,10)
@@ -69,5 +70,4 @@ class CmdIllusion(MuxCommand):
         self.caller.msg("You create an illusion in the room:")
         self.caller.msg(self.args)
         self.caller.location.msg_contents(self.args, exclude=self.caller, from_obj=self.caller)
-        
-        
+

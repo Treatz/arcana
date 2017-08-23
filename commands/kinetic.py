@@ -5,17 +5,18 @@ class CmdKinetic(MuxCommand):
 
     """
        +kinetic - Changes unarmed attacks to lethal.
-    
-       Usage: 
+
+       Usage:
          +kinetic
 
        Increases the kinetic forces of your fists.
-    
-    """   
-   
+
+    """
+
     key = "+kinetic"
     locks = "cmd:all()"
-    auto_help=False
+    help_category = "Magic"
+    auto_help = True
     def func(self):
         if self.caller.db.med:
             self.caller.msg("You are forced to stop your meditation.")
@@ -52,7 +53,7 @@ class CmdKinetic(MuxCommand):
                 self.caller.msg("Your magic is fueld by the planets!")
         if(self.caller.db.magic_fuel):
             self.caller.msg("You roll %s dice for the spell with a difficulty of %s, using %s quintessence." % (self.caller.db.arete + self.caller.db.forces, 6-self.caller.db.magic_fuel, self.caller.db.magic_fuel))
-        else:  
+        else:
             self.caller.msg("You roll %s dice for the spell with a difficulty of %s." % (self.caller.db.arete + self.caller.db.forces, 6-self.caller.db.magic_fuel))
         for x in range(0, self.caller.db.arete + self.caller.db.forces):
             roll = roll_dice(1,10)

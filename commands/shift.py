@@ -5,17 +5,18 @@ class CmdShift(MuxCommand):
 
     """
        +Shift - Changes you into an animal.
-    
-       Usage: 
+
+       Usage:
          +shift <form>
 
        Changes your appearance but not your stats.
-    
-    """   
-   
+
+    """
+
     key = "+shift"
     locks = "cmd:all()"
-    auto_help=False
+    help_category = "Magic"
+    auto_help = True
     def func(self):
         if self.caller.db.med:
             self.caller.msg("You are forced to stop your meditation.")
@@ -55,7 +56,7 @@ class CmdShift(MuxCommand):
         wins = 0
         if(self.caller.db.magic_fuel):
             self.caller.msg("You roll %s dice for the spell with a difficulty of %s, using %s quintessence." % (self.caller.db.arete + self.caller.db.life, 6-self.caller.db.magic_fuel, self.caller.db.magic_fuel))
-        else:  
+        else:
             self.caller.msg("You roll %s dice for the spell with a difficulty of %s." % (self.caller.db.arete + self.caller.db.life, 6-self.caller.db.magic_fuel))
         for x in range(0, self.caller.db.arete + self.caller.db.life):
             roll = roll_dice(1,10)

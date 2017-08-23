@@ -6,13 +6,13 @@ import datetime
 class CmdDone(MuxCommand):
     """
        +done - Approve the spell.
-    
-       Usage: 
+
+       Usage:
          +done <entry>
 
        cast the players spell.
-    
-    """   
+
+    """
     key = "+done"
     locks = "cmd:all()"
     auto_help=False

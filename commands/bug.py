@@ -4,16 +4,17 @@ from evennia import default_cmds
 class CmdBug(default_cmds.MuxCommand):
     """
        +Bug - Listen to everything another character says.
-    
-       Usage: 
-        +bug <character> 
-    
+
+       Usage:
+        +bug <character>
+
        Listen to another player without their knowledge.
-    
+
     """
     key = "+bug"
     locks = "cmd:all()"
-    auto_help=False
+    help_category = "Magic"
+    auto_help = True
     def func(self):
         """confirms the target and initiates the search"""
         if self.caller.ndb.ritual:
@@ -48,7 +49,7 @@ class CmdBug(default_cmds.MuxCommand):
                 self.caller.msg("Your magic is fueld by the planets!")
         if(self.caller.db.magic_fuel):
             self.caller.msg("You roll %s dice for the spell with a difficulty of %s, using %s quintessence." % (self.caller.db.arete + self.caller.db.entropy, 6-self.caller.db.magic_fuel, self.caller.db.magic_fuel))
-        else:  
+        else:
             self.caller.msg("You roll %s dice for the spell with a difficulty of %s." % (self.caller.db.arete + self.caller.db.mind, 6-self.caller.db.magic_fuel))
         for x in range(0, self.caller.db.arete + self.caller.db.mind):
             roll = roll_dice(1,10)
@@ -70,7 +71,7 @@ class CmdBug(default_cmds.MuxCommand):
         self.caller.msg("You are listening to %s." % target)
         # initialize a list to store rooms we've visited
         target.db.spy = self.caller
-        
+
         detect = self.target.db.perception + self.target.db.awareness
         see = 0
         for x in range(1,detect):
@@ -79,6 +80,6 @@ class CmdBug(default_cmds.MuxCommand):
                 see += 1
                 if(see >= 1 and not self.caller == self.target):
                     self.target.msg("%s has cast a spell on you!" % self.caller)
-            
+
         yield 60
         target.db.spy = None

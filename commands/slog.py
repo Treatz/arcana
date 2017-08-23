@@ -5,12 +5,12 @@ import datetime
 class CmdSlog(MuxCommand):
     """
        +slog - List spells ready to be cast.
-    
-       Usage: 
+
+       Usage:
          +slog
        List spells in que..
-    
-    """   
+
+    """
     key = "+slog"
     locks = "cmd:all()"
     auto_help=False

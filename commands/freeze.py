@@ -4,15 +4,16 @@ from evennia.commands.default.muxcommand import MuxCommand
 class CmdFreeze(MuxCommand):
     """
        +Freeze - Freezes time in a location.
-    
-       Usage: 
-         +freeze   
+
+       Usage:
+         +freeze
        Stops time in a location.
-    
-    """   
+
+    """
     key = "+freeze"
     locks = "cmd:all()"
-    auto_help=False
+    help_category = "Magic"
+    auto_help = True
     def func(self):
         if self.caller.db.med:
             self.caller.msg("You are forced to stop your meditation.")
@@ -49,7 +50,7 @@ class CmdFreeze(MuxCommand):
                 self.caller.msg("Your magic is fueld by the planets!")
         if(self.caller.db.magic_fuel):
             self.caller.msg("You roll %s dice for the spell with a difficulty of %s, using %s quintessence." % (self.caller.db.arete + self.caller.db.time, 6-self.caller.db.magic_fuel, self.caller.db.magic_fuel))
-        else:  
+        else:
             self.caller.msg("You roll %s dice for the spell with a difficulty of %s." % (self.caller.db.arete + self.caller.db.time, 6-self.caller.db.magic_fuel))
         for x in range(0, self.caller.db.arete + self.caller.db.time):
             roll = roll_dice(1,10)
@@ -66,16 +67,16 @@ class CmdFreeze(MuxCommand):
             self.caller.msg("Your spell fizzles out and fails.")
             return
         current_room = self.caller.location
-        current_room.db.freeze = 1 
+        current_room.db.freeze = 1
         for item in current_room.contents:
-            item.msg("Time comes to a stop.") 
+            item.msg("Time comes to a stop.")
             item.db.present = 0
         self.caller.db.present = 1
         self.caller.db.frozen_room = current_room
-        yield 30      
+        yield 30
         self.caller.db.frozen_room.db.freeze = 0
         for item in self.caller.db.frozen_room.contents:
             item.msg("Time has started again.")
             item.db.present = 1
         self.caller.db.frozen_room = None
-                
+

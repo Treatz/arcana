@@ -4,16 +4,17 @@ from evennia import default_cmds
 class CmdFind(default_cmds.MuxCommand):
     """
        +Locate - Provides directions to an object or character.
-    
-       Usage: 
+
+       Usage:
         +locate <args>
-    
+
        Only shows best exit from where you are.
-    
+
     """
     key = "+locate"
     locks = "cmd:all()"
-    auto_help=False
+    help_category = "Magic"
+    auto_help = True
     maxdepth = 4
 
     def func(self):
@@ -53,7 +54,7 @@ class CmdFind(default_cmds.MuxCommand):
                 self.caller.msg("Your magic is fueld by the planets!")
         if(self.caller.db.magic_fuel):
             self.caller.msg("You roll %s dice for the spell with a difficulty of %s, using %s quintessence." % (self.caller.db.arete + self.caller.db.correspondence, 6-self.caller.db.magic_fuel, self.caller.db.magic_fuel))
-        else:  
+        else:
             self.caller.msg("You roll %s dice for the spell with a difficulty of %s." % (self.caller.db.arete + self.caller.db.correspondence, 6-self.caller.db.magic_fuel))
         for x in range(0, self.caller.db.arete + self.caller.db.correspondence):
             roll = roll_dice(1,10)

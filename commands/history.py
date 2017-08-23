@@ -12,7 +12,8 @@ class CmdHistory(MuxCommand):
     """
     key = "+history"
     locks = "cmd:all()"
-    auto_help=False
+    help_category = "Magic"
+    auto_help = True
     def func(self):
         if self.caller.db.med:
             self.caller.msg("You are forced to stop your meditation.")

@@ -5,16 +5,16 @@ class CmdRitual(MuxCommand):
 
     """
        +Ritual - Used to start a ritual.
-    
-       Usage: 
+
+       Usage:
          +ritual
-   
+
        Can be used before casting a spell.
-    
-    """   
+
+    """
     help_category = "Skills"
     auto_help = True
-   
+
     key = "+ritual"
     locks = "cmd:all()"
 
@@ -31,7 +31,7 @@ class CmdRitual(MuxCommand):
             self.caller.msg("You can't add anymore energy to this ritual.")
             return
         wins = 0
-        if(not self.caller.ndb.ritual): 
+        if(not self.caller.ndb.ritual):
             for x in range(0, self.caller.db.rituals + self.caller.db.intelligence):
                 roll = roll_dice(1,10)
                 if(roll > 5):
