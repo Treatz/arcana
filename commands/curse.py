@@ -12,7 +12,7 @@ class CmdCurse(MuxCommand):
        Doesn't expire until the curse is activated.
 
     """
-
+    key = "+curse"
     locks = "cmd:all()"
     help_category = "Magic"
     auto_help = True
