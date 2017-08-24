@@ -1064,10 +1064,6 @@ def skip_defend(caller):
     return text, options
 
 def defend_node(caller):
-	caller.ndb.action = 0
-    if caller.ndb.ritual:
-        caller.msg("You are forced to stop your ritual.")
-        caller.ndb.ritual = 0
     if caller.ndb.ritual:
         caller.msg("You are forced to stop your ritual.")
         caller.ndb.ritual = 0
@@ -1095,12 +1091,10 @@ def defend_node(caller):
         caller.locks.add("view:attr(alive, 0)")
     if(total<8):
         caller.db.conscious = 1
-
-    caller.db.target.start_time = timer()
-
+    caller.db.start_time = timer()
     defend_script = create_script("typeclasses.defendwait.DefendTime", obj=caller)
-    defend_script.attacker(caller)
-    defend_script.target(caller.db.target)
+    defend_script.attacker(caller.db.target)
+    defend_script.target(caller)
 
     text = ""
     options = ({"key": "|ydodge",
@@ -1150,8 +1144,6 @@ def defend_node(caller):
     if(caller.db.move_speed == "freeze" and caller.db.alive == 1):
         options = ({"key": "_default",
         "goto": "new_skip"})
-    if caller.ndb.action == 0:
-        utils.delay(10, dodge, caller)
         
     return text, options
 
