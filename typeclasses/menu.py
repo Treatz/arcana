@@ -1149,7 +1149,8 @@ def defend_node(caller):
     if(caller.db.move_speed == "freeze" and caller.db.alive == 1):
         options = ({"key": "_default",
         "goto": "new_skip"})
-    if not caller.ndb.action:
+    if caller.ndb.action == 0:
+		caller.ndb.action = 1
         utils.delay(10, dodge, caller)
     else:
 		caller.ndb.action = 0     
@@ -1157,7 +1158,7 @@ def defend_node(caller):
     return text, options
 
 def dodge(caller):
-    caller.ndb.action = 1
+    
     test = caller.db.dexterity + caller.db.athletics + caller.db.blessed
     soak = caller.db.stamina + caller.db.blessed
     counter = 0
