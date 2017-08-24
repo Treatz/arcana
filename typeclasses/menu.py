@@ -1064,6 +1064,7 @@ def skip_defend(caller):
     return text, options
 
 def defend_node(caller):
+	caller.ndb.action = 0
     if caller.ndb.ritual:
         caller.msg("You are forced to stop your ritual.")
         caller.ndb.ritual = 0
@@ -1150,15 +1151,12 @@ def defend_node(caller):
         options = ({"key": "_default",
         "goto": "new_skip"})
     if caller.ndb.action == 0:
-		caller.ndb.action = 1
         utils.delay(10, dodge, caller)
-    else:
-		caller.ndb.action = 0     
         
     return text, options
 
 def dodge(caller):
-    
+    caller.ndb.action = 1
     test = caller.db.dexterity + caller.db.athletics + caller.db.blessed
     soak = caller.db.stamina + caller.db.blessed
     counter = 0
