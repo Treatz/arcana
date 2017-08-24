@@ -369,7 +369,7 @@ class CmdGive(COMMAND_DEFAULT_CLASS):
             caller.msg("You give %s to %s." % (to_give.key, target.key))
             to_give.move_to(target, quiet=True)
             target.msg("%s gives you %s." % (caller.key, to_give.key))
-            caller.location.log_action("%s gives %s to %s." % (self.caller, obj.name, to_give.key))
+            caller.location.log_action("%s gives %s to %s." % (caller.key, to_give.key, target.key))
         else:
             caller.msg("Time has stopped.")
 

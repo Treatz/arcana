@@ -1,6 +1,7 @@
 from evennia.utils.evmenu import EvMenu
 from evennia.contrib.dice import roll_dice
 from evennia.utils.create import create_object
+from evennia import default_cmds, utils
 from evennia import create_script
 from timeit import default_timer as timer
 
@@ -10,8 +11,8 @@ def exit_combat(caller):
     caller.execute_cmd('Exit')
 
 def attack_node(caller):
-        
-
+   
+    caller.ndb.timebug = 1
     healthbar = "|/|X|[wHealth:"
     total = caller.db.lethal + caller.db.bashing
 
@@ -99,7 +100,11 @@ def attack_node(caller):
                         "desc": "A sword.",
                         "goto": "wait",
                         "exec": "katana"},)
-
+                if(each.db.weapon == 6):
+                    options += ({"key": "|y" + each.key,
+                        "desc": "A pistol.",
+                        "goto": "auto",
+                        "exec": "pistol"},)
 
         if(caller.db.conscious == 0 and caller.db.alive == 1):
             options = ({"key": "_default",
@@ -224,8 +229,7 @@ def attack_node(caller):
                 caller.db.intimidated = 1
                 options = ({"key": "_default",
                 "goto": "skip_attack"})
-
-
+    
     return text, options
 
 
@@ -763,6 +767,192 @@ def katana(caller):
                 "goto": "skip_attack"})
     return text, options
 
+def single(caller):
+    caller.db.attack_not = 0
+    caller.db.weapon = 2
+
+    pistol = caller.search("pistol", candidates=caller.contents)
+    if pistol.db.enchant:
+        test = caller.db.dexterity + caller.db.firearms + caller.db.blessed + sword.db.enchant
+    else:
+        test = caller.db.dexterity + caller.db.firearms+ caller.db.blessed 
+    counter = 0
+    attackpoints = 0
+    while(counter < test):
+        counter = counter + 1
+        roll = roll_dice(1,10)
+        if(roll >= 6):
+            attackpoints = attackpoints + 1
+    if caller.db.autopoint:
+        attackpoints +=1
+        caller.db.autopoint = 0
+    global damage    
+    damage = attackpoints
+
+    hit = caller.db.strength+3
+    counter = 0
+    attackpoints2 = 0
+    while (counter < hit):
+        counter = counter + 1
+        roll = roll_dice(1, 10)
+        if (roll >= 6):
+            attackpoints2 = attackpoints2 + 1
+            
+    global damage2
+    damage2 = 4 + caller.db.blessed + caller.db.target.db.cursed
+    caller.db.target.db.cursed = 0
+    caller.db.start_time = 99999999999999999999999
+    if (attackpoints > 0):
+        caller.msg("|/|gYou shoot %s with %i success rolls. " % (caller.db.target, attackpoints))
+        caller.db.target.msg("|/|g%s attempts to shoot you with %i succesful rolls." % (caller, attackpoints))
+        EvMenu(caller.db.target, "typeclasses.menu", startnode="defend_node", auto_quit=False, cmd_on_exit=None)
+        players = [con for con in caller.location.contents if con.has_player]
+        for player in players:
+            if not player.ndb.end_combat:
+                player.msg("%s shoots %s with his pistol." % (caller, caller.db.target))
+    else:
+        caller.msg("|/|gYou miss %s." % caller.db.target)
+        caller.db.target.msg("|/|g%s shoots, but misses you." % caller)
+        players = [con for con in caller.location.contents if con.has_player]
+        for player in players:
+            if not player.ndb.end_combat:
+                player.msg("%s misses %s with his pistol." % (caller, caller.db.target))
+        EvMenu(caller.db.target, "typeclasses.menu", startnode="attack_node", auto_quit=False, cmd_on_exit=None)
+    text = ""
+    options = ({"key": "skip",
+                "goto": "skip_attack"})
+    return text, options
+
+def double(caller):	
+    caller.db.attack_not = 0
+    caller.db.weapon = 4
+
+    pistol = caller.search("pistol", candidates=caller.contents)
+    if pistol.db.enchant:
+        test = caller.db.dexterity + caller.db.firearms + caller.db.blessed + sword.db.enchant
+    else:
+        test = caller.db.dexterity + caller.db.firearms+ caller.db.blessed 
+    counter = 0
+    attackpoints = 0
+    while(counter < test):
+        counter = counter + 1
+        roll = roll_dice(1,10)
+        if(roll >= 6):
+            attackpoints = attackpoints + 1
+    if caller.db.autopoint:
+        attackpoints +=1
+        caller.db.autopoint = 0
+    global damage    
+    damage = attackpoints
+
+    hit = caller.db.strength+3
+    counter = 0
+    attackpoints2 = 0
+    while (counter < hit):
+        counter = counter + 1
+        roll = roll_dice(1, 10)
+        if (roll >= 6):
+            attackpoints2 = attackpoints2 + 1
+            
+    global damage2
+    damage2 = 4 + caller.db.blessed + caller.db.target.db.cursed
+    caller.db.target.db.cursed = 0
+    caller.db.start_time = 99999999999999999999999
+    if (attackpoints > 0):
+        caller.msg("|/|gYou shoot %s twice with %i success rolls. " % (caller.db.target, attackpoints))
+        caller.db.target.msg("|/|g%s attempts to shoot you twice with %i succesful rolls." % (caller, attackpoints))
+        EvMenu(caller.db.target, "typeclasses.menu", startnode="defend_node", auto_quit=False, cmd_on_exit=None)
+        players = [con for con in caller.location.contents if con.has_player]
+        for player in players:
+            if not player.ndb.end_combat:
+                player.msg("%s shoots %s twice with his pistol." % (caller, caller.db.target))
+    else:
+        caller.msg("|/|gYou miss %s." % caller.db.target)
+        caller.db.target.msg("|/|g%s shoots, but misses you." % caller)
+        players = [con for con in caller.location.contents if con.has_player]
+        for player in players:
+            if not player.ndb.end_combat:
+                player.msg("%s misses %s with his pistol." % (caller, caller.db.target))
+        EvMenu(caller.db.target, "typeclasses.menu", startnode="attack_node", auto_quit=False, cmd_on_exit=None)
+    text = ""
+    options = ({"key": "skip",
+                "goto": "skip_attack"})
+    return text, options
+
+def three(caller):	
+    caller.db.attack_not = 0
+    caller.db.weapon = 4
+
+    pistol = caller.search("pistol", candidates=caller.contents)
+    if pistol.db.enchant:
+        test = caller.db.dexterity + caller.db.firearms + caller.db.blessed + pistol.db.enchant
+    else:
+        test = caller.db.dexterity + caller.db.firearms+ caller.db.blessed 
+    counter = 0
+    attackpoints = 0
+    while(counter < test):
+        counter = counter + 1
+        roll = roll_dice(1,10)
+        if(roll >= 6):
+            attackpoints = attackpoints + 1
+    if caller.db.autopoint:
+        attackpoints +=1
+        caller.db.autopoint = 0
+    global damage    
+    damage = attackpoints
+
+    hit = caller.db.strength+3
+    counter = 0
+    attackpoints2 = 0
+    while (counter < hit):
+        counter = counter + 1
+        roll = roll_dice(1, 10)
+        if (roll >= 6):
+            attackpoints2 = attackpoints2 + 1
+            
+    global damage2
+    damage2 = 4 + caller.db.blessed + caller.db.target.db.cursed
+    caller.db.target.db.cursed = 0
+    caller.db.start_time = 99999999999999999999999
+    if (attackpoints > 0):
+        caller.msg("|/|gYou shoot %s three times with %i success rolls. " % (caller.db.target, attackpoints))
+        caller.db.target.msg("|/|g%s attempts to shoot you three times with %i succesful rolls." % (caller, attackpoints))
+        EvMenu(caller.db.target, "typeclasses.menu", startnode="defend_node", auto_quit=False, cmd_on_exit=None)
+        players = [con for con in caller.location.contents if con.has_player]
+        for player in players:
+            if not player.ndb.end_combat:
+                player.msg("%s shoots %s three times with his pistol." % (caller, caller.db.target))
+    else:
+        caller.msg("|/|gYou miss %s." % caller.db.target)
+        caller.db.target.msg("|/|g%s shoots, but misses you." % caller)
+        players = [con for con in caller.location.contents if con.has_player]
+        for player in players:
+            if not player.ndb.end_combat:
+                player.msg("%s misses %s with his pistol." % (caller, caller.db.target))
+        EvMenu(caller.db.target, "typeclasses.menu", startnode="attack_node", auto_quit=False, cmd_on_exit=None)
+    text = ""
+    options = ({"key": "skip",
+                "goto": "skip_attack"})
+    return text, options
+
+def auto(caller):
+    caller.db.start_time = 99999999999999999999999
+    text = ""
+    options = ({"key": "|ysingle",
+            "desc": "Shoot once.",
+            "goto": "wait",
+            "exec": "single"},
+            {"key": "|Shoot twice",
+            "desc": "shoot twice",
+            "goto": "wait",
+            "exec": "double"},
+            {"key": "|Shoot three",
+            "desc": "shoot three times",
+            "goto": "wait",
+            "exec": "three"},)
+
+    return text, options
+    
 def wait(caller):
     caller.db.start_time = 99999999999999999999999
     text = ""
@@ -779,6 +969,7 @@ def finish(caller):
     return text, options
 
 def skip_attack(caller):
+    
     caller.db.start_time = 99999999999999999999999
     text = " "
     if caller.db.intimidated:
@@ -958,10 +1149,15 @@ def defend_node(caller):
     if(caller.db.move_speed == "freeze" and caller.db.alive == 1):
         options = ({"key": "_default",
         "goto": "new_skip"})
+    if not caller.ndb.action:
+        utils.delay(10, dodge, caller)
+    else:
+		caller.ndb.action = 0     
         
     return text, options
 
 def dodge(caller):
+    caller.ndb.action = 1
     test = caller.db.dexterity + caller.db.athletics + caller.db.blessed
     soak = caller.db.stamina + caller.db.blessed
     counter = 0
@@ -1030,6 +1226,33 @@ def dodge(caller):
             caller.db.lethal = caller.db.lethal + reduced
             caller.db.target.msg("|/|g%s dodges %i points of your attack." % (caller, defendpoints))
             caller.db.target.msg("|/|gYou deal %i points of lethal damage." % (reduced))
+            
+        if(caller.db.target.db.weapon == 2):
+            if defendpoints > 4:
+				defendpoints = 4
+            caller.msg("|/|gYou dodge %i out of 4 points of damage from %s's bullet." % (defendpoints, caller.db.target))
+            caller.msg("|/|g%s causes %i points of lethal damage to you." % (caller.db.target, 4-defendpoints))
+            caller.db.lethal = caller.db.lethal + 4 - defendpoints
+            caller.db.target.msg("|/|g%s dodges %i points of your attack." % (caller, defendpoints))
+            caller.db.target.msg("|/|gYou deal %i points of lethal damage." % (4-defendpoints))
+            
+        if(caller.db.target.db.weapon == 3):
+            if defendpoints > 8:
+				defendpoints = 8
+            caller.msg("|/|gYou dodge %i out of 8 points of damage from %s's bullets." % (defendpoints, caller.db.target))
+            caller.msg("|/|g%s causes %i points of lethal damage to you." % (caller.db.target, 8-defendpoints))
+            caller.db.lethal = caller.db.lethal + 8 - defendpoints
+            caller.db.target.msg("|/|g%s dodges %i points of your attack." % (caller, defendpoints))
+            caller.db.target.msg("|/|gYou deal %i points of lethal damage." % (8-defendpoints))
+            
+        if(caller.db.target.db.weapon == 4):
+            if defendpoints > 12:
+				defendpoints = 12
+            caller.msg("|/|gYou dodge %i out of 12 points of damage from %s's bullets." % (defendpoints, caller.db.target))
+            caller.msg("|/|g%s causes %i points of lethal damage to you." % (caller.db.target, 12-defendpoints))
+            caller.db.lethal = caller.db.lethal + 12 - defendpoints
+            caller.db.target.msg("|/|g%s dodges %i points of your attack." % (caller, defendpoints))
+            caller.db.target.msg("|/|gYou deal %i points of lethal damage." % (12-defendpoints))
             
     else:
         caller.msg("|/|rYou have been hit by %s." % caller.db.target)
@@ -1158,6 +1381,27 @@ def block(caller):
             caller.db.lethal = caller.db.lethal + dmg
             caller.db.target.msg("|/|g%s fails to block your attack." % (caller))
             caller.db.target.msg("|/|gYou deal %i points of lethal damage." % (dmg))
+            
+        if(caller.db.target.db.weapon == 2):
+            caller.msg("|/|gYou can't block %s's bullet." % (caller.db.target))
+            caller.msg("|/|g%s causes 4 points of lethal damage to you." % caller.db.target)
+            caller.db.lethal = caller.db.lethal + 4
+            caller.db.target.msg("|/|g%s fails to block your attack." % caller)
+            caller.db.target.msg("|/|gYou deal 4 points of lethal damage." % dmg)
+
+        if(caller.db.target.db.weapon == 3):
+            caller.msg("|/|gYou can't block %s's bullets." % (caller.db.target))
+            caller.msg("|/|g%s causes 8 points of lethal damage to you." % caller.db.target)
+            caller.db.lethal = caller.db.lethal + 8
+            caller.db.target.msg("|/|g%s fails to block your attack." % caller)
+            caller.db.target.msg("|/|gYou deal 8 points of lethal damage." % dmg) 
+            
+        if(caller.db.target.db.weapon == 4):
+            caller.msg("|/|gYou can't block %s's bullets." % (caller.db.target))
+            caller.msg("|/|g%s causes 12 points of lethal damage to you." % caller.db.target)
+            caller.db.lethal = caller.db.lethal + 12
+            caller.db.target.msg("|/|g%s fails to block your attack." % caller)
+            caller.db.target.msg("|/|gYou deal 12 points of lethal damage." % dmg)
             
     else:
         caller.msg("|/|rYou have been hit by %s." % caller.db.target)
@@ -1444,7 +1688,7 @@ def new_skip(caller):
         for player in players:
             if not player.ndb.end_combat:
                 player.msg("%s is dead!." % caller.name)
-        caller.location.log_action("%s is dead" % caller.name
+        caller.location.log_action("%s is dead" % caller.name)
         caller.ndb._menutree.close_menu()
         caller.db.target.ndb._menutree.close_menu()
         corpse4 = create_object(key="Corpse", location = caller.location)
