@@ -44,7 +44,7 @@ class AttackTime(DefaultScript):
                 self.obj.execute_cmd("skip")
                 self.obj.db.start_time = time.time()
                 self.stop()
-            elif(clock = 99999999999999999999999)
+            elif(clock == 99999999999999999999999):
                 self.obj.msg("OVERKILL")
                 self.stop()
 
