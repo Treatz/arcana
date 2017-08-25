@@ -10,6 +10,7 @@ class AttackTime(DefaultScript):
         self.interval = 2  # seconds
         self.repeats = 100  # repeat only a certain number of times
         self.start_delay = True  # wait self.interval until first call
+        self.obj.db.start_time = time.time()
         # self.persistent = True
 
 
