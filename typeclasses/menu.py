@@ -1203,7 +1203,8 @@ def dodge(caller):
             if(caller.db.target.db.form == "dog"):
                 if reduced > 3:
                    reduced = 3
-            caller.msg("|/|g%s rolls %i dice of damage points to you." % (caller.db.target, reduced))
+            if(reduced > 0):
+                caller.msg("|/|g%s rolls %i dice of damage points." % (caller.db.target, reduced))
             caller.msg("|/|g%s causes %i points of damage to you." % (caller.db.target, final))
             if (soakpoints > final):
                 soakpoints = final
