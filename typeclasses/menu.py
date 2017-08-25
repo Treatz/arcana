@@ -1,4 +1,3 @@
-from evennia.utils.evmenu import EvMenu
 from evennia.contrib.dice import roll_dice
 from evennia.utils.create import create_object
 from evennia import default_cmds, utils
@@ -1180,13 +1179,21 @@ def dodge(caller):
             if (roll >= 6):
                 dmg = dmg + 1
 
-        reduced =  dmg - defendpoints
+        reduced =  dmg - defendpoints -1
         if(reduced < 0):
             reduced = 0
         if(defendpoints >= dmg2):
             defendpoints = dmg2
             reduced = 0
-
+            
+        cnt3 = 0
+        total = 0
+        while (cnt3 < reduced):
+            cnt3 = cnt3 + 1
+            roll = roll_dice(1, 10)
+            if (roll >= 6):
+                total = total + 1
+                
         if(caller.db.target.db.weapon == 0):
             caller.msg("|/|gYou dodge %i out of %i of %s's attack points." % (defendpoints, dmg2, caller.db.target))
             if(caller.db.target.db.form == "cat"):
@@ -1195,21 +1202,21 @@ def dodge(caller):
             if(caller.db.target.db.form == "dog"):
                 if reduced > 3:
                    reduced = 3
-            caller.msg("|/|g%s causes %i points of damage to you." % (caller.db.target, reduced))
+            caller.msg("|/|g%s causes %i points of damage to you." % (caller.db.target, total + damage))
             if (soakpoints > reduced):
                 soakpoints = reduced
             if (soakpoints > 0):
-                caller.msg("|/|gYou soak %i out of %i points of bashing damage." % (soakpoints, reduced))
-            if (reduced - soakpoints > 0):
-                caller.msg("|/|gYou lose a total of %i health points." % (reduced - soakpoints))
-                caller.db.bashing = caller.db.bashing + (reduced - soakpoints)
+                caller.msg("|/|gYou soak %i out of %i points of bashing damage." % (soakpoints, total + damage))
+            if (total + damage - soakpoints > 0):
+                caller.msg("|/|gYou lose a total of %i health points." % (total+damage - soakpoints))
+                caller.db.bashing = caller.db.bashing + (total+damage - soakpoints)
             caller.db.target.msg("|/|g%s dodges %i points of your attack." % (caller, defendpoints))
-            caller.db.target.msg("|/|gYou deal %i points of damage with your attack." % (reduced))
+            caller.db.target.msg("|/|gYou deal %i points of damage with your attack." % (total+damage))
     
             if(soakpoints>0):
                 caller.db.target.msg("|/|g%s soaks %i points of damage from your attack." % (caller, soakpoints))
             if(reduced-soakpoints > 0):
-                caller.db.target.msg("|/|g%s loses a total of %i hit points." % (caller, reduced - soakpoints))
+                caller.db.target.msg("|/|g%s loses a total of %i hit points." % (caller, total+damage - soakpoints))
 
         if(caller.db.target.db.weapon == 1):
             caller.msg("|/|gYou dodge %i out of %i of %s's attack points." % (defendpoints, dmg2, caller.db.target))
