@@ -5,18 +5,17 @@ class CmdDeathTouch(MuxCommand):
 
     """
        +Deathtouch - Knock a subject unconscious.
-
-       Usage:
+    
+       Usage: 
          +deathtouch <target>
 
        Causes a temporary unconsciousness.
-
-    """
-
+    
+    """   
+   
     key = "+deathtouch"
     locks = "cmd:all()"
-    help_category = "Magic"
-    auto_help = True
+    auto_help=False
     def func(self):
         if self.caller.db.med:
             self.caller.msg("You are forced to stop your meditation.")
@@ -26,7 +25,7 @@ class CmdDeathTouch(MuxCommand):
             self.caller.ndb.ritual = 0
         if not self.caller.db.magic:
             self.caller.msg("You can't use magic!")
-            return
+            return    
         if not self.args:
             self.caller.msg("You must suply a target for the spell.")
             return
@@ -57,7 +56,7 @@ class CmdDeathTouch(MuxCommand):
                 self.caller.msg("Your magic is fueld by the planets!")
         if(self.caller.db.magic_fuel):
             self.caller.msg("You roll %s dice for the spell with a difficulty of %s, using %s quintessence." % (self.caller.db.arete + self.caller.db.entropy, 6-self.caller.db.magic_fuel, self.caller.db.magic_fuel))
-        else:
+        else:  
             self.caller.msg("You roll %s dice for the spell with a difficulty of %s." % (self.caller.db.arete + self.caller.db.entropy, 6-self.caller.db.magic_fuel))
         for x in range(0, self.caller.db.arete + self.caller.db.entropy):
             roll = roll_dice(1,10)
@@ -90,7 +89,7 @@ class CmdDeathTouch(MuxCommand):
                     healthbar += " /"
                 else:
                     healthbar += " 0"
-                healthbar += "|/"
+                healthbar += "|/"        
                 hit.msg(prompt=healthbar)
 
         detect = hit.db.perception + hit.db.awareness

@@ -28,8 +28,12 @@ class AttackTime(DefaultScript):
 		self.stop()
 
 
-        if(self.obj.db.conscious == 1):			
+        if(self.obj.db.conscious == 1):	
             if (timer - clock) > 12:
+               self.obj.msg("test1")
+               self.obj.msg(timer)
+               self.obj.msg("test2")
+               self.obj.msg(clock)
                self.obj.execute_cmd("skip")
                self.obj.db.start_time = 99999999999999999
                self.stop()

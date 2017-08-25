@@ -31,6 +31,10 @@ class DefendTime(DefaultScript):
 
         if(self.obj.db.conscious == 1):			
             if (timer - clock) > 12:
+               self.obj.msg("test1")
+               self.obj.msg(timer)
+               self.obj.msg("test2")
+               self.obj.msg(clock)
                self.obj.execute_cmd("dodge")
 
                self.obj.db.start_time = 99999999999999999

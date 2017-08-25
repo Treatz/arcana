@@ -4,17 +4,16 @@ from evennia.contrib.dice import roll_dice
 class CmdBan(default_cmds.MuxCommand):
     """
        +Ban - Bans a character from a room with bad luck.
-
-       Usage:
+    
+       Usage: 
         +ban <character> = <room>
-
+    
        Luck can be reginerated when you leave the room.
-
+    
     """
     key = "+Ban"
     locks = "cmd:all()"
-    help_category = "Magic"
-    auto_help = True
+    auto_help=False
     def func(self):
         """confirms the target and initiates the search"""
         if self.caller.ndb.ritual:
@@ -51,7 +50,7 @@ class CmdBan(default_cmds.MuxCommand):
                 self.caller.msg("Your magic is fueld by the planets!")
         if(self.caller.db.magic_fuel):
             self.caller.msg("You roll %s dice for the spell with a difficulty of %s, using %s quintessence." % (self.caller.db.arete + self.caller.db.entropy, 6-self.caller.db.magic_fuel, self.caller.db.magic_fuel))
-        else:
+        else:  
             self.caller.msg("You roll %s dice for the spell with a difficulty of %s." % (self.caller.db.arete + self.caller.db.entropy, 6-self.caller.db.magic_fuel))
         for x in range(0, self.caller.db.arete + self.caller.db.entropy):
             roll = roll_dice(1,10)

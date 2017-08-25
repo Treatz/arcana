@@ -5,19 +5,18 @@ class CmdDispell(MuxCommand):
 
     """
        +Dispell - Stops a character from using magic.
-
-       Usage:
+    
+       Usage: 
          +Dispell <target>
-
+   
        Stops a character from using magic.
+    
+    """   
 
-    """
-
-
+   
     key = "+dispell"
     locks = "cmd:all()"
-    help_category = "Magic"
-    auto_help = True
+    auto_help=False
     def func(self):
         if self.caller.db.med:
             self.caller.msg("You are forced to stop your meditation.")
@@ -57,7 +56,7 @@ class CmdDispell(MuxCommand):
         wins = 0
         if(self.caller.db.magic_fuel):
             self.caller.msg("You roll %s dice for the spell with a difficulty of %s, using %s quintessence." % (self.caller.db.arete + self.caller.db.prime, 6-self.caller.db.magic_fuel, self.caller.db.magic_fuel))
-        else:
+        else:  
             self.caller.msg("You roll %s dice for the spell with a difficulty of %s." % (self.caller.db.arete + self.caller.db.prime, 6-self.caller.db.magic_fuel))
         for x in range(0, self.caller.db.arete + self.caller.db.prime):
             roll = roll_dice(1,10)
@@ -89,5 +88,5 @@ class CmdDispell(MuxCommand):
                 see += 1
         if(see >= 1 and not self.caller == hit):
             hit.msg("%s has cast a spell on you!" % self.caller)
-        yield 60
+        yield 60    
         hit.db.magic = 1

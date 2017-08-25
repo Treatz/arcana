@@ -5,18 +5,17 @@ class CmdStrike(MuxCommand):
 
     """
        +Strike - Call lightning.
-
-       Usage:
+    
+       Usage: 
          +strike <target>
 
        Must be used outside.
-
-    """
-
+    
+    """   
+   
     key = "+strike"
     locks = "cmd:all()"
-    help_category = "Magic"
-    auto_help = True
+    auto_help=False
     def func(self):
         if self.caller.db.med:
             self.caller.msg("You are forced to stop your meditation.")
@@ -34,7 +33,7 @@ class CmdStrike(MuxCommand):
 
         if hit == self.caller:
             self.caller.msg("You don't want to do that!")
-            return
+            return                
 
         from evennia.contrib.dice import roll_dice
 
@@ -61,7 +60,7 @@ class CmdStrike(MuxCommand):
                 self.caller.msg("Your magic is fueld by the planets!")
         if(self.caller.db.magic_fuel):
             self.caller.msg("You roll %s dice for the spell with a difficulty of %s, using %s quintessence." % (self.caller.db.arete + self.caller.db.forces, 6-self.caller.db.magic_fuel, self.caller.db.magic_fuel))
-        else:
+        else:  
             self.caller.msg("You roll %s dice for the spell with a difficulty of %s." % (self.caller.db.arete + self.caller.db.forces, 6-self.caller.db.magic_fuel))
         for x in range(0, self.caller.db.arete + self.caller.db.forces):
             roll = roll_dice(1,10)
@@ -80,7 +79,7 @@ class CmdStrike(MuxCommand):
 
         if hit:
             hit.msg("You are struck by lightning!")
-            self.caller.msg("%s is truck by lightning!" % hit)
+            self.caller.msg("%s is truck by lightning!" % hit)                  
             hit.db.conscious = 0
             hit.db.lethal = hit.db.lethal + 4
             healthbar = "|/|X|[wHealth:"
@@ -92,7 +91,7 @@ class CmdStrike(MuxCommand):
                     healthbar += " /"
                 else:
                     healthbar += " 0"
-                healthbar += "|/"
+                healthbar += "|/"        
                 hit.msg(prompt=healthbar)
         detect = hit.db.perception + hit.db.awareness
         see = 0

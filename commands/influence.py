@@ -4,17 +4,16 @@ from evennia import default_cmds
 class CmdCommand(default_cmds.MuxCommand):
     """
        +command - Forces a character to do something.
-
-       Usage:
+    
+       Usage: 
         +command <character> = <command>
-
+    
        Forces someone else into doing an action.
-
+    
     """
     key = "+Command"
     locks = "cmd:all()"
-    help_category = "Magic"
-    auto_help = True
+    auto_help=False
     def func(self):
         if self.caller.db.med:
             self.caller.msg("You are forced to stop your meditation.")
@@ -49,10 +48,10 @@ class CmdCommand(default_cmds.MuxCommand):
             if bonus == 2:
                 self.caller.msg("You are channeling cosmic energies!")
             if bonus == 3:
-                self.caller.msg("Your magic is fueld by the planets!")
+                self.caller.msg("Your magic is fueld by the planets!")   
         if(self.caller.db.magic_fuel):
             self.caller.msg("You roll %s dice for the spell with a difficulty of %s, using %s quintessence." % (self.caller.db.arete + self.caller.db.mind, 6-self.caller.db.magic_fuel, self.caller.db.magic_fuel))
-        else:
+        else:  
             self.caller.msg("You roll %s dice for the spell with a difficulty of %s." % (self.caller.db.arete + self.caller.db.mind, 6-self.caller.db.magic_fuel))
         for x in range(0, self.caller.db.arete + self.caller.db.mind):
             roll = roll_dice(1,10)
@@ -80,6 +79,6 @@ class CmdCommand(default_cmds.MuxCommand):
                 see += 1
         if(see >= 1 and not self.caller == self.target):
             self.target.msg("%s has cast a spell on you!" % self.caller)
-
+            
         self.target.execute_cmd(self.rhs)
-
+        
