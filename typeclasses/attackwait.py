@@ -25,7 +25,7 @@ class AttackTime(DefaultScript):
 	if(self.obj.db.conscious == 0):
 	    if (timer - clock) > 2:
                 self.obj.execute_cmd("skip")
-                self.obj.db.start_time = 99999999999999999
+                self.obj.db.start_time = time.time()
 		self.stop()
 
 
@@ -36,16 +36,16 @@ class AttackTime(DefaultScript):
             self.obj.msg(clock)
             if (timer - clock) > 12:
                self.obj.execute_cmd("skip")
-               self.obj.db.start_time = 99999999999999999
+               self.obj.db.start_time = time.time()
                self.stop()
             elif(self.obj.db.target.has_player<1):
                 self.obj.db.target.execute_cmd("skip")
-                self.obj.db.start_time = 99999999999999999
+                self.obj.db.start_time = time.time()
                 self.stop()
             elif(self.obj.db.intimidated == 1):
                 self.obj.db.intimidated = 0
                 self.obj.execute_cmd("skip")
-                self.obj.db.start_time = 99999999999999999
+                self.obj.db.start_time = time.time()
                 self.stop()
 
 
