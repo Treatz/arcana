@@ -31,10 +31,7 @@ class DefendTime(DefaultScript):
 
         if(self.obj.db.conscious == 1):			
             if (timer - clock) > 12:
-               self.obj.msg("test1")
-               self.obj.msg(timer)
-               self.obj.msg("test2")
-               self.obj.msg(clock)
+
                self.obj.execute_cmd("dodge")
 
                self.obj.db.start_time = time.time()
@@ -50,7 +47,9 @@ class DefendTime(DefaultScript):
 
                 self.obj.db.start_time = time.time()
                 self.stop()
-
+            elif(clock = 99999999999999999999999)
+                self.obj.msg("OVERKILL")
+                self.stop()
 
     def attacker(self, character):
         self.db.attacker = character

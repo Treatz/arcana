@@ -30,10 +30,7 @@ class AttackTime(DefaultScript):
 
 
         if(self.obj.db.conscious == 1):
-            self.obj.msg("test3")
-            self.obj.msg(timer)
-            self.obj.msg("test4")
-            self.obj.msg(clock)
+
             if (timer - clock) > 12:
                self.obj.execute_cmd("skip")
                self.obj.db.start_time = time.time()
@@ -47,7 +44,9 @@ class AttackTime(DefaultScript):
                 self.obj.execute_cmd("skip")
                 self.obj.db.start_time = time.time()
                 self.stop()
-
+            elif(clock = 99999999999999999999999)
+                self.obj.msg("OVERKILL")
+                self.stop()
 
     def attacker(self, character):
         self.db.attacker = character
