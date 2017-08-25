@@ -25,7 +25,7 @@ class DefendTime(DefaultScript):
 	    if (timer - clock) > 2:
                 self.obj.execute_cmd("dodge")
 
-                self.obj.db.start_time = 99999999999999999
+                self.obj.db.start_time = time.time()
 		self.stop()
 
 
@@ -37,18 +37,18 @@ class DefendTime(DefaultScript):
                self.obj.msg(clock)
                self.obj.execute_cmd("dodge")
 
-               self.obj.db.start_time = 99999999999999999
+               self.obj.db.start_time = time.time()
                self.stop()
             elif(self.obj.db.target.has_player<1):
                 self.obj.db.target.execute_cmd("dodge")
  
-                self.obj.db.start_time = 99999999999999999
+                self.obj.db.start_time = time.time()
                 self.stop()
             elif(self.obj.db.intimidated == 1):
                 self.obj.db.intimidated = 0
                 self.obj.execute_cmd("dodge")
 
-                self.obj.db.start_time = 99999999999999999
+                self.obj.db.start_time = time.time()
                 self.stop()
 
 
