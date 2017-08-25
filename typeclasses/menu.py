@@ -1197,7 +1197,7 @@ def dodge(caller):
                 if reduced > 3:
                    reduced = 3
             caller.msg("|/|g%s causes %i points of damage to you." % (caller.db.target, damage + bonusdmg))
-            if (soakpoints > damge + bonusdmg):
+            if (soakpoints > damage + bonusdmg):
                 soakpoints = damage + bonusdmg
             if (soakpoints > 0):
                 caller.msg("|/|gYou soak %i out of %i points of bashing damage." % (soakpoints, damage + bonusdmg))
