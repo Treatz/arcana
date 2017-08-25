@@ -8,7 +8,7 @@ class AttackTime(DefaultScript):
         self.key = "attackWait"
         self.desc = "Character loses a turn."
         self.interval = 2  # seconds
-        self.repeats = 10  # repeat only a certain number of times
+        self.repeats = 100  # repeat only a certain number of times
         self.start_delay = True  # wait self.interval until first call
         # self.persistent = True
 
@@ -28,12 +28,12 @@ class AttackTime(DefaultScript):
 		self.stop()
 
 
-        if(self.obj.db.conscious == 1):	
+        if(self.obj.db.conscious == 1):
+            self.obj.msg("test3")
+            self.obj.msg(timer)
+            self.obj.msg("test4")
+            self.obj.msg(clock)
             if (timer - clock) > 12:
-               self.obj.msg("test1")
-               self.obj.msg(timer)
-               self.obj.msg("test2")
-               self.obj.msg(clock)
                self.obj.execute_cmd("skip")
                self.obj.db.start_time = 99999999999999999
                self.stop()
