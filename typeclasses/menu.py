@@ -773,7 +773,7 @@ def single(caller):
 
     pistol = caller.search("pistol", candidates=caller.contents)
     if pistol.db.enchant:
-        test = caller.db.dexterity + caller.db.firearms + caller.db.blessed + sword.db.enchant
+        test = caller.db.dexterity + caller.db.firearms + caller.db.blessed + pistol.db.enchant
     else:
         test = caller.db.dexterity + caller.db.firearms+ caller.db.blessed 
     counter = 0
@@ -829,7 +829,7 @@ def double(caller):
 
     pistol = caller.search("pistol", candidates=caller.contents)
     if pistol.db.enchant:
-        test = caller.db.dexterity + caller.db.firearms + caller.db.blessed + sword.db.enchant
+        test = caller.db.dexterity + caller.db.firearms + caller.db.blessed + pistol.db.enchant
     else:
         test = caller.db.dexterity + caller.db.firearms+ caller.db.blessed 
     counter = 0
@@ -1179,6 +1179,13 @@ def dodge(caller):
             roll = roll_dice(1, 10)
             if (roll >= 6):
                 dmg = dmg + 1
+        cnt2 = 0
+        bonusdmg = 0
+        white(cn2 < dmg2 - defendpoints - 1):
+            cnt2 += 1
+            roll = roll_dice(1,10)
+            if (roll >= 6):
+                bonusdmg = bonusdmg + 1
 
         reduced =  dmg - defendpoints
         if(reduced < 0):
@@ -1186,7 +1193,7 @@ def dodge(caller):
         if(defendpoints >= dmg2):
             defendpoints = dmg2
             reduced = 0
-
+        reduced = reduced + bonusdmg
         if(caller.db.target.db.weapon == 0):
             caller.msg("|/|gYou dodge %i out of %i of %s's attack points." % (defendpoints, dmg2, caller.db.target))
             if(caller.db.target.db.form == "cat"):
@@ -1219,31 +1226,26 @@ def dodge(caller):
             caller.db.target.msg("|/|gYou deal %i points of lethal damage." % (reduced))
             
         if(caller.db.target.db.weapon == 2):
-            if defendpoints > 4:
-				defendpoints = 4
-            caller.msg("|/|gYou dodge %i out of 4 points of damage from %s's bullet." % (defendpoints, caller.db.target))
-            caller.msg("|/|g%s causes %i points of lethal damage to you." % (caller.db.target, 4-defendpoints))
-            caller.db.lethal = caller.db.lethal + 4 - defendpoints
+        
+            caller.msg("|/|gYou dodge %i out of %i of %s's attack points." % (defendpoints, dmg2, caller.db.target))
+            caller.msg("|/|g%s causes %i points of lethal damage to you." % (caller.db.target, 4 + bonusdmg))
+            caller.db.lethal = caller.db.lethal + 4 + bonusdmg
             caller.db.target.msg("|/|g%s dodges %i points of your attack." % (caller, defendpoints))
-            caller.db.target.msg("|/|gYou deal %i points of lethal damage." % (4-defendpoints))
+            caller.db.target.msg("|/|gYou deal %i points of lethal damage." % (4+bonusdmg))
             
         if(caller.db.target.db.weapon == 3):
-            if defendpoints > 8:
-				defendpoints = 8
-            caller.msg("|/|gYou dodge %i out of 8 points of damage from %s's bullets." % (defendpoints, caller.db.target))
-            caller.msg("|/|g%s causes %i points of lethal damage to you." % (caller.db.target, 8-defendpoints))
-            caller.db.lethal = caller.db.lethal + 8 - defendpoints
+            caller.msg("|/|gYou dodge %i out of i% of %s's attack." % (defendpoints, dmg2, caller.db.target))
+            caller.msg("|/|g%s causes %i points of lethal damage to you." % (caller.db.target, 8 + bonusdmg))
+            caller.db.lethal = caller.db.lethal + 8 + bonusdmg
             caller.db.target.msg("|/|g%s dodges %i points of your attack." % (caller, defendpoints))
-            caller.db.target.msg("|/|gYou deal %i points of lethal damage." % (8-defendpoints))
+            caller.db.target.msg("|/|gYou deal %i points of lethal damage." % (8+bonusdmg)
             
         if(caller.db.target.db.weapon == 4):
-            if defendpoints > 12:
-				defendpoints = 12
-            caller.msg("|/|gYou dodge %i out of 12 points of damage from %s's bullets." % (defendpoints, caller.db.target))
-            caller.msg("|/|g%s causes %i points of lethal damage to you." % (caller.db.target, 12-defendpoints))
-            caller.db.lethal = caller.db.lethal + 12 - defendpoints
+            caller.msg("|/|gYou dodge %i out of %i of %s's attack." % (defendpoints, dmg2, caller.db.target))
+            caller.msg("|/|g%s causes %i points of lethal damage to you." % (caller.db.target, 12+bonusdmg))
+            caller.db.lethal = caller.db.lethal + 12 + bonusdmg
             caller.db.target.msg("|/|g%s dodges %i points of your attack." % (caller, defendpoints))
-            caller.db.target.msg("|/|gYou deal %i points of lethal damage." % (12-defendpoints))
+            caller.db.target.msg("|/|gYou deal %i points of lethal damage." % (8 + bonusdmg))
             
     else:
         caller.msg("|/|rYou have been hit by %s." % caller.db.target)
