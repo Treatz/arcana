@@ -1238,7 +1238,7 @@ def dodge(caller):
             caller.msg("|/|g%s causes %i points of lethal damage to you." % (caller.db.target, 8 + bonusdmg))
             caller.db.lethal = caller.db.lethal + 8 + bonusdmg
             caller.db.target.msg("|/|g%s dodges %i points of your attack." % (caller, defendpoints))
-            caller.db.target.msg("|/|gYou deal %i points of lethal damage." % (8+bonusdmg)
+            caller.db.target.msg("|/|gYou deal %i points of lethal damage." % (8+bonusdmg))
             
         if(caller.db.target.db.weapon == 4):
             caller.msg("|/|gYou dodge %i out of %i of %s's attack." % (defendpoints, dmg2, caller.db.target))
