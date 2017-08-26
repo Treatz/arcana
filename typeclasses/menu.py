@@ -234,7 +234,7 @@ def attack_node(caller):
 
 
 def select_weapon(caller, input):
-    caller.db.start_time = 99999999999999999999999
+    caller.db.start_time = timer()
     caller.db.selected_weapon = input
     caller.db.target.msg("|/|g%s wields his %s." % (caller.name, caller.db.selected_weapon))
     players = [con for con in caller.location.contents if con.has_player]
@@ -249,7 +249,7 @@ def select_weapon(caller, input):
     return text, options
 
 def remove_weapon(caller, input):
-        caller.db.start_time = 99999999999999999999999
+        caller.db.start_time = timer()
         caller.db.target.msg("|/|g%s puts his %s away." % (caller.name, caller.db.selected_weapon))
         players = [con for con in caller.location.contents if con.has_player]
         for player in players:
@@ -307,7 +307,7 @@ def punch(caller):
     global damage2
     damage2 = attackpoints2 + caller.db.blessed + caller.db.target.db.cursed
     caller.db.target.db.cursed = 0
-    caller.db.start_time = 99999999999999999999999
+    caller.db.start_time = timer()
     if (attackpoints > 0):
         caller.msg("|/|gYou punch %s with %i success rolls. " % (caller.db.target, attackpoints))
         caller.db.target.msg("|/|g%s attempts to punch you with %i succesful rolls." % (caller, attackpoints))
@@ -357,7 +357,7 @@ def claw(caller):
     global damage2
     damage2 = attackpoints2 + caller.db.blessed + caller.db.target.db.cursed
     caller.db.target.db.cursed = 0
-    caller.db.start_time = 99999999999999999999999
+    caller.db.start_time = timer()
     if (attackpoints > 0):
         caller.msg("|/|gYou claw %s with %i success rolls. " % (caller.db.target, attackpoints))
         caller.db.target.msg("|/|g%s attempts to claw you with %i succesful rolls." % (caller, attackpoints))
@@ -408,7 +408,7 @@ def bite(caller):
     global damage2
     damage2 = attackpoints2 + caller.db.blessed + caller.db.target.db.cursed
     caller.db.target.db.cursed = 0
-    caller.db.start_time = 99999999999999999999999
+    caller.db.start_time = timer()
     if (attackpoints > 0):
         caller.msg("|/|gYou bite %s with %i success rolls. " % (caller.db.target, attackpoints))
         caller.db.target.msg("|/|g%s attempts to bite you with %i succesful rolls." % (caller, attackpoints))
@@ -462,7 +462,7 @@ def kick(caller):
     global damage2
     damage2 = attackpoints2 + caller.db.blessed + caller.db.target.db.cursed
     caller.db.target.db.cursed = 0
-    caller.db.start_time = 99999999999999999999999
+    caller.db.start_time = timer()
     if (attackpoints > 0):
         caller.msg("|/|gYou kick %s with %i success rolls. " % (caller.db.target, attackpoints))
         caller.db.target.msg("|/|g%s attempts to kick you with %i succesful rolls." % (caller, attackpoints))
@@ -518,7 +518,7 @@ def axe(caller):
     global damage2
     damage2 = attackpoints2 + caller.db.blessed + caller.db.target.db.cursed
     caller.db.target.db.cursed = 0
-    caller.db.start_time = 99999999999999999999999
+    caller.db.start_time = timer()
     if (attackpoints > 0):
         caller.msg("|/|gYou strike %s with %i success rolls. " % (caller.db.target, attackpoints))
         caller.db.target.msg("|/|g%s attempts to strike you with %i succesful rolls." % (caller, attackpoints))
@@ -576,7 +576,7 @@ def knife(caller):
     global damage2
     damage2 = attackpoints2 + caller.db.blessed + caller.db.target.db.cursed
     caller.db.target.db.cursed = 0
-    caller.db.start_time = 99999999999999999999999
+    caller.db.start_time = timer()
     if (attackpoints > 0):
         caller.msg("|/|gYou strike %s with %i success rolls. " % (caller.db.target, attackpoints))
         caller.db.target.msg("|/|g%s attempts to strike you with %i succesful rolls." % (caller, attackpoints))
@@ -633,7 +633,7 @@ def bat(caller):
     global damage2
     damage2 = attackpoints2 + caller.db.blessed + caller.db.target.db.cursed
     caller.db.target.db.cursed = 0
-    caller.db.start_time = 99999999999999999999999
+    caller.db.start_time = timer()
     if (attackpoints > 0):
         caller.msg("|/|gYou strike %s with %i success rolls. " % (caller.db.target, attackpoints))
         caller.db.target.msg("|/|g%s attempts to strike you with %i succesful rolls." % (caller, attackpoints))
@@ -689,7 +689,7 @@ def staff(caller):
     global damage2
     damage2 = attackpoints2 + caller.db.blessed + caller.db.target.db.cursed
     caller.db.target.db.cursed = 0
-    caller.db.start_time = 99999999999999999999999
+    caller.db.start_time = timer()
     if (attackpoints > 0):
         caller.msg("|/|gYou strike %s with %i success rolls. " % (caller.db.target, attackpoints))
         caller.db.target.msg("|/|g%s attempts to strike you with %i succesful rolls." % (caller, attackpoints))
@@ -745,7 +745,7 @@ def katana(caller):
     global damage2
     damage2 = attackpoints2 + caller.db.blessed + caller.db.target.db.cursed
     caller.db.target.db.cursed = 0
-    caller.db.start_time = 99999999999999999999999
+    caller.db.start_time = timer()
     if (attackpoints > 0):
         caller.msg("|/|gYou strike %s with %i success rolls. " % (caller.db.target, attackpoints))
         caller.db.target.msg("|/|g%s attempts to strike you with %i succesful rolls." % (caller, attackpoints))
@@ -801,7 +801,7 @@ def single(caller):
     global damage2
     damage2 = 4 + caller.db.blessed + caller.db.target.db.cursed
     caller.db.target.db.cursed = 0
-    caller.db.start_time = 99999999999999999999999
+    caller.db.start_time = timer()
     if (attackpoints > 0):
         caller.msg("|/|gYou shoot %s with %i success rolls. " % (caller.db.target, attackpoints))
         caller.db.target.msg("|/|g%s attempts to shoot you with %i succesful rolls." % (caller, attackpoints))
@@ -857,7 +857,7 @@ def double(caller):
     global damage2
     damage2 = 4 + caller.db.blessed + caller.db.target.db.cursed
     caller.db.target.db.cursed = 0
-    caller.db.start_time = 99999999999999999999999
+    caller.db.start_time = timer()
     if (attackpoints > 0):
         caller.msg("|/|gYou shoot %s twice with %i success rolls. " % (caller.db.target, attackpoints))
         caller.db.target.msg("|/|g%s attempts to shoot you twice with %i succesful rolls." % (caller, attackpoints))
@@ -913,7 +913,7 @@ def three(caller):
     global damage2
     damage2 = 4 + caller.db.blessed + caller.db.target.db.cursed
     caller.db.target.db.cursed = 0
-    caller.db.start_time = 99999999999999999999999
+    caller.db.start_time = timer()
     if (attackpoints > 0):
         caller.msg("|/|gYou shoot %s three times with %i success rolls. " % (caller.db.target, attackpoints))
         caller.db.target.msg("|/|g%s attempts to shoot you three times with %i succesful rolls." % (caller, attackpoints))
@@ -936,17 +936,17 @@ def three(caller):
     return text, options
 
 def auto(caller):
-    caller.db.start_time = 99999999999999999999999
+    caller.db.start_time = timer()
     text = ""
     options = ({"key": "|ysingle",
             "desc": "Shoot once.",
             "goto": "wait",
             "exec": "single"},
-            {"key": "|Shoot twice",
+            {"key": "|ytwice",
             "desc": "shoot twice",
             "goto": "wait",
             "exec": "double"},
-            {"key": "|Shoot three",
+            {"key": "|ythree",
             "desc": "shoot three times",
             "goto": "wait",
             "exec": "three"},)
@@ -954,7 +954,7 @@ def auto(caller):
     return text, options
     
 def wait(caller):
-    caller.db.start_time = 99999999999999999999999
+    caller.db.start_time = timer()
     text = ""
     options = {"key": "_default",
                "goto": "wait"}
@@ -970,7 +970,7 @@ def finish(caller):
 
 def skip_attack(caller):
     
-    caller.db.start_time = 99999999999999999999999
+    caller.db.start_time = timer()
     text = " "
     if caller.db.intimidated:
         text = "|r You are too afraid to fight!"
@@ -1023,7 +1023,7 @@ def skip_attack(caller):
     return text, options
 
 def skip_defend(caller):
-    caller.db.start_time = 99999999999999999999999
+    caller.db.start_time = timer()
     caller.msg("|/|rYou have been hit by %s.|/" % caller.db.target)
     players = [con for con in caller.location.contents if con.has_player]
     for player in players:
@@ -1169,7 +1169,7 @@ def dodge(caller):
         if (roll >= 6):
             soakpoints = soakpoints + 1
     dmg = damage
-    caller.db.start_time = 99999999999999999999999
+    caller.db.start_time = timer()
     if (defendpoints > 0):
         tst = damage2
         dmg2 = damage
@@ -1326,7 +1326,7 @@ def block(caller):
         if (roll >= 6):
             soakpoints = soakpoints + 1
     dmg = damage
-    caller.db.start_time = 99999999999999999999999
+    caller.db.start_time = timer()
     if (defendpoints > 0):
         tst = damage2
         dmg2 = damage
@@ -1459,7 +1459,7 @@ def block(caller):
     return text, options
 
 def mercy_attack(caller):
-   caller.db.start_time = 99999999999999999999999
+   caller.db.start_time = timer()
    if caller.db.attack_not:
        init_a = caller.db.dexterity + caller.db.wits + caller.db.blessed + caller.db.charisma
        caller.db.target.msg("|/|y%s doesn't want to fight." % caller)
@@ -1491,7 +1491,7 @@ def mercy_attack(caller):
    return text, options
 
 def mercy(caller):
-    caller.db.start_time = 99999999999999999999999
+    caller.db.start_time = timer()
     init_a = caller.db.dexterity + caller.db.wits + caller.db.blessed + caller.db.charisma
     caller.db.target.msg("|/|y%s doesn't want to fight." % caller)
     init_b = caller.db.target.db.dexterity + caller.db.target.db.wits
@@ -1516,7 +1516,7 @@ def mercy(caller):
 
 
 def flee_attack(caller):
-    caller.db.start_time = 99999999999999999999999
+    caller.db.start_time = timer()
     if caller.db.attack_not:
         init_a = caller.db.dexterity + caller.db.wits + caller.db.blessed + caller.db.charisma+4
         caller.db.target.msg("|/|y%s doesn't want to fight." % caller)
@@ -1570,7 +1570,7 @@ def flee_attack(caller):
     return text, options
 
 def flee(caller):
-    caller.db.start_time = 99999999999999999999999
+    caller.db.start_time = timer()
     if caller.db.attack_not:
         init_a = caller.db.dexterity + caller.db.wits + caller.db.blessed + caller.db.charisma
         caller.db.target.msg("|/|y%s doesn't want to fight." % caller)
