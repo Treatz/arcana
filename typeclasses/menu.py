@@ -1181,7 +1181,7 @@ def dodge(caller):
                 dmg = dmg + 1
         cnt2 = 0
         bonusdmg = 0
-        white(cn2 < dmg2 - defendpoints - 1):
+        while(cn2 < dmg2 - defendpoints - 1):
             cnt2 += 1
             roll = roll_dice(1,10)
             if (roll >= 6):
