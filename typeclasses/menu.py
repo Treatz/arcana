@@ -60,6 +60,11 @@ def attack_node(caller):
             {"key": "|yskip",
             "desc": "Do nothing",
             "goto": "skip_attack"},)
+        if caller.db.martialarts > 0;
+            options += ({"key": "|ylethal punch",
+                      "desc": "martial arts",
+                      "goto": "wait",
+                      "exec": "lethalpunch"},)
         if caller.db.attack_not:
             caller.db.mercy = 1
             options += ({"key": "|ymercy",
@@ -328,6 +333,57 @@ def punch(caller):
     options = ({"key": "skip",
         "goto": "skip_attack"})
     return text, options
+
+def lethalpunch(caller):
+    caller.db.weapon = 1
+    caller.db.attack_not = 0
+    test = caller.db.dexterity + caller.db.martialarts +caller.db.blessed
+    counter = 0
+    attackpoints = 0
+    while(counter < test):
+        counter = counter + 1
+        roll = roll_dice(1,10)
+        if(roll >= 6):
+            attackpoints = attackpoints + 1
+    if caller.db.autopoint:
+        attackpoints +=1
+        caller.db.autopoint = 0
+    global damage
+    damage = attackpoints
+    hit = caller.db.strength
+    counter = 0
+    attackpoints2 = 0
+    while (counter < hit):
+        counter = counter + 1
+        roll = roll_dice(1, 10)
+        if (roll >= 6):
+            attackpoints2 = attackpoints2 + 1
+
+    global damage2
+    damage2 = attackpoints2 + caller.db.blessed + caller.db.target.db.cursed
+    caller.db.target.db.cursed = 0
+    caller.db.start_time = timer()
+    if (attackpoints > 0):
+        caller.msg("|/|gYou execute a lethal punch on %s with %i success rolls. " % (caller.db.target, attackpoints))
+        caller.db.target.msg("|/|g%s attempts to hit o with a lethal punch using %i succesful rolls." % (caller, attackpoints))
+        players = [con for con in caller.location.contents if con.has_player]
+        for player in players:
+            if not player.ndb.end_combat:
+                player.msg("%s strikes %s." % (caller, caller.db.target))
+        EvMenu(caller.db.target, "typeclasses.menu", startnode="defend_node", auto_quit=False, cmd_on_exit=None)
+    else:
+        caller.msg("|/|gYou miss %s." % caller.db.target)
+        caller.db.target.msg("|/|g%s punches, but misses you." % caller)
+        players = [con for con in caller.location.contents if con.has_player]
+        for player in players:
+            if not player.ndb.end_combat:
+                player.msg("%s misses %s." % (caller, caller.db.target))
+        EvMenu(caller.db.target, "typeclasses.menu", startnode="attack_node", auto_quit=False, cmd_on_exit=None)
+    text = ""
+    options = ({"key": "skip",
+        "goto": "skip_attack"})
+    return text, options
+
 
 def claw(caller):
     caller.db.weapon = 0
@@ -825,7 +881,7 @@ def single(caller):
 
 def double(caller):	
     caller.db.attack_not = 0
-    caller.db.weapon = 4
+    caller.db.weapon = 3
 
     pistol = caller.search("pistol", candidates=caller.contents)
     if pistol.db.enchant:
