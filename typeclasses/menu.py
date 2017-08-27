@@ -61,7 +61,7 @@ def attack_node(caller):
             "desc": "Do nothing",
             "goto": "skip_attack"},)
         if caller.db.martialarts > 0:
-            options += ({"key": "|ylethal punch",
+            options += ({"key": "|ystrike",
                       "desc": "martial arts",
                       "goto": "wait",
                       "exec": "lethalpunch"},)
@@ -365,7 +365,7 @@ def lethalpunch(caller):
     caller.db.start_time = timer()
     if (attackpoints > 0):
         caller.msg("|/|gYou execute a lethal punch on %s with %i success rolls. " % (caller.db.target, attackpoints))
-        caller.db.target.msg("|/|g%s attempts to hit o with a lethal punch using %i succesful rolls." % (caller, attackpoints))
+        caller.db.target.msg("|/|g%s attacks with a lethal punch, using %i succesful rolls." % (caller, attackpoints))
         players = [con for con in caller.location.contents if con.has_player]
         for player in players:
             if not player.ndb.end_combat:
