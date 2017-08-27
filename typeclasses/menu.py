@@ -60,7 +60,7 @@ def attack_node(caller):
             {"key": "|yskip",
             "desc": "Do nothing",
             "goto": "skip_attack"},)
-        if caller.db.martialarts > 0;
+        if caller.db.martialarts > 0:
             options += ({"key": "|ylethal punch",
                       "desc": "martial arts",
                       "goto": "wait",
