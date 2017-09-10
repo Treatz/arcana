@@ -265,7 +265,7 @@ class Character(DefaultCharacter):
         self.db.magic = 1
         self.touch = 0
         self.intimidated = 0
-
+        self.present = 1
         TICKER_HANDLER.add(60, self.heal)
         TICKER_HANDLER.add(120, self.heal_lethal)
         TICKER_HANDLER.add(180, self.spells)

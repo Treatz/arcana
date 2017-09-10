@@ -55,7 +55,7 @@ TELNET_PORTS = [4000]
 # the Portal proxy presents to the world. The serverports are
 # the internal ports the proxy uses to forward data to the Server-side
 # webserver (these should not be publicly open)
-WEBSERVER_PORTS = [(80, 8008)]
+WEBSERVER_PORTS = [(80, 8808)]
 # Ports to use for SSH
 SSH_PORTS = [8028]
 # Ports to use for SSL
@@ -66,7 +66,7 @@ SSL_PORTS = [4028]
 # change this unless you cannot use the default AMP port/host for
 # whatever reason.
 AMP_HOST = 'localhost'
-AMP_PORT = 6666
+AMP_PORT = 9999
 AMP_INTERFACE = '127.0.0.1'
 # Server-side websocket port to open for the webclient.
 WEBSOCKET_CLIENT_PORT = 8308
